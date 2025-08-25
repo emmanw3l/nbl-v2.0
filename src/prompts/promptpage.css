@@ -4,9 +4,9 @@ body {
 .navbars {
   background-color: var(--primary-color);
   z-index: 1000;
-  top: 0;
+  /* top: 0; */
   margin-bottom: 100px;
-  position: fixed;
+  /* position: fixed; */
   width: 100vw;
 }
 
@@ -42,4 +42,14 @@ body {
 .jan-head {
   text-decoration: underline;
   font-family: "papyrus", sans-serif;
+}
+
+@media (max-width: 768px){
+  .navbars{
+    /* position: fixed; */
+    /* max-height: fit-content; */
+    /* top: 0; */
+    /* left: 0; */
+    margin-bottom: 30px;
+  }
 }

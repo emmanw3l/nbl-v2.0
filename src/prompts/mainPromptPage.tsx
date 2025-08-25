@@ -27,14 +27,14 @@ export default function PromptsPage() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
-      <nav className="navbar navbar-expand-lg navbar-dark navbars ">
+      <nav className="navbar  navbar-dark navbars ">
         <NavLink to="/">
         <span className="bi bi-house fs-3 navbar-brand ms-2"></span></NavLink>
-        <div className="container justify-content-center">
-          <a className="navbar-brand" href="#">
+        
+          <a className="navbar-brand mx-auto" href="#">
             PROMPTS
           </a>
-        </div>
+        
       </nav>
       {/* <Carousel1 /> */}
 
