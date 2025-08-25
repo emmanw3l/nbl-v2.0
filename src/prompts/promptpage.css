@@ -1,0 +1,45 @@
+body {
+  background-color: var(--primary-color-highlight);
+}
+.navbars {
+  background-color: var(--primary-color);
+  z-index: 1000;
+  top: 0;
+  margin-bottom: 100px;
+  position: fixed;
+  width: 100vw;
+}
+
+.page-container {
+  margin-top: 5%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7px;
+  background-color: var(--primary-color-highlight);
+  font-family: "Poppins", sans-serif;
+  border: 2px solid var(--primary-color);
+  max-height: fit-content;
+}
+.card:hover {
+  transition-delay: 0s;
+  transition: 0.4s;
+}
+.bold {
+  font-weight: 600;
+  text-align: center;
+}
+.twenty {
+  font-family: "copperplate", "fantasy";
+  font-weight: 900;
+  font-size: 46px;
+}
+.jan-head {
+  text-decoration: underline;
+  font-family: "papyrus", sans-serif;
+}

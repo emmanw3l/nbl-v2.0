@@ -1,0 +1,25 @@
+body {
+  background-color: var(--primary-color-highlight);
+}
+.accordion-body {
+  background-color: var(--primary-color-highlight);
+  /* border: 2px solid #5f3205; */
+}
+.pr {
+  border: 2px solid #5f3205;
+}
+.cards{
+    background-color: var(--body-bg);
+}
+.accordion-button{
+    background-color: var(--body-bg);
+}
+
+.author-card{
+  background-color: var(--primary-color);
+  color: white;
+}
+.pill{
+  background-color: #5f3205;
+  color: white;
+}
