@@ -7,7 +7,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 
 
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import PageLoader from "./components/PageLoader";
 import { AnimatePresence } from "framer-motion";
 // import { motion } from "framer-motion";
