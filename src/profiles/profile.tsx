@@ -131,14 +131,20 @@ import { julyPrompts } from "../prompts/2025/july";
 import { motion } from "framer-motion";
 // import { NavLink } from "react-router-dom";
 import "./profile.css";
-import Layout from "../Nav/Nav";
+// import Layout from "../Nav/Nav";
 import PagedText from "../components/paging";
 // import { li } from "framer-motion/client";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 // Merge all prompts into one array
-const allPrompts = [...prompts, ...febPrompts, ...aprilPrompts, ...mJPrompts, ...julyPrompts];
+const allPrompts = [
+  ...prompts,
+  ...febPrompts,
+  ...aprilPrompts,
+  ...mJPrompts,
+  ...julyPrompts,
+];
 
 // sluuuugssss
 const slugify = (text: string) =>
@@ -181,6 +187,8 @@ export default function Profiles() {
     }
   }, [location]);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <motion.div
       variants={pageVariants}
@@ -189,8 +197,76 @@ export default function Profiles() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
-      <Layout />
-      <div className="container py-4">
+      {/* <Layout /> */}
+
+      <div>
+        <nav className="navbar navbars text-white ">
+          <div className="container-fluid ">
+            <Link to="/" className="navbar-brand">
+              <i className="bi bi-house fs-3 text-white"></i>
+            </Link>
+
+            <h2 className="text-white">
+              <a href="#" className="text-decoration-none text-white">
+                Profiles
+              </a>
+            </h2>
+
+            <button
+              className="btn btn-outline-light"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              ☰
+            </button>
+          </div>
+        </nav>
+
+        {/* Sidebar */}
+        <div
+          className={` offcanvas sidebars offcanvas-end ${
+            isOpen ? "show" : ""
+          }`}
+          style={{ visibility: isOpen ? "visible" : "hidden" }}
+          tabIndex={-1}
+        >
+          <div className="offcanvas-header   ">
+            
+            <nav className="mx-auto">
+              <Link to="/awards" className="nav-link  fw-semibold dib">Awards</Link>
+              <Link to="/mainPromptPage" className="nav-link  fw-semibold dib">Prompts</Link>
+            </nav>
+            <button className="btn btn-outline-light "
+            onClick={() => setIsOpen(false)}>
+              x
+            </button>
+          </div>
+          <div className="offcanvas-body">
+            <div className="mb-5">
+              <h4 className="mb-3 text-center text-white">
+                List of NBL Authors
+              </h4>
+              <ol className="list-group list-group-numbered text-white">
+                {sortedAuthors.map(([author]) => (
+                  <li
+                    key={author}
+                    className="list-group-item  justify-content-between align-items-center"
+                  >
+                    <a
+                      href={`#${slugify(author)}`}
+                      className="text-decoration-none fw-bold text-white"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {author}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container py-4 mt-5">
         <h1 className="mt-4 text-center ">AUTHOR PROFILES</h1>
 
         {/* option 2 */}
@@ -213,7 +289,7 @@ export default function Profiles() {
 
         {/* option 3 */}
 
-        <div className="mb-5">
+        {/* <div className="mb-5">
           <h4 className="mb-3"></h4>
           <div className="d-flex flex-wrap gap-2">
             {sortedAuthors.map(([author]) => (
@@ -227,9 +303,7 @@ export default function Profiles() {
               </a>
             ))}
           </div>
-        </div>
-
-
+        </div> */}
 
         {/* accordion section */}
 

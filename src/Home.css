@@ -27,6 +27,8 @@ body{
     font-size: 6rem;
 }
 .lottie{
+    margin: 0;
+    padding: 0;
     width: 450px;
     height: 450px;
     justify-content: end;
@@ -50,9 +52,11 @@ body{
         width: 100vw;
     }
     .first-word{
+        padding-left: 0;
+        margin-left: 0;
         font-size: 40px;
         text-align: center;
-        letter-spacing: 12.9px;
+        letter-spacing: 10.9px;
     }
     
 }

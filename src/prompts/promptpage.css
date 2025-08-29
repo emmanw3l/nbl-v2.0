@@ -5,7 +5,7 @@ body {
   background-color: var(--primary-color);
   z-index: 1000;
   /* top: 0; */
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   /* position: fixed; */
   width: 100vw;
 }
@@ -15,6 +15,62 @@ body {
 
   display: flex;
   flex-direction: column;
+}
+
+.navbars{
+  z-index: 1000;
+  background-color: var(--primary-color);
+  /* margin-bottom: 100px; */
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+
+}
+
+.sidebars, .list-group-item{
+  background-color: var(--primary-color);
+}
+
+.btn-close{
+  color: white;
+}
+
+.dib{
+  display: inline-block;
+  margin: 13px;
+  background-color: var(--body-bg);
+  padding: 8px;
+  color: black;
+}
+
+.accordion-item{
+  border: none;
+}
+
+.accordion-body {
+  background-color: var(--body-bg);
+  /* border: 2px solid #5f3205; */
+  border: none;
+  /* color: white; */
+}
+
+.accordion-button{
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.accordion-button::after {
+  filter: invert(1); /* makes it white */
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.accordion-body ul li{
+  margin-bottom: 12px;
+  font-size: 1.2rem;
 }
 
 .card {
@@ -45,11 +101,16 @@ body {
 }
 
 @media (max-width: 768px){
-  .navbars{
-    /* position: fixed; */
-    /* max-height: fit-content; */
-    /* top: 0; */
-    /* left: 0; */
-    margin-bottom: 30px;
+  .twentyfive{
+    padding-top: 60px;
+
   }
+  .sidebars{
+    --bs-offcanvas-width: 80%;
+  }
+}
+.arrow{
+  position: fixed;
+  top: 100;
+  right: 0;
 }

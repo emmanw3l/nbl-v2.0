@@ -10,6 +10,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import PageLoader from "./components/PageLoader";
 import { AnimatePresence } from "framer-motion";
+import PageNotFound from "./components/pagenotfound/pageNotFound";
 // import { motion } from "framer-motion";
 // import PromptsPage from "./prompts/mainPromptPage";
 // import profiles from "./profiles/profile";
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profiles />} />
             <Route path="/mainPromptPage" element={<PromptsPage />} />
+             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Suspense>
       </AnimatePresence>
