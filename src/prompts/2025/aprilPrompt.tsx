@@ -418,7 +418,7 @@ export const aprilPrompts = [
     id: 6,
     title: "Can I rise up?",
     title1: "HOPE ECHOES IN SILENCE. OUT OF THE ABYSS, RISE",
-    author: "Jarron",
+    author: "Aangrron",
     content: [
       <p>
         CAN I RISE UP? <br />

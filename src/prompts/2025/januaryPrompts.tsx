@@ -659,7 +659,7 @@ export const prompts = [
   {
     id: 10,
     title: "Christ-Life",
-    author: "Jarron",
+    author: "Aangrron",
     content: [
        <p>
               I wish it were easier <br/>

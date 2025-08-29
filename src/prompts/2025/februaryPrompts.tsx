@@ -710,7 +710,7 @@ export const febPrompts = [
   {
     id: 12,
     title: "Mirror Mirror, wh am I?",
-    author: "Jarron",
+    author: "Aangrron",
     content: [
       <p>
         Month of love. <br />
