@@ -199,7 +199,7 @@
   position: fixed;
   top: 60px;
   right: 0;
-  height: 25vh; /* 25% of screen height */
+  height: max-content; /* 25% of screen height */
   min-width: 20%;
   /* max-width: 50%; */
   
@@ -228,7 +228,7 @@
 
 .nav-link {
   font-size: larger;
-  /* padding-bottom: 1rem; */
+  padding-bottom: 1rem;
 }
 
 

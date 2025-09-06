@@ -107,14 +107,14 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="fw-bold">Get in Touch</h3>
-            <ul className="list-unstyled d-flex gap-3">
+            <ul className="list-unstyled d-flex gap-3 justify-content-center ">
               <li>
                 <a href={MyLinks.instagram} className="social-link">
                   <img src={instagram} alt="instagram" />
                 </a>
               </li>
               <li>
-                <a href={MyLinks.wattpad} className="social-link">
+                <a href={MyLinks.wattpad} className="social-link ">
                   <img src={wattpad} alt="Wattpad" />
                 </a>
               </li>

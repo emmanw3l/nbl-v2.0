@@ -302,7 +302,7 @@ export default function PromptsPage() {
         </div>
 
         <div className="page-container">
-          <section id="mj" className="">
+          <section id="july" className="">
             <h1 className="text-center twenty">JULY 2025</h1>
             <h3 className="jan-head text-center">
               Theme: Me, myself and my mind
