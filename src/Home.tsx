@@ -23,7 +23,7 @@ export default function Home() {
       className="container-fluid"
     >
       <Layout />
-      <div className=" vh-100">
+      <div className="">
         <div className="row">
           <div className="col-lg-6 col-sm-12 col-6">
             <div className="first-heading animate__animated animate__zoomInDown ">

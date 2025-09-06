@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import Footer from "../components/footer/footer";
 // import { ArrowUp } from "react-bootstrap-icons";
 
 const pageVariants = {
@@ -311,6 +312,8 @@ export default function PromptsPage() {
           </section>
         </div>
       </div>
+
+      <Footer/>
     </motion.div>
   );
 }

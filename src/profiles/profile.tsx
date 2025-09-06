@@ -137,6 +137,7 @@ import PagedText from "../components/paging";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
+import Footer from "../components/footer/footer";
 
 // Merge all prompts into one array
 const allPrompts = [
@@ -498,6 +499,8 @@ export default function Profiles() {
       >
         <ArrowUp size={20} />
       </button>
+
+      <Footer/>
     </motion.div>
   );
 }
