@@ -136,6 +136,7 @@ import PagedText from "../components/paging";
 // import { li } from "framer-motion/client";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ArrowUp } from "lucide-react";
 
 // Merge all prompts into one array
 const allPrompts = [
@@ -189,6 +190,21 @@ export default function Profiles() {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      setVisible(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <motion.div
       variants={pageVariants}
@@ -230,13 +246,18 @@ export default function Profiles() {
           tabIndex={-1}
         >
           <div className="offcanvas-header   ">
-            
             <nav className="mx-auto">
-              <Link to="/awards" className="nav-link  fw-semibold dib">Awards</Link>
-              <Link to="/mainPromptPage" className="nav-link  fw-semibold dib">Prompts</Link>
+              <Link to="/awards" className="nav-link  fw-semibold dib">
+                Awards
+              </Link>
+              <Link to="/mainPromptPage" className="nav-link  fw-semibold dib">
+                Prompts
+              </Link>
             </nav>
-            <button className="btn btn-outline-light "
-            onClick={() => setIsOpen(false)}>
+            <button
+              className="btn btn-outline-light "
+              onClick={() => setIsOpen(false)}
+            >
               x
             </button>
           </div>
@@ -271,7 +292,7 @@ export default function Profiles() {
 
         {/* option 2 */}
 
-        <div className="mb-5">
+        {/* <div className="mb-5">
           <h4 className="mb-3"></h4>
           <ul className="list-inline">
             {sortedAuthors.map(([author]) => (
@@ -285,11 +306,11 @@ export default function Profiles() {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         {/* option 3 */}
 
-        {/* <div className="mb-5">
+        <div className="mb-5">
           <h4 className="mb-3"></h4>
           <div className="d-flex flex-wrap gap-2">
             {sortedAuthors.map(([author]) => (
@@ -303,13 +324,14 @@ export default function Profiles() {
               </a>
             ))}
           </div>
-        </div> */}
+        </div>
 
         {/* accordion section */}
 
-        {sortedAuthors.map(([author, works], authorIndex) => (
+        {/* {sortedAuthors.map(([author, works], authorIndex) => (
           <div key={author} id={slugify(author)} className="mb-5 card cards">
             <h2 className="mb-3 text-center">{author}</h2>
+            <h4 className="br-bottom">Prompts written so far...</h4>
             <div className="accordion" id={`accordion-${authorIndex}`}>
               {works.map((poem, poemIndex) => (
                 <motion.div
@@ -335,6 +357,7 @@ export default function Profiles() {
                       {poem.title}
                     </button>
                   </h2>
+
                   <div
                     id={`collapse-${authorIndex}-${poemIndex}`}
                     className="accordion-collapse collapse"
@@ -352,6 +375,89 @@ export default function Profiles() {
               ))}
             </div>
           </div>
+        ))} */}
+        {sortedAuthors.map(([author, works], authorIndex) => (
+          <motion.div
+            key={author}
+            id={slugify(author)}
+            className="mb-5 card shadow-lg border-0 rounded-4 p-4 ac"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Author Header */}
+            <div className="d-flex align-items-center mb-3">
+              <div
+                className="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center"
+                style={{ width: "60px", height: "60px", fontSize: "1.5rem" }}
+              >
+                {author.charAt(0)}
+              </div>
+              <div className="ms-3">
+                <h2 className="mb-1">{author}</h2>
+                <span
+                  className={`badge ${
+                    works.length === 1
+                      ? "bg-secondary" // gray
+                      : works.length <= 3
+                      ? "bg-warning text-dark" // yellow (Bootstrap warning has dark text for readability)
+                      : "bg-success" // green
+                  }`}
+                >
+                  {works.length} {works.length === 1 ? "work" : "works"}
+                </span>
+              </div>
+            </div>
+
+            <h5 className="fw-light text-muted mb-3">
+              Prompts written so far...
+            </h5>
+
+            {/* Accordion for works */}
+            <div className="accordion" id={`accordion-${authorIndex}`}>
+              {works.map((poem, poemIndex) => (
+                <motion.div
+                  key={poem.id}
+                  className="accordion-item border-0 mb-2 shadow-sm rounded-3 overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.4, delay: poemIndex * 0.1 }}
+                >
+                  <h2
+                    className="accordion-header"
+                    id={`heading-${authorIndex}-${poemIndex}`}
+                  >
+                    <button
+                      className="accordion-button collapsed fw-semibold"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
+                      aria-expanded="false"
+                      aria-controls={`collapse-${authorIndex}-${poemIndex}`}
+                    >
+                      {poem.title}
+                    </button>
+                  </h2>
+
+                  <div
+                    id={`collapse-${authorIndex}-${poemIndex}`}
+                    className="accordion-collapse collapse"
+                    aria-labelledby={`heading-${authorIndex}-${poemIndex}`}
+                    data-bs-parent={`#accordion-${authorIndex}`}
+                  >
+                    <div className="accordion-body">
+                      <PagedText
+                        paragraphs={poem.content}
+                        paragraphsPerPage={6}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         ))}
 
         {/* <div className="row">
@@ -371,6 +477,27 @@ export default function Profiles() {
           ))}
         </div> */}
       </div>
+      <button
+        onClick={scrollToTop}
+        className={`btn  rounded-circle text-white shadow transition-opacity ${
+          visible ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          width: "50px",
+          background: "#5f3205",
+          height: "50px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 1000,
+          transition: "opacity 0.3s ease-in-out",
+        }}
+      >
+        <ArrowUp size={20} />
+      </button>
     </motion.div>
   );
 }

@@ -13,5 +13,6 @@
 body {
     background-color: var(--bs-body-bg);
     overflow-x: hidden;
+    scroll-behavior: smooth;
 
 }

@@ -69,3 +69,17 @@ body {
   background-color: #5f3205;
   color: white;
 }
+
+.br-bottom{
+  padding: 13px;
+  
+}
+.ac {
+  background: linear-gradient(135deg, #f9f9f9, #ececec);
+}
+.ac:nth-child(odd) {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* blueish */
+}
+.ac:nth-child(even) {
+  background: linear-gradient(135deg, #fce4ec, #5f3205); /* pinkish */
+}

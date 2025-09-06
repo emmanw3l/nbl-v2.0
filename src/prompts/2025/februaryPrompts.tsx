@@ -465,7 +465,7 @@ export const febPrompts = [
   {
     id: 9,
     title: "Mirror Mirror, Who am I?",
-    author: "Ayodeji Ajaigbe",
+    author: "Ajagbe Ayodeji",
     content: [
       <p>
         There is no mirror in my room. I do not feel the need to get one because

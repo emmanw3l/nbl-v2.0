@@ -1,11 +1,13 @@
+import { motion } from "framer-motion";
 import "./footer.css";
-import { MyLinks } from "../../assets/links/links";
+// import { MyLinks } from "../../assets/links/links";
 
 export default function Footer() {
   return (
-    <>
-      <footer className="footer text-white  main-footer">
-        <div className=" d-flex justify-content-between  py-3 ">
+
+      <motion.div className=" ">
+        <nav className="navbar navbar-dark footer"></nav>
+        {/* <div className=" d-flex justify-content-between  py-3 ">
           <div className="col-md-4 d-flex align-items-center">
             <a href="#" className="me-2 text-white text-decoration-none">
               
@@ -38,8 +40,8 @@ export default function Footer() {
               </a>
             </li>
           </ul>
-        </div>
-      </footer>
-    </>
+        </div> */}
+      </motion.div>
+
   );
 }
