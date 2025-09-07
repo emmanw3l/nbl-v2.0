@@ -4,6 +4,17 @@
     /* position: sticky; */
 }
 
+.nbl{
+    font-weight: 900;
+    letter-spacing:0.8rem;
+    /* overlay:none; */
+    font-size:250%;
+    font-family:cursive;
+}
+.social-header{
+  background: linear-gradient(135deg, #5f3205, #fce4ec33);
+
+}
 
 .social-link {
   display: inline-flex;       

@@ -4,6 +4,8 @@ interface mJPrompts {
   id: number;
   title: string;
   author: string;
+  month: string;
+  year: string;
   content: JSX.Element[];
 }
 
@@ -12,6 +14,8 @@ export const mJPrompts = [
     id: 0,
     title: "I miss the days",
     author: "Nwabueze Emmanuel",
+    month: "may/june",
+    year:"2025",
     content: [
       <p>
         I miss the days where I was young and free and didn’t have to worry
@@ -68,6 +72,8 @@ export const mJPrompts = [
     id: 1,
     title: "Back when I was a child",
     author: "Oladimeji Ifeoluwa",
+    month: "may/june",
+    year:"2025",
     content: [
       <p>
         I was taking a stroll down to Iya Risikiyat’s shop to buy a recharge
@@ -120,6 +126,8 @@ export const mJPrompts = [
     id: 2,
     title: "Born to be free",
     author: "Bema",
+    month: "may/june",
+    year:"2025",
     content: [
       <p>
         I came across a path in life where I lacked direction on the next step.
@@ -186,6 +194,8 @@ export const mJPrompts = [
     id: 3,
     title: "Back when I was a child",
     author: "PJ",
+    month: "may/june",
+    year:"2025",
     content: [
       <p>
         <span className="bold">Back when I was a child,</span> things were
@@ -273,6 +283,8 @@ export const mJPrompts = [
     id: 4,
     title: "When the world was ours",
     author: "Laura",
+    month: "may/june",
+    year:"2025",
     content: [
       <p>
         The skies were bluer <br />

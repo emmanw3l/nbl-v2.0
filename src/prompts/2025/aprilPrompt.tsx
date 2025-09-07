@@ -4,6 +4,8 @@ interface aprilPrompts {
   id: number;
   title: string;
   author: string;
+  month: string;
+  year: string;
   content: JSX.Element[];
 }
 
@@ -62,6 +64,8 @@ export const aprilPrompts = [
     id: 1,
     title: "Can I rise up?",
     author: "PJ",
+    month: "april",
+    year:"2025",
     content: [
       <p>
         CAN I RISE UP, when everything is shattered and broken? When everything
@@ -109,6 +113,8 @@ export const aprilPrompts = [
     id: 2,
     title: "Can I rise up?",
     author: "Makitoru",
+    month: "april",
+    year:"2025",
     content: [
       <p>
         Do you know how it feels when all these emotions- feelings weigh on you
@@ -173,6 +179,8 @@ export const aprilPrompts = [
     title: "RISE UP",
     author: "Oladimeji Ifeoluwa",
     title1: `Diary Entry: August 9, 1826 ${(<br />)}Bart Marie-Therese`,
+    month: "april",
+    year:"2025",
     content: [
       <p>
         There is this looming baggage ladled all over me, <br />
@@ -231,6 +239,8 @@ export const aprilPrompts = [
     id: 4,
     title: "Can I rise up?",
     author: "Onwuegbuna Nneka Lisa",
+    month: "april",
+    year:"2025",
     content: [
       <p>
         Would it be possible to rise <br />
@@ -331,6 +341,8 @@ export const aprilPrompts = [
     id: 5,
     title: "Can I rise up?",
     author: "Laura",
+    month: "april",
+    year:"2025",
     content: [
       <p>
         I’m on the westside, my nadir <br />
@@ -419,6 +431,8 @@ export const aprilPrompts = [
     title: "Can I rise up?",
     title1: "HOPE ECHOES IN SILENCE. OUT OF THE ABYSS, RISE",
     author: "Aangrron",
+    month: "april",
+    year:"2025",
     content: [
       <p>
         CAN I RISE UP? <br />

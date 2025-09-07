@@ -4,6 +4,8 @@ interface julyPrompts {
   id: number;
   title: string;
   author: string;
+  month: string;
+  year: string;
   content: JSX.Element[];
 }
 
@@ -12,6 +14,8 @@ export const julyPrompts = [
     id: 0,
     title: "The voice within",
     author: "Ezechinyere Idinmachukwu Esther",
+    month: "july",
+    year:"2025",
     content: [
       <p>
         I used to think it was two different voices but I realised it’s just one
@@ -61,6 +65,8 @@ export const julyPrompts = [
     id: 1,
     title: "In my Head",
     author: "Odumosu Morenike",
+    month: "july",
+    year:"2025",
     content: [
       <p>
         . <br />
@@ -113,6 +119,8 @@ export const julyPrompts = [
     id: 2,
     title: "The voice within? I'd rather call it the room upstairs",
     author: "Abbadh",
+    month: "july",
+    year:"2025",
     content: [
       <p>
         There’s a door <br />
@@ -195,6 +203,8 @@ export const julyPrompts = [
     id: 3,
     title: "The voice within",
     author: "Oldaimeji Ifeoluwa",
+    month: "july",
+    year:"2025",
     content: [
       <p>
         In my head, they run freely <br />
@@ -271,6 +281,8 @@ export const julyPrompts = [
     id: 4,
     title: "My Mind; A dark hallway with so many doors",
     author: "Gracious",
+    month: "july",
+    year:"2025",
     content: [
       <p>
         “What if they don’t like you?”, “You might not be good enough for them,

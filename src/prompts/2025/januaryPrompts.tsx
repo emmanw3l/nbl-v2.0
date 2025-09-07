@@ -5,6 +5,8 @@ interface prompts {
   id: number;
   title: string;
   author: string;
+  month: string;
+  year: string;
   content: JSX.Element[]; 
 }
 
@@ -13,6 +15,8 @@ export const prompts = [
     id: 0,
     title: "Reminisce Of Transcendence",
     author: "Ezechinyere Idinmachukwu Esther",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         All my life I've been carried by grace, His grace. Growing up I was
@@ -82,6 +86,8 @@ export const prompts = [
     id: 1,
     title: "A realm of divinity",
     author: "Oladimeji Ifeoluwa",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         A memory far from my vicinity <br />
@@ -119,6 +125,8 @@ export const prompts = [
     id: 2,
     title: "Reminisce of Transcendence",
     author: "Onwuegbuna Nneka Lisa",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         I trace the steps of years gone by, <br />
@@ -162,6 +170,8 @@ export const prompts = [
     id: 3,
     title: "Through the valley",
     author: "Claudia",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         I was young, my heart unformed, <br />
@@ -271,6 +281,8 @@ export const prompts = [
     id: 4,
     title: "Reminisce of Transcendence",
     author: "Makitoru",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         As I ponder the mysteries of God, I am struck by the paradox of His
@@ -313,6 +325,8 @@ export const prompts = [
     id: 5,
     title: "A precious sweet fragrance",
     author: "Enix",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         Faith is not believing trials won't come, it is believing all
@@ -353,6 +367,8 @@ export const prompts = [
   {
     id: 6,
     title: "Finding myself through God",
+    month: "january",
+    year:"2025",
     author: "Bema",
     content: [
       <p>
@@ -408,6 +424,8 @@ export const prompts = [
     id: 7,
     title: "GOD",
     author: "Divine",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         If I was asked on a stage to talk about my relationship with God, I
@@ -474,6 +492,8 @@ export const prompts = [
     id: 8,
     title: "That Name",
     author: "Andrew Ewerechukwu Promise",
+    month: "january",
+    year:"2025",
     content: [
       <p>
         Beneath the weight of heavens unspoken, <br />
@@ -586,6 +606,8 @@ export const prompts = [
     id: 10,
     title: "Christ-Life",
     author: "Aangrron",
+    month: "january",
+    year:"2025",
     content: [
        <p>
               I wish it were easier <br/>
@@ -748,6 +770,8 @@ export const prompts = [
     id: 11,
     title: "Signs and wonders",
     title1: "Poetic praises to the great one",
+    month: "january",
+    year:"2025",
     author: "Samson",
     content: [
        <p>
@@ -884,6 +908,8 @@ export const prompts = [
     id: 12,
     title: "Reminisce of Transcendence",
     author: "Gracious",
+    month: "january",
+    year:"2025",
     content: [
  <p>
               My journey in spirituality is one too deep to dwell on, <br/>

@@ -74,12 +74,16 @@ body {
   padding: 13px;
   
 }
-.ac {
-  background: linear-gradient(135deg, #f9f9f9, #ececec);
+.ac .italics{
+  /* background: linear-gradient(135deg, #f9f9f9, #ececec); */
+  font-style: italic;
 }
 .ac:nth-child(odd) {
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* blueish */
+  background: linear-gradient(135deg, #5f3205, #fce4ec); /* blueish */
+  color: #fff;
 }
+
+
 .ac:nth-child(even) {
   background: linear-gradient(135deg, #fce4ec, #5f3205); /* pinkish */
 }

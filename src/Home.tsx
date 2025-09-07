@@ -2,7 +2,7 @@ import "./Home.css";
 import Layout from "./Nav/Nav";
 // import React from 'react';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-// import Content from "./content/content";
+import Content from "./content/content";
 import Footer from "./components/footer/footer";
 import { motion } from "framer-motion";
 
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* <Content /> */}
+      <Content />
       <Footer />
     </motion.div>
   );

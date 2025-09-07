@@ -411,7 +411,7 @@ export default function Profiles() {
               </div>
             </div>
 
-            <h5 className="fw-light text-muted mb-3">
+            <h5 className="fw-light italics mb-3">
               Prompts written so far...
             </h5>
 
@@ -438,7 +438,7 @@ export default function Profiles() {
                       aria-expanded="false"
                       aria-controls={`collapse-${authorIndex}-${poemIndex}`}
                     >
-                      {poem.title}
+                      <span className="me-5">{poem.title}</span> <span className="italics text-muted">({poem.month}{poem.year})</span>
                     </button>
                   </h2>
 

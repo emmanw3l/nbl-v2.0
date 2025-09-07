@@ -57,13 +57,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="fw-bold">About Us</h3>
-            <p className="small">
-              Naija Book Lovers is a small community based in Nigeria filled
-              with aspiring authors of all genres showcasing their creativity
-              with monthly tasks and writing challenges. Nbl is a community that
-              supports it's authors and wishes for the success of each and every
-              one of them
+            <h1 className="fw-bold social-header nbl">NBL</h1>
+            <p className="">
+              Bringing out the writer in you.
             </p>
           </motion.div>
 
@@ -75,7 +71,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="fw-bold">Quick Links</h3>
+            <h3 className="fw-bold social-header">Quick Links</h3>
             <ul className="list-unstyled listing">
               <li>
                 <Link
@@ -106,7 +102,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="fw-bold">Get in Touch</h3>
+            <h3 className="fw-bold social-header">Get in Touch</h3>
             <ul className="list-unstyled d-flex gap-3 justify-content-center ">
               <li>
                 <a href={MyLinks.instagram} className="social-link">

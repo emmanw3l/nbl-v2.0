@@ -4,6 +4,8 @@ interface febPrompts {
   id: number;
   title: string;
   author: string;
+  month: string;
+  year: string;
   content: JSX.Element[];
 }
 
@@ -12,6 +14,8 @@ export const febPrompts = [
     id: 0,
     title: "Mirror Mirror",
     author: "Moroti",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         In the mirror's gentle gaze, <br />
@@ -43,6 +47,8 @@ export const febPrompts = [
     id: 1,
     title: "Mirror Mirror, Who am I?",
     author: "Makitoru",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         Why am I lost in the haze of my own identity? <br />
@@ -72,6 +78,8 @@ export const febPrompts = [
     id: 2,
     title: "Mirror Mirror, Who am I?",
     author: "Andrew Ewerechukwu Promise",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         Mirror, mirror, who am I? <br />
@@ -132,6 +140,8 @@ export const febPrompts = [
     id: 3,
     title: "Mirror Mirror, Who am I?",
     author: "Odumosu Morenike",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         Mirror, mirror, tell me why <br />
@@ -175,6 +185,8 @@ export const febPrompts = [
     id: 4,
     title: "Mirror Mirror",
     author: "Nwabueze Emmanuel",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         Mirror mirror on the wall, who do you see when I look in your world?{" "}
@@ -249,6 +261,8 @@ export const febPrompts = [
     id: 5,
     title: "Mirror Mirror on the wall",
     author: "Oputa Sharon",
+    month: "february",
+    year:"2025",
     content: [
       <h3>Mirror Mirror on the wall</h3>,
       <p>
@@ -298,6 +312,8 @@ export const febPrompts = [
     id: 6,
     title: "Becoming Me",
     author: "Claudia",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         I have walked through shadows, silent and deep, <br />
@@ -358,6 +374,8 @@ export const febPrompts = [
     id: 7,
     title: "Mirror Mirror, who am I?",
     author: "Raheemah",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         For years,I avoided mirrors not just the glass ones but the reflection I
@@ -404,6 +422,8 @@ export const febPrompts = [
     id: 8,
     title: "Mirror Mirror, Who am I?",
     author: "Bema",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         The day doesn’t get better when you are expected to be confident,
@@ -466,6 +486,8 @@ export const febPrompts = [
     id: 9,
     title: "Mirror Mirror, Who am I?",
     author: "Ajagbe Ayodeji",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         There is no mirror in my room. I do not feel the need to get one because
@@ -505,6 +527,8 @@ export const febPrompts = [
     id: 10,
     title: "Mirror Mirror, Who am I?",
     author: "Oladimeji Ifeoluwa",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         I see a girl faint and covered in shadows <br />
@@ -581,6 +605,8 @@ export const febPrompts = [
     id: 11,
     title: "Mirror...Mirror, Who am I?",
     author: "PJ",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         SHE looks into the mirror on an unusual day because she rarely does look
@@ -711,6 +737,8 @@ export const febPrompts = [
     id: 12,
     title: "Mirror Mirror, wh am I?",
     author: "Aangrron",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         Month of love. <br />
@@ -947,6 +975,8 @@ export const febPrompts = [
     id: 13,
     title: "Mirror Mirror, Who am I?",
     author: "Gracious",
+    month: "february",
+    year:"2025",
     content: [
       <p>
         The stranger tries to build up a conversation with me as we both stand
