@@ -202,7 +202,7 @@ export const julyPrompts = [
   {
     id: 3,
     title: "The voice within",
-    author: "Oldaimeji Ifeoluwa",
+    author: "Oladimeji Ifeoluwa",
     month: "july",
     year:"2025",
     content: [

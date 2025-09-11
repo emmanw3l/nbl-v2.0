@@ -1,0 +1,10 @@
+body{
+    background: var(--body-bg);
+}
+.aww{
+    /* background-image: url("/src/assets/Images/dash.jpeg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; */
+    background: var(--primary-color);
+}

@@ -72,7 +72,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="fw-bold social-header">Quick Links</h3>
-            <ul className="list-unstyled listing">
+            <ul className="list-unstyled listing text-center fw-bolder h5">
               <li>
                 <Link
                   to="/mainPromptPage"

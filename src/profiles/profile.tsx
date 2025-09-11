@@ -138,6 +138,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 import Footer from "../components/footer/footer";
+import { awardCategories } from "../awards/awardCategories";
 
 // Merge all prompts into one array
 const allPrompts = [
@@ -377,6 +378,7 @@ export default function Profiles() {
             </div>
           </div>
         ))} */}
+
         {sortedAuthors.map(([author, works], authorIndex) => (
           <motion.div
             key={author}
@@ -388,32 +390,89 @@ export default function Profiles() {
             transition={{ duration: 0.6 }}
           >
             {/* Author Header */}
-            <div className="d-flex align-items-center mb-3">
+            <div className="position-relative mb-3">
+              {/* Circle Avatar (top-left) */}
               <div
-                className="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center"
-                style={{ width: "60px", height: "60px", fontSize: "1.5rem" }}
+                className="rounded-circle bg text-white fw-bold d-flex align-items-center justify-content-center position-absolute"
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  fontSize: "1.5rem",
+                  top: "-15px",
+                  left: "-15px",
+                }}
               >
                 {author.charAt(0)}
               </div>
-              <div className="ms-3">
-                <h2 className="mb-1">{author}</h2>
+
+              {/* Author Name + Works */}
+              <div className="">
+                <h2 className="ms-5 ps-2 mb-1">{author}</h2>
                 <span
-                  className={`badge ${
+                  className={`badge ms-5  ${
                     works.length === 1
                       ? "bg-secondary" // gray
+                      : works.length <= 2
+                      ? "bg-warn"
                       : works.length <= 3
-                      ? "bg-warning text-dark" // yellow (Bootstrap warning has dark text for readability)
-                      : "bg-success" // green
+                      ? "bg-4"
+                      : "bg-success"
                   }`}
                 >
                   {works.length} {works.length === 1 ? "work" : "works"}
                 </span>
+
+                {/* 🏆 Nominations + Awards */}
+                {(() => {
+                  const authorAwards = awardCategories.filter((award) =>
+                    award.nominees.includes(author)
+                  );
+                  const wins = authorAwards.filter(
+                    (award) => award.winner === author
+                  );
+
+                  return (
+                    <div className="mt-2">
+                      <h4 className="fw-semibold mb-1">🏆 Nominations:</h4>
+                      {authorAwards.length > 0 ? (
+                        <div className="d-flex d-md-flex flex-wrap gap-2 mb-2">
+                          {authorAwards.map((award) => (
+                            <a
+                              key={award.id}
+                              href={`/awards#award-${award.id}`}
+                              className="text-decoration-none card author-card p-1"
+                            >
+                              {award.category}
+                            </a>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-muted mb-2 fst-italic">
+                          No nominations yet
+                        </p>
+                      )}
+
+                      <h5 className=" mb-0">
+                        Awards Won:{" "} 
+                        {wins.length > 0 ? (
+                          wins.map((award, i) => (
+                            <span key={award.id}>
+                              {award.category}
+                              {i < wins.length  && "⭐ "}
+                              {i < wins.length - 1 && " , "}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="fst-italic">No awards won</span>
+                        )}
+                      </h5>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
-            <h5 className="fw-light italics mb-3">
-              Prompts written so far...
-            </h5>
+            <h5 className="fw-light italics mb-3">Prompts written so far...</h5>
 
             {/* Accordion for works */}
             <div className="accordion" id={`accordion-${authorIndex}`}>
@@ -431,14 +490,18 @@ export default function Profiles() {
                     id={`heading-${authorIndex}-${poemIndex}`}
                   >
                     <button
-                      className="accordion-button collapsed fw-semibold"
+                      className="accordion-button collapsed d-flex justify-content-betwwen fw-semibold"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
                       aria-expanded="false"
                       aria-controls={`collapse-${authorIndex}-${poemIndex}`}
                     >
-                      <span className="me-5">{poem.title}</span> <span className="italics text-muted">({poem.month}{poem.year})</span>
+                      <span className="">{poem.title}</span>{" "}
+                      <span className="italics ms-auto me-1 text-muted">
+                        ({poem.month}
+                        {poem.year})
+                      </span>
                     </button>
                   </h2>
 
@@ -460,23 +523,6 @@ export default function Profiles() {
             </div>
           </motion.div>
         ))}
-
-        {/* <div className="row">
-          {sortedAuthors.map(([author, works]) => (
-            <div key={author} className="card mb-4 p-3 col-12">
-              <h2 className="text-center">{author}</h2>
-              <p className="text-muted">Prompts written so far...</p>
-
-              <h4 className="mt-3">Prompts</h4>
-
-              <ul>
-                {works.map((poem) => (
-                  <li key={poem.id}>{poem.title}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div> */}
       </div>
       <button
         onClick={scrollToTop}
@@ -500,7 +546,7 @@ export default function Profiles() {
         <ArrowUp size={20} />
       </button>
 
-      <Footer/>
+      <Footer />
     </motion.div>
   );
 }

@@ -735,7 +735,7 @@ export const febPrompts = [
   },
   {
     id: 12,
-    title: "Mirror Mirror, wh am I?",
+    title: "Mirror Mirror, who am I?",
     author: "Aangrron",
     month: "february",
     year:"2025",
