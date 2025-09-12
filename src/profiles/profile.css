@@ -99,3 +99,7 @@ body {
 .bg-4{
   background-color: #37643d;
 }
+.accordion-button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}

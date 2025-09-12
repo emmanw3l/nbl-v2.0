@@ -5,6 +5,7 @@ import App from "./App";
 import './App.css'
 import './index.css'
 import '../bootstrap-5.3.3-dist/css/bootstrap.css'
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '@dotlottie/player-component'; 
 import 'animate.css';

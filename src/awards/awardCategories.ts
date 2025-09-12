@@ -1,8 +1,9 @@
 export interface Award {
+
   id: number;
   category: string;
-  nominees: string[];
-  winner: string;
+  nominees:(string | string[])[]; 
+  winner: string | string[];
 }
 
 export const awardCategories: Award[] = [
@@ -93,16 +94,17 @@ export const awardCategories: Award[] = [
     ],
     winner: "Samson",
   },
-  {
-    id: 8,
-    category: "Best collaboration",
-    nominees: [
-      `Nwabueze Emmanuel ${"and "} ${"Ezechinyere Idinmachukwu Esther"}`,
-      `Chikaodili Oyenze ${"and "} ${"Makitoru"}`,
-      `Samson ${"and "} ${"Divine"}`,
-      `Gracious ${"and "} ${"Oladimeji Ifeoluwa"}`,
-    ],
-    winner: "Newcomer 1",
+ {
+  id: 8,
+  category: "Best collaboration",
+  nominees: [
+    ["Nwabueze Emmanuel", "Ezechinyere Idinmachukwu Esther"],
+    ["Chikaodili Oyenze", "Makitoru"],
+    ["Samson", "Divine"],
+    ["Gracious", "Oladimeji Ifeoluwa"],
+  ],
+
+    winner: ["Samson", "Divine"],
   },
   {
     id: 9,

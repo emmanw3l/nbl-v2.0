@@ -425,25 +425,35 @@ export default function Profiles() {
                 {/* 🏆 Nominations + Awards */}
                 {(() => {
                   const authorAwards = awardCategories.filter((award) =>
-                    award.nominees.includes(author)
+                    award.nominees.some((nominee) =>
+                      Array.isArray(nominee)
+                        ? nominee.includes(author)
+                        : nominee === author
+                    )
                   );
-                  const wins = authorAwards.filter(
-                    (award) => award.winner === author
+
+                  const wins = awardCategories.filter((award) =>
+                    Array.isArray(award.winner)
+                      ? award.winner.includes(author)
+                      : award.winner === author
                   );
 
                   return (
                     <div className="mt-2">
-                      <h4 className="fw-semibold mb-1">🏆 Nominations:</h4>
+                      {/* Nominations */}
+                      <h4 className="fw-semibold mb-1">
+                        🏆 Nominations: <span>{authorAwards.length}</span>
+                      </h4>
                       {authorAwards.length > 0 ? (
-                        <div className="d-flex d-md-flex flex-wrap gap-2 mb-2">
+                        <div className="d-flex flex-wrap gap-2 mb-2">
                           {authorAwards.map((award) => (
-                            <a
+                            <Link
                               key={award.id}
-                              href={`/awards#award-${award.id}`}
+                              to={`/awards#award-${award.id}`}
                               className="text-decoration-none card author-card p-1"
                             >
                               {award.category}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       ) : (
@@ -452,14 +462,16 @@ export default function Profiles() {
                         </p>
                       )}
 
-                      <h5 className=" mb-0">
-                        Awards Won:{" "} 
+                      {/* Awards Won */}
+                      <h5 className="mb-0">
+                        Awards Won:{" "}
                         {wins.length > 0 ? (
                           wins.map((award, i) => (
                             <span key={award.id}>
                               {award.category}
-                              {i < wins.length  && "⭐ "}
+                              {i < wins.length  && " ⭐ "}
                               {i < wins.length - 1 && " , "}
+
                             </span>
                           ))
                         ) : (

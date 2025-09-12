@@ -16,3 +16,11 @@ body {
     scroll-behavior: smooth;
 
 }
+
+.accordion-button:not(.collapsed) {
+  background-color: #fff !important;   /* or your preferred bg */
+
+  box-shadow: none !important;
+}
+
+
