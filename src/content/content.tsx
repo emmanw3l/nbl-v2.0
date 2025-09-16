@@ -17,7 +17,7 @@ export default function Content() {
       exit="exit"
       transition={{ duration: 0.5 }}
       className="container-fluid">
-      {/* <div
+      <div
         className="accordion accordion-flush mb-6"
         id="accordionFlushExample"
       >
@@ -141,7 +141,9 @@ export default function Content() {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
+
+      
     </motion.div>
   );
 }

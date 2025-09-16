@@ -13,7 +13,7 @@ export const awardCategories: Award[] = [
     nominees: [
       "Bema",
       "Nwabueze Emmanuel",
-      "samson",
+      "Samson",
       "Ezechinyere Idinmachukwu Esther",
     ],
     winner: "Bema",
@@ -115,7 +115,7 @@ export const awardCategories: Award[] = [
       "Odumosu Morenike",
       "Ezechinyere Idinmachukwu Esther",
     ],
-    winner: "samson",
+    winner: "Samson",
   },
   {
     id: 10,

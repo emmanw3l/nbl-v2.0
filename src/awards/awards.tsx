@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Collapse } from "bootstrap";
 
-
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -51,12 +50,15 @@ export default function AwardsAccordion() {
       <Layout />
 
       <h1 className="mb-4 text-center mt-4 fw-bold">Awards</h1>
-      <div className="accordion " id="awardsAccordion">
+      <div className="accordion">
         {awardCategories.map((award) => (
-          <div
+          <motion.div
             key={award.id}
             id={`award-${award.id}`}
-            className="accordion-item "
+            className="accordion-item"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h2 className="accordion-header" id={`heading-${award.id}`}>
               <button
@@ -72,25 +74,23 @@ export default function AwardsAccordion() {
             </h2>
             <div
               id={`collapse-${award.id}`}
-              className="accordion-collapse collapse "
+              className="accordion-collapse collapse"
               aria-labelledby={`heading-${award.id}`}
-              data-bs-parent="#awardsAccordion"
+              data-bs-parent={`#award-${award.id}`}
             >
               <div className="accordion-body aww">
                 <ul className="list-group">
                   {award.nominees.map((nominee, idx) => {
                     const isWinner = Array.isArray(award.winner)
-                      ? Array.isArray(nominee) && 
-                      nominee.every((n, i) => award.winner![i] === n)
+                      ? Array.isArray(nominee) &&
+                        nominee.every((n, i) => award.winner![i] === n)
                       : award.winner === nominee;
 
                     return (
                       <li
                         key={idx}
                         className={`list-group-item d-flex align-items-center ${
-                          isWinner
-                            ? " fw-bold shadow-sm winner"
-                            : "acc"
+                          isWinner ? "fw-bold shadow-sm winner" : "acc"
                         }`}
                       >
                         {Array.isArray(nominee) ? (
@@ -115,9 +115,8 @@ export default function AwardsAccordion() {
                         )}
 
                         {isWinner && (
-                          <span className="d-flex align-items-center ms-2 ">
-                            <Trophy size={25} className="ms-3  trophy-pulse" />
-                            
+                          <span className="d-flex align-items-center ms-2">
+                            <Trophy size={25} className="ms-3 trophy-pulse" />
                           </span>
                         )}
                       </li>
@@ -126,7 +125,7 @@ export default function AwardsAccordion() {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </motion.div>

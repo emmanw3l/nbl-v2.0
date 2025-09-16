@@ -463,8 +463,8 @@ export default function Profiles() {
                       )}
 
                       {/* Awards Won */}
-                      <h5 className="mb-0">
-                        Awards Won:{" "}
+                      <h4 className="mb-0">
+                        Awards Won: <span>{wins.length}</span> <br />{" " }
                         {wins.length > 0 ? (
                           wins.map((award, i) => (
                             <span key={award.id}>
@@ -477,7 +477,7 @@ export default function Profiles() {
                         ) : (
                           <span className="fst-italic">No awards won</span>
                         )}
-                      </h5>
+                      </h4>
                     </div>
                   );
                 })()}
@@ -502,7 +502,7 @@ export default function Profiles() {
                     id={`heading-${authorIndex}-${poemIndex}`}
                   >
                     <button
-                      className="accordion-button collapsed d-flex justify-content-betwwen fw-semibold"
+                      className="accordion-button collapsed d-flex justify-content-between fw-semibold"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
