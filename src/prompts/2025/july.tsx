@@ -15,7 +15,7 @@ export const julyPrompts = [
     title: "The voice within",
     author: "Ezechinyere Idinmachukwu Esther",
     month: "july",
-    year:"2025",
+    year: "2025",
     content: [
       <p>
         I used to think it was two different voices but I realised it’s just one
@@ -66,7 +66,7 @@ export const julyPrompts = [
     title: "In my Head",
     author: "Odumosu Morenike",
     month: "july",
-    year:"2025",
+    year: "2025",
     content: [
       <p>
         . <br />
@@ -120,7 +120,7 @@ export const julyPrompts = [
     title: "The voice within? I'd rather call it the room upstairs",
     author: "Abbadh",
     month: "july",
-    year:"2025",
+    year: "2025",
     content: [
       <p>
         There’s a door <br />
@@ -204,7 +204,7 @@ export const julyPrompts = [
     title: "The voice within",
     author: "Oladimeji Ifeoluwa",
     month: "july",
-    year:"2025",
+    year: "2025",
     content: [
       <p>
         In my head, they run freely <br />
@@ -282,7 +282,7 @@ export const julyPrompts = [
     title: "My Mind; A dark hallway with so many doors",
     author: "Gracious",
     month: "july",
-    year:"2025",
+    year: "2025",
     content: [
       <p>
         “What if they don’t like you?”, “You might not be good enough for them,
@@ -379,7 +379,118 @@ export const julyPrompts = [
         What have I let in? What control do I have of myself? My mind now rules
         me, so from tomorrow, I’ll have to guard its doors better. But for now,
         I’ll suppress and allow till I fall asleep.
-      </p>
+      </p>,
+    ],
+  },
+  {
+    id: 5,
+    title: "The voice within (Deathbed confession)",
+    author: "Andrew Ewerechukwu Promise",
+    month: "July",
+    year: "2025",
+    content: [
+      <p>
+        Man: <br />
+        You again. <br />
+        Still here, <br />
+        perched like rot on my ribcage. <br />
+        Don’t act surprised. <br />
+        You watched me waste every damn year.
+      </p>,
+      <p>
+        Mind: <br />I only echoed what you believed.
+      </p>,
+      <p>
+        Man: <br />
+        Liar. <br />
+        You spoon-fed me doubt before I ever tasted courage. <br />
+        You told me not to speak, <br />
+        said silence was wise— <br />
+        but it was cowardice. <br />
+        Yours, not mine.
+      </p>,
+      <p>
+        Mind: <br />
+        I kept you safe. <br />
+        Man: <br />
+        Safe? <br />
+        You caged me in a body that forgot how to want. <br />
+        I saw the sun once— <br />
+        you called it a distraction. <br />
+        Saw love in her eyes— <br />
+        you said run before she sees the cracks. <br /> <br />
+        Mind: <br />
+        You listened.
+      </p>,
+      <p>
+        Man: <br />
+        Because you shouted. <br />
+        Because you were all I had in the dark. <br />
+        But I didn’t live—I existed <br />
+        like a ghost renting out skin. <br />
+        <br />
+        Mind: <br />
+        You feared the fall.
+      </p>,
+      <p>
+        Man: <br />
+        I feared you. <br />
+        You wore my father’s voice. <br />
+        My mother’s silence. <br />
+        My pastor’s warning. <br />
+        And you stitched them into my spine <br />
+        so every time I stood, <br />
+        I bent. <br />
+        <br />
+        Mind: <br />
+        You blame me, <br />
+        but here’s the truth you never wanted: <br />
+        I was never the loudest voice. <br />
+        You were. <br />
+        I just made your whispers louder— <br />
+        because you were too afraid to hear yourself.
+      </p>,
+      <p className="italics">(silence)</p>,
+      <p>
+        Man: <br />
+        ... <br />
+        No. <br />
+        No— <br />
+        don’t twist this into my fault. <br />
+        I— <br />
+        I only ever wanted peace. <br />
+        I only ever wanted to be enough. <br /> <br />
+        Mind: <br />
+        And still, you believed everyone but yourself. <br />
+        You let their shadows become your gods. <br />
+        I didn’t build the prison. <br />
+        You handed me the bricks.
+      </p>,
+      <p>
+        Man: <br />
+        You should’ve warned me about regret. <br />
+        Not death— <br />
+        regret. <br />
+        <br />
+        Mind: <br />
+        But you loved the silence more than the noise of trying.
+      </p>,
+      <p>
+        Man: <br />
+        Then why are you quiet now, <br />
+        when the machines beep slower, <br />
+        and the air tastes like metal and memory? <br />
+        <br />
+        Mind: <br />
+        Because there’s nothing left to protect.
+      </p>,
+      <p>
+        Man: <br />
+        You win. <br />
+        You always do. <br />
+        But maybe— <br />
+        maybe the next man will scream back.
+      </p>,
     ],
   },
 ];

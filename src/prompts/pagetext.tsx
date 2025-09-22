@@ -49,7 +49,7 @@ const februaryPrompts = promptIndexFeb([
 ]);
 const aprilPrompts = promptIndexApril([0, 1, 2, 3, 4, 5, 6]);
 const MJPrompts = promptIndexMJ([0,1,2,3,4])
-const julyPrompts =promptIndexJuly([0,1,2,3,4])
+const julyPrompts =promptIndexJuly([0,1,2,3,4,5])
 
 
 // ✅ consistent slugify

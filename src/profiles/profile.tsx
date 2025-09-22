@@ -172,6 +172,41 @@ const sortedAuthors = Object.entries(authorsMap).sort(([a], [b]) =>
   a.localeCompare(b)
 );
 
+// Get all authors from works
+const workAuthors = new Set(sortedAuthors.map(([author]) => author));
+
+// Get all authors from award categories (nominees + winners)
+const awardAuthors = new Set<string>();
+[...awardCategories, ...awardCategories2023].forEach((award) => {
+  award.nominees.forEach((nominee) => {
+    if (Array.isArray(nominee)) {
+      nominee.forEach((n) => awardAuthors.add(n));
+    } else {
+      awardAuthors.add(nominee);
+    }
+  });
+
+  if (award.winner) {
+    if (Array.isArray(award.winner)) {
+      award.winner.forEach((w) => awardAuthors.add(w));
+    } else {
+      awardAuthors.add(award.winner);
+    }
+  }
+});
+
+// Merge both sets
+const allAuthors = Array.from(new Set([...workAuthors, ...awardAuthors]));
+
+let authorsWithWorks = allAuthors.map((author) => {
+  const works = sortedAuthors.find(([a]) => a === author)?.[1] || [];
+  return [author, works] as [string, typeof works];
+});
+authorsWithWorks = authorsWithWorks.sort(([a], [b]) =>
+  a.localeCompare(b, "en", { sensitivity: "base" })
+);
+
+
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -270,7 +305,7 @@ export default function Profiles() {
                 List of NBL Authors
               </h4>
               <ol className="list-group list-group-numbered text-white">
-                {sortedAuthors.map(([author]) => (
+                {authorsWithWorks.map(([author]) => (
                   <li
                     key={author}
                     className="list-group-item  justify-content-between align-items-center"
@@ -293,30 +328,10 @@ export default function Profiles() {
       <div className="container py-4 mt-5">
         <h1 className="mt-4 text-center ">AUTHOR PROFILES</h1>
 
-        {/* option 2 */}
-
-        {/* <div className="mb-5">
-          <h4 className="mb-3"></h4>
-          <ul className="list-inline">
-            {sortedAuthors.map(([author]) => (
-              <li key={author} className="list-inline-item mb-2">
-                <a
-                  href={`#${slugify(author)}`}
-                  className="btn pill btn-sm rounded-pill"
-                >
-                  {author}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div> */}
-
-        {/* option 3 */}
-
         <div className="mb-5">
           <h4 className="mb-3"></h4>
           <div className="d-flex flex-wrap gap-2">
-            {sortedAuthors.map(([author]) => (
+            {authorsWithWorks.map(([author]) => (
               <a
                 key={author}
                 href={`#${slugify(author)}`}
@@ -329,58 +344,7 @@ export default function Profiles() {
           </div>
         </div>
 
-        {/* accordion section */}
-
-        {/* {sortedAuthors.map(([author, works], authorIndex) => (
-          <div key={author} id={slugify(author)} className="mb-5 card cards">
-            <h2 className="mb-3 text-center">{author}</h2>
-            <h4 className="br-bottom">Prompts written so far...</h4>
-            <div className="accordion" id={`accordion-${authorIndex}`}>
-              {works.map((poem, poemIndex) => (
-                <motion.div
-                  key={poem.id}
-                  className="accordion-item"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: poemIndex * 0.1 }}
-                >
-                  <h2
-                    className="accordion-header"
-                    id={`heading-${authorIndex}-${poemIndex}`}
-                  >
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
-                      aria-expanded="false"
-                      aria-controls={`collapse-${authorIndex}-${poemIndex}`}
-                    >
-                      {poem.title}
-                    </button>
-                  </h2>
-
-                  <div
-                    id={`collapse-${authorIndex}-${poemIndex}`}
-                    className="accordion-collapse collapse"
-                    aria-labelledby={`heading-${authorIndex}-${poemIndex}`}
-                    data-bs-parent={`#accordion-${authorIndex}`}
-                  >
-                    <div className="accordion-body">
-                      <PagedText
-                        paragraphs={poem.content}
-                        paragraphsPerPage={6}
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        ))} */}
-
-        {sortedAuthors.map(([author, works], authorIndex) => (
+        {authorsWithWorks.map(([author, works], authorIndex) => (
           <motion.div
             key={author}
             id={slugify(author)}
@@ -411,8 +375,8 @@ export default function Profiles() {
                 <h2 className="ms-5 ps-2 mb-1">{author}</h2>
                 <span
                   className={`badge ms-5  ${
-                    works.length === 1
-                      ? "bg-secondary" // gray
+                    works.length <= 1
+                      ? "bg-secondary" 
                       : works.length <= 2
                       ? "bg-warn"
                       : works.length <= 3
@@ -425,8 +389,10 @@ export default function Profiles() {
 
                 {/* 🏆 Nominations + Awards */}
                 {(() => {
-
-                  const allAwards = [...awardCategories, ...awardCategories2023];
+                  const allAwards = [
+                    ...awardCategories,
+                    ...awardCategories2023,
+                  ];
                   const authorAwards = allAwards.filter((award) =>
                     award.nominees.some((nominee) =>
                       Array.isArray(nominee)
@@ -440,7 +406,6 @@ export default function Profiles() {
                       ? award.winner.includes(author)
                       : award.winner === author
                   );
-                  
 
                   return (
                     <div className="mt-2">
@@ -468,14 +433,14 @@ export default function Profiles() {
 
                       {/* Awards Won */}
                       <h4 className="mb-0">
-                        Awards Won: <span>{wins.length}</span> <br />{" " }
+                        Awards Won: <span>{wins.length}</span> <br />{" "}
                         {wins.length > 0 ? (
                           wins.map((award, i) => (
                             <span key={award.id}>
-                              {award.category} {""}{award.year}
-                              {i < wins.length  && " ⭐ "}
+                              {award.category} {""}
+                              {award.year}
+                              {i < wins.length && " ⭐ "}
                               {i < wins.length - 1 && " , "}
-
                             </span>
                           ))
                         ) : (
@@ -491,52 +456,56 @@ export default function Profiles() {
             <h5 className="fw-light italics mb-3">Prompts written so far...</h5>
 
             {/* Accordion for works */}
-            <div className="accordion" id={`accordion-${authorIndex}`}>
-              {works.map((poem, poemIndex) => (
-                <motion.div
-                  key={poem.id}
-                  className="accordion-item border-0 mb-2 shadow-sm rounded-3 overflow-hidden"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: poemIndex * 0.1 }}
-                >
-                  <h2
-                    className="accordion-header"
-                    id={`heading-${authorIndex}-${poemIndex}`}
+            {works.length > 0 ? (
+              <div className="accordion" id={`accordion-${authorIndex}`}>
+                {works.map((poem, poemIndex) => (
+                  <motion.div
+                    key={poem.id}
+                    className="accordion-item border-0 mb-2 shadow-sm rounded-3 overflow-hidden"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.4, delay: poemIndex * 0.1 }}
                   >
-                    <button
-                      className="accordion-button collapsed d-flex justify-content-between fw-semibold"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
-                      aria-expanded="false"
-                      aria-controls={`collapse-${authorIndex}-${poemIndex}`}
+                    <h2
+                      className="accordion-header"
+                      id={`heading-${authorIndex}-${poemIndex}`}
                     >
-                      <span className="">{poem.title}</span>{" "}
-                      <span className="italics ms-auto me-1 text-muted">
-                        ({poem.month}
-                        {poem.year})
-                      </span>
-                    </button>
-                  </h2>
+                      <button
+                        className="accordion-button collapsed d-flex justify-content-between fw-semibold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
+                        aria-expanded="false"
+                        aria-controls={`collapse-${authorIndex}-${poemIndex}`}
+                      >
+                        <span className="">{poem.title}</span>{" "}
+                        <span className="italics ms-auto me-1 text-muted">
+                          ({poem.month}
+                          {poem.year})
+                        </span>
+                      </button>
+                    </h2>
 
-                  <div
-                    id={`collapse-${authorIndex}-${poemIndex}`}
-                    className="accordion-collapse collapse"
-                    aria-labelledby={`heading-${authorIndex}-${poemIndex}`}
-                    data-bs-parent={`#accordion-${authorIndex}`}
-                  >
-                    <div className="accordion-body">
-                      <PagedText
-                        paragraphs={poem.content}
-                        paragraphsPerPage={6}
-                      />
+                    <div
+                      id={`collapse-${authorIndex}-${poemIndex}`}
+                      className="accordion-collapse collapse"
+                      aria-labelledby={`heading-${authorIndex}-${poemIndex}`}
+                      data-bs-parent={`#accordion-${authorIndex}`}
+                    >
+                      <div className="accordion-body">
+                        <PagedText
+                          paragraphs={poem.content}
+                          paragraphsPerPage={6}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <h1 className="fst-italic mx-auto">No Prompts Yet</h1>
+            )}
           </motion.div>
         ))}
       </div>

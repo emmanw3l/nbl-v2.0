@@ -17,8 +17,8 @@ export const awardCategories2023: Award[] = [
   {
     id: 1,
     category: "Poet of the year",
-    nominees: ["Anne", "Samson", "Onwuegbuna Nneka Lisa"],
-    winner: "Anne",
+    nominees: ["Maryanne", "Samson", "Onwuegbuna Nneka Lisa"],
+    winner: "Maryanne",
     year: "2023",
   },
   {
@@ -51,7 +51,7 @@ export const awardCategories2023: Award[] = [
   {
     id: 5,
     category: "Personality of the year",
-    nominees: ["Samson", "Moroti", "Nwabueze Emmanuel", "Bema", "Anne", "Divine", "Oladimeji Ifeoluwa", "Odumosu Morenike"],
+    nominees: ["Samson", "Moroti", "Nwabueze Emmanuel", "Bema", "Maryanne", "Divine", "Oladimeji Ifeoluwa", "Odumosu Morenike"],
     winner: "Bema",
     year: "2023",
   },
