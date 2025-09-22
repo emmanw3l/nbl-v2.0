@@ -139,6 +139,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 import Footer from "../components/footer/footer";
 import { awardCategories } from "../awards/awardCategories";
+import { awardCategories2023 } from "../awards/awardCategories2023";
 
 // Merge all prompts into one array
 const allPrompts = [
@@ -424,7 +425,9 @@ export default function Profiles() {
 
                 {/* 🏆 Nominations + Awards */}
                 {(() => {
-                  const authorAwards = awardCategories.filter((award) =>
+
+                  const allAwards = [...awardCategories, ...awardCategories2023];
+                  const authorAwards = allAwards.filter((award) =>
                     award.nominees.some((nominee) =>
                       Array.isArray(nominee)
                         ? nominee.includes(author)
@@ -432,11 +435,12 @@ export default function Profiles() {
                     )
                   );
 
-                  const wins = awardCategories.filter((award) =>
+                  const wins = allAwards.filter((award) =>
                     Array.isArray(award.winner)
                       ? award.winner.includes(author)
                       : award.winner === author
                   );
+                  
 
                   return (
                     <div className="mt-2">
@@ -452,7 +456,7 @@ export default function Profiles() {
                               to={`/awards#award-${award.id}`}
                               className="text-decoration-none card author-card p-1"
                             >
-                              {award.category}
+                              {award.category} {award.year}
                             </Link>
                           ))}
                         </div>
@@ -468,7 +472,7 @@ export default function Profiles() {
                         {wins.length > 0 ? (
                           wins.map((award, i) => (
                             <span key={award.id}>
-                              {award.category}
+                              {award.category} {""}{award.year}
                               {i < wins.length  && " ⭐ "}
                               {i < wins.length - 1 && " , "}
 

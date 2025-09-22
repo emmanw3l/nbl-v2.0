@@ -83,7 +83,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/Profile" className="text-decoration-none text-light">
-                  Authors
+                  Profiles
                 </Link>
               </li>
               <li>

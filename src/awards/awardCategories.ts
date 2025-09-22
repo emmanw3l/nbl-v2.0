@@ -4,6 +4,7 @@ export interface Award {
   category: string;
   nominees:(string | string[])[]; 
   winner: string | string[];
+  year: string ;
 }
 
 export const awardCategories: Award[] = [
@@ -17,12 +18,15 @@ export const awardCategories: Award[] = [
       "Ezechinyere Idinmachukwu Esther",
     ],
     winner: "Bema",
+    year: "2024"
   },
   {
     id: 1,
     category: "Face of NBL",
     nominees: ["Bema", "Andrew Ewerechukwu Promise", "Maryanne", "Samson"],
     winner: "Samson",
+    year: "2024"
+
   },
   {
     id: 2,
@@ -34,6 +38,8 @@ export const awardCategories: Award[] = [
       "Andrew Ewerechukwu Promise",
     ],
     winner: "Samson",
+    year: "2024"
+
   },
   {
     id: 3,
@@ -45,6 +51,8 @@ export const awardCategories: Award[] = [
       "Oputa Sharon",
     ],
     winner: "Andrew Ewerechukwu Promise",
+    year: "2024"
+
   },
   {
     id: 4,
@@ -56,6 +64,8 @@ export const awardCategories: Award[] = [
       "Raheemah",
     ],
     winner: "Gracious",
+    year: "2024"
+
   },
   {
     id: 5,
@@ -69,6 +79,8 @@ export const awardCategories: Award[] = [
       "Ezechinyere Idinmachukwu Esther",
     ],
     winner: "Oputa Sharon",
+    year: "2024"
+
   },
   {
     id: 6,
@@ -81,7 +93,9 @@ export const awardCategories: Award[] = [
       "Andrew Ewerechukwu Promise",
       "Oladimeji Ifeoluwa",
     ],
-    winner: "Newcomer 1",
+    winner: "Samson",
+    year: "2024"
+
   },
   {
     id: 7,
@@ -93,6 +107,8 @@ export const awardCategories: Award[] = [
       "Ezechinyere Idinmachukwu Esther",
     ],
     winner: "Samson",
+    year: "2024"
+
   },
  {
   id: 8,
@@ -105,6 +121,8 @@ export const awardCategories: Award[] = [
   ],
 
     winner: ["Samson", "Divine"],
+    year: "2024"
+
   },
   {
     id: 9,
@@ -116,24 +134,32 @@ export const awardCategories: Award[] = [
       "Ezechinyere Idinmachukwu Esther",
     ],
     winner: "Samson",
+    year: "2024"
+
   },
   {
     id: 10,
     category: "Best mystery",
     nominees: ["Samson", "Oladimeji Ifeoluwa"],
     winner: "Samson",
+    year: "2024"
+
   },
   {
     id: 11,
     category: "Best Naija story",
     nominees: ["Samson", "Odumosu Morenike", "Ezechinyere Idinmachukwu Esther"],
-    winner: "",
+    winner: "Samson",
+    year: "2024"
+
   },
   {
     id: 12,
     category: "Best teen Fiction",
     nominees: ["Samson", "Bukola Ayeni", "Odumosu Morenike"],
-    winner: "",
+    winner: "Odumosu Morenike",
+    year: "2024"
+
   },
   {
     id: 13,
@@ -147,6 +173,8 @@ export const awardCategories: Award[] = [
       "Oputa Sharon",
     ],
     winner: "Odumosu Morenike",
+    year: "2024"
+
   },
   {
     id: 14,
@@ -157,7 +185,9 @@ export const awardCategories: Award[] = [
       "Andrew Ewerechukwu Promise",
       "Onwuegbuna Nneka Lisa",
     ],
-    winner: "",
+    winner: "Onwuegbuna Nneka Lisa",
+    year: "2024"
+
   },
   {
     id: 15,
@@ -167,12 +197,16 @@ export const awardCategories: Award[] = [
       "Bukola Ayeni",
       "Ezechinyere Idinmachukwu Esther",
     ],
-    winner: "",
+    winner: "Odumosu Morenike",
+    year: "2024"
+
   },
   {
     id: 16,
     category: "Best Thriller",
-    nominees: [],
-    winner: "",
+    nominees: ["Samson"],
+    winner: "Samson",
+    year: "2024"
+
   },
 ];
