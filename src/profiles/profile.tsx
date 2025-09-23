@@ -206,12 +206,13 @@ authorsWithWorks = authorsWithWorks.sort(([a], [b]) =>
   a.localeCompare(b, "en", { sensitivity: "base" })
 );
 
-
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -20 },
 };
+
+
 
 export default function Profiles() {
   const location = useLocation();
@@ -242,7 +243,42 @@ export default function Profiles() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const [sortOption, setSortOption] = useState<
+    "name" | "nominations" | "awards" | "works"
+  >("name");
 
+  const sortedProfiles = [...authorsWithWorks].sort(
+  ([aName, aWorks], [bName, bWorks]) => {
+    const aNoms = [...awardCategories, ...awardCategories2023].filter((award) =>
+      award.nominees.some((nominee) =>
+        Array.isArray(nominee) ? nominee.includes(aName) : nominee === aName
+      )
+    ).length;
+
+    const bNoms = [...awardCategories, ...awardCategories2023].filter((award) =>
+      award.nominees.some((nominee) =>
+        Array.isArray(nominee) ? nominee.includes(bName) : nominee === bName
+      )
+    ).length;
+
+    const aWins = [...awardCategories, ...awardCategories2023].filter((award) =>
+      Array.isArray(award.winner)
+        ? award.winner.includes(aName)
+        : award.winner === aName
+    ).length;
+
+    const bWins = [...awardCategories, ...awardCategories2023].filter((award) =>
+      Array.isArray(award.winner)
+        ? award.winner.includes(bName)
+        : award.winner === bName
+    ).length;
+
+    if (sortOption === "works") return bWorks.length - aWorks.length;
+    if (sortOption === "nominations") return bNoms - aNoms;
+    if (sortOption === "awards") return bWins - aWins;
+    return aName.localeCompare(bName, "en", { sensitivity: "base" }); // default A–Z
+  }
+);
   return (
     <motion.div
       variants={pageVariants}
@@ -344,7 +380,24 @@ export default function Profiles() {
           </div>
         </div>
 
-        {authorsWithWorks.map(([author, works], authorIndex) => (
+        <div className="d-flex justify-content-end mb-3">
+          <select
+            className="form-select w-auto"
+            value={sortOption}
+            onChange={(e) =>
+              setSortOption(
+                e.target.value as "name" | "nominations" | "awards" | "works"
+              )
+            }
+          >
+            <option value="name">Sort by Name (A–Z)</option>
+            <option value="nominations">Sort by Nominations</option>
+            <option value="awards">Sort by Awards</option>
+            <option value="works">Sort by Number of Prompts</option>
+          </select>
+        </div>
+
+        {sortedProfiles.map(([author, works], authorIndex) => (
           <motion.div
             key={author}
             id={slugify(author)}
@@ -376,7 +429,7 @@ export default function Profiles() {
                 <span
                   className={`badge ms-5  ${
                     works.length <= 1
-                      ? "bg-secondary" 
+                      ? "bg-secondary"
                       : works.length <= 2
                       ? "bg-warn"
                       : works.length <= 3
@@ -453,7 +506,7 @@ export default function Profiles() {
               </div>
             </div>
 
-            <h5 className="fw-light italics mb-3">Prompts written so far...</h5>
+            <h5 className="fw-light italics mb-3">Prompts written so far... ({works.length})</h5>
 
             {/* Accordion for works */}
             {works.length > 0 ? (
