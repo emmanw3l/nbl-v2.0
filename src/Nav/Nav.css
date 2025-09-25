@@ -163,6 +163,7 @@
 }
 .bi-book-half {
   padding-left: 12px;
+  text-decoration: none;
 
 }
 
@@ -229,6 +230,7 @@
 .nav-link {
   font-size: larger;
   padding-bottom: 1rem;
+
 }
 
 

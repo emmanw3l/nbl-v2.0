@@ -128,6 +128,7 @@ import { febPrompts } from "../prompts/2025/februaryPrompts";
 import { aprilPrompts } from "../prompts/2025/aprilPrompt";
 import { mJPrompts } from "../prompts/2025/mayJune";
 import { julyPrompts } from "../prompts/2025/july";
+import { octPrompts2024 } from "../prompts/2024/october";
 import { motion } from "framer-motion";
 // import { NavLink } from "react-router-dom";
 import "./profile.css";
@@ -148,6 +149,7 @@ const allPrompts = [
   ...aprilPrompts,
   ...mJPrompts,
   ...julyPrompts,
+  ... octPrompts2024
 ];
 
 // sluuuugssss

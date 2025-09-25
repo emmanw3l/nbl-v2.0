@@ -9,10 +9,11 @@ import PromptViewer, {
   PromptViewerJuly,
 } from "./pagetext";
 import { motion } from "framer-motion";
-import { Link, NavLink } from "react-router-dom";
+// import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Footer from "../components/footer/footer";
+import PromptNav from "./promptNav";
 // import { ArrowUp } from "react-bootstrap-icons";
 
 const pageVariants = {
@@ -41,7 +42,11 @@ export default function PromptsPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+
+
+  // const location = useLocation();
+
 
   return (
     <motion.div
@@ -51,189 +56,7 @@ export default function PromptsPage() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
-      <nav className="navbar  navbar-dark navbars fixed-top">
-        <NavLink to="/">
-          <span className="bi bi-house fs-3 navbar-brand ms-2"></span>
-        </NavLink>
-
-        <a className="navbar-brand mx-auto" href="#">
-          PROMPTS
-        </a>
-        <button
-          className="btn btn-outline-light"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          ☰
-        </button>
-      </nav>
-      <div
-        className={` offcanvas sidebars offcanvas-end  ${isOpen ? "show" : ""}`}
-        style={{ visibility: isOpen ? "visible" : "hidden" }}
-        tabIndex={-1}
-      >
-        <div className="offcanvas-header   ">
-          <nav className="mx-auto">
-            <Link to="/awards" className="nav-link  fw-semibold dib">
-              Awards
-            </Link>
-            <Link to="/Profile" className="nav-link  fw-semibold dib">
-              Profiles
-            </Link>
-          </nav>
-          <button
-            className="btn btn-outline-light "
-            onClick={() => setIsOpen(false)}
-          >
-            x
-          </button>
-        </div>
-
-        <div className="offcanvas-body">
-          <div className="accordion" id="yearAccordion">
-
-            
-            {/* 2024 Section */}
-
-
-            {/* <div className="accordion-item">
-              <h2 className="accordion-header" id="heading2024">
-                <button
-                  className="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapse2024"
-                  aria-expanded="true"
-                  aria-controls="collapse2024"
-                >
-                  2024
-                </button>
-              </h2>
-              <div
-                id="collapse2024"
-                className="accordion-collapse collapse show"
-                aria-labelledby="heading2024"
-                data-bs-parent="#yearAccordion"
-              >
-                <div className="accordion-body">
-                  <ul>
-                    <li>
-                      <a href="#2024-january">January</a>
-                    </li>
-                    <li>
-                      <a href="#2024-february">February</a>
-                    </li>
-                    <li>
-                      <a href="#2024-march">March</a>
-                    </li>
-                    <li>
-                      <a href="#2024-april">April</a>
-                    </li>
-                    <li>
-                      <a href="#2024-may">May</a>
-                    </li>
-                    <li>
-                      <a href="#2024-june">June</a>
-                    </li>
-                    <li>
-                      <a href="#2024-july">July</a>
-                    </li>
-                    <li>
-                      <a href="#2024-august">August</a>
-                    </li>
-                    <li>
-                      <a href="#2024-september">September</a>
-                    </li>
-                    <li>
-                      <a href="#2024-october">October</a>
-                    </li>
-                    <li>
-                      <a href="#2024-november">November</a>
-                    </li>
-                    <li>
-                      <a href="#2024-december">December</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div> */}
-
-            {/* 2025 Section */}
-            <div className="accordion-item">
-              <h2 className="accordion-header" id="heading2025">
-                <button
-                  className="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapse2025"
-                  aria-expanded="false"
-                  aria-controls="collapse2025"
-                >
-                  2025
-                </button>
-              </h2>
-              <div
-                id="collapse2025"
-                className="accordion-collapse collapse"
-                aria-labelledby="heading2025"
-                data-bs-parent="#yearAccordion"
-              >
-                <div className="accordion-body">
-                  <ul>
-                    <li>
-                      <a href="#january" onClick={() => setIsOpen(false)} className="nav-link">
-                        January
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#february" onClick={() => setIsOpen(false)} className="nav-link">
-                        February
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="#april" onClick={() => setIsOpen(false)} className="nav-link">
-                        April
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#mj" onClick={() => setIsOpen(false)} className="nav-link">
-                        May
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#mj" onClick={() => setIsOpen(false)} className="nav-link">
-                        June
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#july" onClick={() => setIsOpen(false)} className="nav-link">
-                        July
-                      </a>
-                    </li>
-
-                    {/* <li>
-                      <a href="#september"
-                      onClick={() => setIsOpen(false)}>September</a>
-                    </li>
-                    <li>
-                      <a href="#october"
-                      onClick={() => setIsOpen(false)}>October</a>
-                    </li>
-                    <li>
-                      <a href="#november"
-                      onClick={() => setIsOpen(false)}>November</a>
-                    </li>
-                    <li>
-                      <a href="#december"
-                      onClick={() => setIsOpen(false)}>December</a>
-                    </li> */}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PromptNav/>
       {/* <Carousel1 /> */}
 
       <button

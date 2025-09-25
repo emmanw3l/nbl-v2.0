@@ -38,10 +38,12 @@ import {
   promptIndexFeb,
   promptIndexApril,
   promptIndexMJ,
-  promptIndexJuly
+  promptIndexJuly,
+  promptIndexoctober2024
 } from "../components/promptIndexing";
 import "./promptpage.css";
 import { motion } from "framer-motion";
+
 
 const januaryPrompts = promptIndex([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 const februaryPrompts = promptIndexFeb([
@@ -50,6 +52,10 @@ const februaryPrompts = promptIndexFeb([
 const aprilPrompts = promptIndexApril([0, 1, 2, 3, 4, 5, 6]);
 const MJPrompts = promptIndexMJ([0,1,2,3,4])
 const julyPrompts =promptIndexJuly([0,1,2,3,4,5])
+
+
+// 2024
+const octoberPrompts2024 = promptIndexoctober2024([0,1,2,3,4])
 
 
 // ✅ consistent slugify
@@ -164,6 +170,44 @@ export function PromptViewerJuly() {
     <div className="page-container py-4">
       <div className="row justify-content-evenly">
         {julyPrompts.map((prompts) => (
+          <div key={prompts.id} className="mb-4 card col-md-5 col-10">
+            <h1 className="bold">{prompts.title}</h1>
+            {/* <h4>{prompts.title1}</h4> */}
+            <h4 className="text-end blockquote">
+              <cite className="blockquote-footer">
+                <Link to={`/Profile#${slugify(prompts.author)}`}>
+                  {prompts.author}
+                </Link>
+              </cite>
+            </h4>
+            <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 2024 PROMPTS
+
+export function PromptViewerOctober2024(){
+  return (
+    <div className="page-container py-4">
+      <div className="row justify-content-evenly">
+        {octoberPrompts2024.map((prompts) => (
           <div key={prompts.id} className="mb-4 card col-md-5 col-10">
             <h1 className="bold">{prompts.title}</h1>
             {/* <h4>{prompts.title1}</h4> */}

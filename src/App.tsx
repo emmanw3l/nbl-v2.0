@@ -20,6 +20,7 @@ const Home = lazy(() => import("./Home"));
 const PromptsPage = lazy(() => import("./prompts/mainPromptPage"));
 const Profiles = lazy(() => import ("./profiles/profile"));
 const Awards = lazy(()=> import ("./awards/awards"))
+const PromptsPage2024 = lazy(()=> import ("./prompts/2024promptPage"))
 
 export default function App() {
   const location = useLocation();
@@ -39,6 +40,7 @@ export default function App() {
             <Route path="/mainPromptPage" element={<PromptsPage />} />
              <Route path="*" element={<PageNotFound />} />
              <Route path="/awards" element={<Awards/>}/>
+             <Route path="/2024PromptPage" element={<PromptsPage2024/>}/>
           </Routes>
         </Suspense>
       </AnimatePresence>

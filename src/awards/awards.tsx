@@ -7,6 +7,7 @@ import "./awards.css";
 
 import AwardsAccordion2024 from "./awardViewer";
 import AwardsAccordion2023 from "./awardViewer2023";
+// import AwardCard from "./awardViewerTesting";
 
 // function slugify(name: string) {
 //   return name
@@ -32,6 +33,7 @@ export default function AwardsAccordion() {
 
       <AwardsAccordion2024/>
       <AwardsAccordion2023/>
+      {/* <AwardCard/> */}
     </motion.div>
   );
 
