@@ -1,6 +1,7 @@
 export interface Award {
 
   id: number;
+  description : string;
   category: string;
   nominees:(string | string[])[]; 
   winner: string | string[];
@@ -10,6 +11,7 @@ export interface Award {
 export const awardCategories: Award[] = [
   {
     id: 0,
+    description: "Awarded to the most remarkable personality for the year",
     category: "Personality of the year",
     nominees: [
       "Bema",
@@ -22,6 +24,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 1,
+    description: "This is given to the most influential individual within the community",
     category: "Face of NBL",
     nominees: ["Bema", "Andrew Ewerechukwu Promise", "Maryanne", "Samson"],
     winner: "Samson",
@@ -30,6 +33,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 2,
+    description: "This is awarded to the best male writer in the community based off of their catalogue for this year",
     category: "Best Male Writer",
     nominees: [
       "Samson",
@@ -43,6 +47,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 3,
+    description: "This is given to the poet with the best catalogue for this year",
     category: "Poet of the year",
     nominees: [
       "Onwuegbuna Nneka Lisa",
@@ -56,6 +61,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 4,
+    description: "This is awarded to the newest members that had the most participation/involvement in activities this year",
     category: "Rising Star",
     nominees: [
       "Andrew Ewerechukwu Promise",
@@ -69,6 +75,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 5,
+    description: "",
     category: "Best storyteller",
     nominees: [
       "Samson",
@@ -84,6 +91,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 6,
+    description: "This Award is given to the best written prompt within the particular year",
     category: "Best NBL prompt",
     nominees: [
       "Samson",
@@ -99,6 +107,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 7,
+    description: "",
     category: "Digital writer",
     nominees: [
       "Samson",
@@ -112,6 +121,7 @@ export const awardCategories: Award[] = [
   },
  {
   id: 8,
+  description: "",
   category: "Best collaboration",
   nominees: [
     ["Nwabueze Emmanuel", "Ezechinyere Idinmachukwu Esther"],
@@ -126,6 +136,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 9,
+    description: "This award is given to the most exceptional book written by a member of the community in this year (Must be written within the year to be nominated)",
     category: "Book of the year",
     nominees: [
       "Samson",
@@ -139,6 +150,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 10,
+    description: "",
     category: "Best mystery",
     nominees: ["Samson", "Oladimeji Ifeoluwa"],
     winner: "Samson",
@@ -147,6 +159,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 11,
+    description: "This is awarded to the best Nigerian-centric book by a community member this year",
     category: "Best Naija story",
     nominees: ["Samson", "Odumosu Morenike", "Ezechinyere Idinmachukwu Esther"],
     winner: "Samson",
@@ -155,6 +168,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 12,
+    description: "This is awarded to the best teen-fiction book written by a community member this year",
     category: "Best teen Fiction",
     nominees: ["Samson", "Bukola Ayeni", "Odumosu Morenike"],
     winner: "Odumosu Morenike",
@@ -163,6 +177,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 13,
+    description: "This is awarded to the best female writer in the community based off of their catalogue for this year",
     category: "Best female writer",
     nominees: [
       "Odumosu Morenike",
@@ -178,6 +193,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 14,
+    description: "This is awarded to the best written poem of the year",
     category: "Poetry of the year",
     nominees: [
       "Nwabueze Emmanuel",
@@ -191,6 +207,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 15,
+    description: "This is awarded to the best book in the general fiction genre written by acommunity member this year",
     category: "Best general fiction",
     nominees: [
       "Odumosu Morenike",
@@ -203,6 +220,7 @@ export const awardCategories: Award[] = [
   },
   {
     id: 16,
+    description: "",
     category: "Best Thriller",
     nominees: ["Samson"],
     winner: "Samson",

@@ -7,6 +7,7 @@ import PromptViewer, {
   PromptViewerFeb,
   PromptViewerMJ,
   PromptViewerJuly,
+  PromptViewerSeptember,
 } from "./pagetext";
 import { motion } from "framer-motion";
 // import { Link, NavLink, useLocation } from "react-router-dom";
@@ -44,9 +45,7 @@ export default function PromptsPage() {
 
   // const [isOpen, setIsOpen] = useState(false);
 
-
   // const location = useLocation();
-
 
   return (
     <motion.div
@@ -56,7 +55,7 @@ export default function PromptsPage() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
-      <PromptNav/>
+      <PromptNav />
       {/* <Carousel1 /> */}
 
       <button
@@ -134,9 +133,22 @@ export default function PromptsPage() {
             <PromptViewerJuly />
           </section>
         </div>
+
+        <div className="page-container">
+          <section id="september">
+            <h1 className="text-center twenty">September 2025</h1>
+            <h3 className="jan-head text-center">
+              Theme: The Break I Never Thought I Needed
+            </h3>
+            <h3 className="text-center">
+              PROMPT: How Did You Spend Your August?
+            </h3>
+            <PromptViewerSeptember/>
+          </section>
+        </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </motion.div>
   );
 }

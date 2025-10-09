@@ -223,11 +223,16 @@ export default function PromptNav() {
                       </Link>
                     </li>
 
-                    {/* <li>
-                      <a href="#september"
-                      onClick={() => setIsOpen(false)}>September</a>
+                     <li>
+                      <Link
+                        to="/mainPromptPage#september"
+                        onClick={() => setIsOpen(false)}
+                        className="nav-link"
+                      >
+                        September
+                      </Link>
                     </li>
-                    <li>
+                    {/*<li>
                       <a href="#october"
                       onClick={() => setIsOpen(false)}>October</a>
                     </li>

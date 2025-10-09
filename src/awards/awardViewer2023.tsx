@@ -62,7 +62,8 @@ export default function AwardsAccordion2023() {
               aria-labelledby={`heading-${award.id}`}
             >
               <div className="accordion-body">
-                <ul className="list-group">
+                <h6>{award.description}</h6>
+                <ul className="list-group m-1">
                   {award.nominees.map((nominee, idx) => {
                     const isWinner = Array.isArray(award.winner)
                       ? Array.isArray(nominee) &&
@@ -81,7 +82,7 @@ export default function AwardsAccordion2023() {
                             <span key={name}>
                               <Link
                                 to={`/profile#${slugify(name)}`}
-                                className="text-dark ms-1"
+                                className="text-dark ps-1"
                               >
                                 {name}
                               </Link>

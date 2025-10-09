@@ -128,6 +128,7 @@ import { febPrompts } from "../prompts/2025/februaryPrompts";
 import { aprilPrompts } from "../prompts/2025/aprilPrompt";
 import { mJPrompts } from "../prompts/2025/mayJune";
 import { julyPrompts } from "../prompts/2025/july";
+import { septemberPrompts } from "../prompts/2025/septemberPrompt";
 import { octPrompts2024 } from "../prompts/2024/october";
 import { motion } from "framer-motion";
 // import { NavLink } from "react-router-dom";
@@ -144,12 +145,19 @@ import { awardCategories2023 } from "../awards/awardCategories2023";
 
 // Merge all prompts into one array
 const allPrompts = [
+
+
+... octPrompts2024,
+
+  // 2025
+
   ...prompts,
   ...febPrompts,
   ...aprilPrompts,
   ...mJPrompts,
   ...julyPrompts,
-  ... octPrompts2024
+  ...septemberPrompts,
+  
 ];
 
 // sluuuugssss
@@ -382,9 +390,9 @@ export default function Profiles() {
           </div>
         </div>
 
-        <div className="d-flex justify-content-end mb-3">
+        <div className="d-flex justify-content-end mb-3 ">
           <select
-            className="form-select w-auto"
+            className="form-select w-auto bg"
             value={sortOption}
             onChange={(e) =>
               setSortOption(

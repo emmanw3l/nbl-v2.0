@@ -29,13 +29,13 @@ export default function AwardsAccordion2024() {
 
   return (
     <motion.div
-      className="container py-4"
+      className="container py-4 accordion"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.5 }}
     >
-      <h1 className="mb-4 text-center mt-4 fw-bold">2024</h1>
+      {/* <h1 className="mb-4 text-center mt-4 fw-bold">2024</h1> */}
 
       <div className="accordion">
         {awardCategories.map((award) => (
@@ -69,7 +69,8 @@ export default function AwardsAccordion2024() {
               aria-labelledby={`heading-${award.id}`}
             >
               <div className="accordion-body">
-                <ul className="list-group">
+                <h6>{award.description}</h6>
+                <ul className="list-group m-1">
                   {award.nominees.map((nominee, idx) => {
                     const isWinner = Array.isArray(award.winner)
                       ? Array.isArray(nominee) &&
@@ -88,7 +89,7 @@ export default function AwardsAccordion2024() {
                             <span key={name}>
                               <Link
                                 to={`/profile#${slugify(name)}`}
-                                className="text-dark ms-1"
+                                className=" ms-2"
                               >
                                 {name}
                               </Link>

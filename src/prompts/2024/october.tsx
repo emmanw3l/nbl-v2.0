@@ -81,7 +81,7 @@ export const octPrompts2024 = [
   },
   {
     id: 1,
-    title: "The year we turned 64",
+    title: "The year we turned 64 (1)",
     author: "Andrew Ewerechukwu Promise",
     month: "October",
     year: "2024",
@@ -172,7 +172,7 @@ export const octPrompts2024 = [
   },
   {
     id: 3,
-    title: "The year we turned 64",
+    title: "The year we turned 64 (2)",
     author: "Andrew Ewerechukwu Promise",
     month: "October",
     year: "2024",

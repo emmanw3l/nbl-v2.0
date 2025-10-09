@@ -74,3 +74,80 @@ body{
     color: white !important;
 }
 
+
+/* === Responsive Accordion as Cards on Larger Screens === */
+@media (min-width: 992px) {
+  .accordion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    max-height: min-content;
+    /* padding: 1rem; */
+  }
+
+  .accordion-item {
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-height: min-content;
+    transition: all 0.3s ease;
+    /* background: #fff; */
+  }
+
+  .accordion-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Make each item act like a standalone card */
+  .accordion-button {
+    border-radius: 0;
+    /* background: #212529; */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    justify-content: space-between;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background: #ffc107;
+    color: #000;
+  }
+
+  .accordion-collapse {
+    display: block !important; /* Always visible content on desktop */
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .accordion-body {
+    /* background: #fafafa; */
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.25rem;
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .list-group-item.acc {
+    background: #fff;
+    border: none;
+    padding: 0.75rem 0;
+  }
+
+  /* .list-group-item.acc:hover {
+    background: #f8f9fa;
+  } */
+
+
+
+  /* Hide toggle behavior on large screens */
+  .accordion-button::after {
+    display: none;
+  }
+
+  .text-dark{
+    padding-left:13px;
+    margin: 0;
+  }
+}
+
