@@ -89,9 +89,9 @@ export default function AwardsAccordion2024() {
                             <span key={name}>
                               <Link
                                 to={`/profile#${slugify(name)}`}
-                                className=" ms-2"
+                                className=" text-dark ms-2"
                               >
-                                {name}
+                                <span className="authorname ">{name}</span>
                               </Link>
                               {i < nominee.length - 1 && " and "}
                             </span>
@@ -109,7 +109,7 @@ export default function AwardsAccordion2024() {
                           <span className="d-flex align-items-center ms-2">
                             <Trophy
                               size={22}
-                              className="ms-2 trophy-pulse text-warning"
+                              className=" trophy-pulse text-warning"
                             />
                           </span>
                         )}

@@ -1,34 +1,39 @@
-body{
-    background: var(--body-bg);
+body {
+  background: var(--body-bg);
 }
-.aww{
-    /* background-image: url("/src/assets/Images/dash.jpeg");
+.aww {
+  /* background-image: url("/src/assets/Images/dash.jpeg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat; */
-    background: var(--primary-color);
+  background: var(--primary-color);
 }
 
-
-.acc{
-    background-color: white !important;
+.acc {
+  background-color: white !important;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2) }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .trophy-pulse {
   animation: pulse 1.5s infinite ease-in-out;
   color: #ff9500; /* Bootstrap warning/gold */
-  
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: #ff9500 !important;   /* or your preferred bg */
-
+  background-color: #ff9500 !important; /* or your preferred bg */
 }
 
 .accordion-item {
@@ -68,12 +73,11 @@ body{
 }
 
 .winner {
-    background-color: #37643d !important;
+  background-color: #37643d !important;
 }
-.winner .text-dark{
-    color: white !important;
+.winner .text-dark {
+  color: white !important;
 }
-
 
 /* === Responsive Accordion as Cards on Larger Screens === */
 @media (min-width: 992px) {
@@ -138,16 +142,14 @@ body{
     background: #f8f9fa;
   } */
 
-
-
   /* Hide toggle behavior on large screens */
   .accordion-button::after {
     display: none;
   }
 
-  .text-dark{
-    padding-left:13px;
+  .text-dark {
+    padding-left: 13px;
     margin: 0;
   }
-}
 
+}
