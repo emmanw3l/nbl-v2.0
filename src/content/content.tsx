@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import "./content.css";
 import { Link } from "react-router-dom";
-
+import InstagramPost from "../components/instagramEmbed";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -145,7 +145,6 @@ export default function Content() {
     //     </div>
     //   </div>
 
-      
     // </motion.div>
     <motion.div
       variants={pageVariants}
@@ -155,23 +154,46 @@ export default function Content() {
       transition={{ duration: 0.5 }}
       className="container-fluid py-4"
     >
-      <h1 className="text-center mb-5">
+      <h1 className="text-center ">
         <u>About Us</u>
       </h1>
 
-      <div className="about-accordion accordion gap-2" id="accordionFlushExample">
+      <div className="container-fluid mb-5">
+        <span className="h4">Naija Book Lovers</span> is a community filled with
+        creative minds constantly pushing themselves forward and testing the
+        limits of their creativity as they engage in writing excercises, lectures, quizzes and other activities. <br />
+        Some of the activities include <Link to="/mainPromptPage">Prompts:</Link> A monthly writing challenge where everyone is given a topic and told to write about it sometimes in a specific genre, but most times in any genre they're comfortable with. <br />
+        Writing challlenges: This is very similar to the prompts but on a much smaller scale and usually in the form of friendly competition between two or more parties. <br />
+        <Link to="/awards">Awards:</Link> This is very self-explanatory. At the end of the year, there are various categories to be nominated for and the best performer in that category gets the award. It's meant to incite competition and to congratulate standout performers. <br />
+        <h4 className="italics text-center">Preview of some of the best works over the years</h4>
+        <InstagramPost url="https://www.instagram.com/p/DPgbNyQDbgm/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" maxWidth={375}/>
+        
+
+
+      </div>
+
+
+      
+
+      <div
+        className="about-accordion accordion gap-2"
+        id="accordionFlushExample"
+      >
         {[
           {
             title: "Learning",
             body: (
               <>
                 The core of anything involving storytelling,{" "}
-                <abbr title="Naija Book Lovers" className="text-decoration-none">
+                <abbr
+                  title="Naija Book Lovers"
+                  className="text-decoration-none"
+                >
                   NBL
                 </abbr>{" "}
                 boasts a variety of characters that have had varying degrees of
-                success in the field of writing and they occasionally share their
-                experiences, along with some dos and don'ts.
+                success in the field of writing and they occasionally share
+                their experiences, along with some dos and don'ts.
                 <br />
                 Lectures are occasionally hosted too, to educate the members on
                 the platform about a multitude of different topics!
@@ -182,10 +204,10 @@ export default function Content() {
             title: "Honouring",
             body: (
               <>
-                While this could mean a number of things, in reality it simply is
-                a way for the community to reward or appreciate those who have
-                shown the most growth in certain areas or excelled in a particular
-                field.
+                While this could mean a number of things, in reality it simply
+                is a way for the community to reward or appreciate those who
+                have shown the most growth in certain areas or excelled in a
+                particular field.
                 <br />
                 While the criteria for recognition may vary from time to time,
                 one thing remains constant — the ever-growing nature of our
@@ -197,9 +219,12 @@ export default function Content() {
             title: "Writing Opportunities",
             body: (
               <>
-                A writer is not truly a writer if all they ever do is think about
-                what to write without putting pen to paper.{" "}
-                <abbr title="Naija Book Lovers" className="text-decoration-none">
+                A writer is not truly a writer if all they ever do is think
+                about what to write without putting pen to paper.{" "}
+                <abbr
+                  title="Naija Book Lovers"
+                  className="text-decoration-none"
+                >
                   NBL
                 </abbr>{" "}
                 gives our members avenues to grow — through{" "}
