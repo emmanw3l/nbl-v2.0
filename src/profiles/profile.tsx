@@ -1,128 +1,3 @@
-// export default function Profile({ name, bio, avatar, links }) {
-//     return (
-//       <div className="profile-card">
-//         <img src={avatar} alt={`${name}'s avatar`} className="profile-avatar" />
-//         <h2>{name}</h2>
-//         <p>{bio}</p>
-//         <div className="profile-links">
-//           {links.map((link, i) => (
-//             <a key={i} href={link.url} target="_blank" rel="noopener noreferrer">
-//               {link.label}
-//             </a>
-//           ))}
-//         </div>
-//       </div>
-//     );
-//   }
-
-// import Profile from "./Profile";
-
-// function App() {
-//   const user = {
-//     name: "Emmanuel N.",
-//     bio: "Poet | Developer | Dreamer",
-//     avatar: "https://via.placeholder.com/150",
-//     links: [
-//       { label: "GitHub", url: "https://github.com/emmanw3l" },
-//       { label: "Wattpad", url: "https://www.wattpad.com/user/emmanw3l" },
-//     ],
-//   };
-
-//   return (
-//     <div className="container">
-//       <Profile {...user} />
-//     </div>
-//   );
-// }
-
-// components/ProfileCard.jsx
-// export default function ProfileCard({ name, bio, avatar, links }) {
-//     return (
-//       <div className="profile-card">
-//         <img src={avatar} alt={`${name}'s avatar`} className="profile-avatar" />
-//         <h2 className="profile-name">{name}</h2>
-//         <p className="profile-bio">{bio}</p>
-//         <div className="profile-links">
-//           {links.map((link, i) => (
-//             <a key={i} href={link.url} target="_blank" rel="noopener noreferrer">
-//               {link.label}
-//             </a>
-//           ))}
-//         </div>
-//       </div>
-//     );
-//   }
-
-// components/Sidebar.jsx
-// import ProfileCard from "./ProfileCard";
-
-// export default function Sidebar() {
-//   const user = {
-//     name: "Emmanuel N.",
-//     bio: "Poet | Developer | Dreamer of words that breathe.",
-//     avatar: "https://via.placeholder.com/150",
-//     links: [
-//       { label: "GitHub", url: "https://github.com/emmanw3l" },
-//       { label: "Wattpad", url: "https://www.wattpad.com/user/emmanw3l" },
-//     ],
-//   };
-
-//   return (
-//     <aside className="sidebar">
-//       <ProfileCard {...user} />
-//     </aside>
-//   );
-// }
-
-// app layout
-
-// import Sidebar from "./components/Sidebar";
-// import "./App.css";
-
-// export default function App() {
-//   return (
-//     <div className="app-layout">
-//       <Sidebar />
-//       <main className="main-content">
-//         <h1>Welcome to My Poetry Corner</h1>
-//         <p>Here you'll find verses that whisper to the soul...</p>
-//       </main>
-//     </div>
-//   );
-// }
-
-// import ProfileCard from "./profileCard";
-// import {motion} from "framer-motion"
-
-// const pageVariants = {
-//   initial: { opacity: 0, x: 30 },
-//   animate: { opacity: 1, x: 0 },
-//   exit: { opacity: 0, x: -30 },
-// };
-
-// export default function Profiles() {
-//   return (
-//     <motion.div
-//     variants={pageVariants}
-//       initial="initial"
-//       animate="animate"
-//       exit="exit"
-//       transition={{ duration: 0.5 }}
-//     >
-//       <div className="container mt-5">
-//         <ProfileCard
-//           imageSrc=""
-//           title="January Prompts"
-//           text="Check out our latest creative prompts for January!"
-//           linkUrl="#january"
-//           linkLabel="Go to Section"
-//         />
-//       </div>
-//       hiiii
-//     </motion.div>
-//   );
-// }
-
 import { prompts } from "../prompts/2025/januaryPrompts";
 import { febPrompts } from "../prompts/2025/februaryPrompts";
 import { aprilPrompts } from "../prompts/2025/aprilPrompt";
@@ -145,9 +20,7 @@ import { awardCategories2023 } from "../awards/awardCategories2023";
 
 // Merge all prompts into one array
 const allPrompts = [
-
-
-... octPrompts2024,
+  ...octPrompts2024,
 
   // 2025
 
@@ -157,7 +30,6 @@ const allPrompts = [
   ...mJPrompts,
   ...julyPrompts,
   ...septemberPrompts,
-  
 ];
 
 // sluuuugssss
@@ -222,8 +94,6 @@ const pageVariants = {
   exit: { opacity: 0, y: -20 },
 };
 
-
-
 export default function Profiles() {
   const location = useLocation();
 
@@ -238,6 +108,7 @@ export default function Profiles() {
   }, [location]);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [openNominations, setOpenNominations] = useState<string | null>(null);
 
   const [visible, setVisible] = useState(false);
 
@@ -258,37 +129,48 @@ export default function Profiles() {
   >("name");
 
   const sortedProfiles = [...authorsWithWorks].sort(
-  ([aName, aWorks], [bName, bWorks]) => {
-    const aNoms = [...awardCategories, ...awardCategories2023].filter((award) =>
-      award.nominees.some((nominee) =>
-        Array.isArray(nominee) ? nominee.includes(aName) : nominee === aName
-      )
-    ).length;
+    ([aName, aWorks], [bName, bWorks]) => {
+      const aNoms = [...awardCategories, ...awardCategories2023].filter(
+        (award) =>
+          award.nominees.some((nominee) =>
+            Array.isArray(nominee) ? nominee.includes(aName) : nominee === aName
+          )
+      ).length;
 
-    const bNoms = [...awardCategories, ...awardCategories2023].filter((award) =>
-      award.nominees.some((nominee) =>
-        Array.isArray(nominee) ? nominee.includes(bName) : nominee === bName
-      )
-    ).length;
+      const bNoms = [...awardCategories, ...awardCategories2023].filter(
+        (award) =>
+          award.nominees.some((nominee) =>
+            Array.isArray(nominee) ? nominee.includes(bName) : nominee === bName
+          )
+      ).length;
 
-    const aWins = [...awardCategories, ...awardCategories2023].filter((award) =>
-      Array.isArray(award.winner)
-        ? award.winner.includes(aName)
-        : award.winner === aName
-    ).length;
+      const aWins = [...awardCategories, ...awardCategories2023].filter(
+        (award) =>
+          Array.isArray(award.winner)
+            ? award.winner.includes(aName)
+            : award.winner === aName
+      ).length;
 
-    const bWins = [...awardCategories, ...awardCategories2023].filter((award) =>
-      Array.isArray(award.winner)
-        ? award.winner.includes(bName)
-        : award.winner === bName
-    ).length;
+      const bWins = [...awardCategories, ...awardCategories2023].filter(
+        (award) =>
+          Array.isArray(award.winner)
+            ? award.winner.includes(bName)
+            : award.winner === bName
+      ).length;
 
-    if (sortOption === "works") return bWorks.length - aWorks.length;
-    if (sortOption === "nominations") return bNoms - aNoms;
-    if (sortOption === "awards") return bWins - aWins;
-    return aName.localeCompare(bName, "en", { sensitivity: "base" }); // default A–Z
-  }
-);
+      if (sortOption === "works") return bWorks.length - aWorks.length;
+      if (sortOption === "nominations") return bNoms - aNoms;
+      if (sortOption === "awards") return bWins - aWins;
+      return aName.localeCompare(bName, "en", { sensitivity: "base" }); // default A–Z
+    }
+  );
+
+  // const [showNominations, setShowNominations] = useState(
+  //   window.innerWidth >= 768
+  // );
+  const [showAwards, setShowAwards] = useState(window.innerWidth >= 768);
+  const isSmallScreen = window.innerWidth < 768;
+
   return (
     <motion.div
       variants={pageVariants}
@@ -473,16 +355,18 @@ export default function Profiles() {
                   return (
                     <div className="mt-2">
                       {/* Nominations */}
-                      <h4 className="fw-semibold mb-1">
+                      {/* <h4 className="fw-semibold mb-1 ">
                         🏆 Nominations: <span>{authorAwards.length}</span>
                       </h4>
+                     
                       {authorAwards.length > 0 ? (
-                        <div className="d-flex flex-wrap gap-2 mb-2">
+                        <div className="d-flex flex-wrap gap-2 mb-2 " >
                           {authorAwards.map((award) => (
                             <Link
                               key={award.id}
+                              
                               to={`/awards#award-${award.id}`}
-                              className="text-decoration-none card author-card p-1"
+                              className="text-decoration-none card author-card p-1 nominations"
                             >
                               {award.category} {award.year}
                             </Link>
@@ -492,14 +376,65 @@ export default function Profiles() {
                         <p className="text-muted mb-2 fst-italic">
                           No nominations yet
                         </p>
+                      )} */}
+                      <h4
+                        className="fw-semibold mb-3 d-flex align-items-center justify-content-between"
+                        style={{
+                          cursor:
+                            window.innerWidth < 768 ? "pointer" : "default",
+                        }}
+                        onClick={() => {
+                          if (window.innerWidth < 768) {
+                            setOpenNominations(
+                              openNominations === author ? null : author
+                            );
+                          }
+                        }}
+                      >
+                        🏆 Nominations: {authorAwards.length}
+                        {window.innerWidth < 768 && (
+                          <span className="ms-2">
+                            {openNominations === author ? "▲" : "▼"}
+                          </span>
+                        )}
+                      </h4>
+
+                      {authorAwards.length > 0 ? (
+                        <div
+                          className={
+                            window.innerWidth >= 768 ||
+                            openNominations === author
+                              ? "nominations-open"
+                              : "nominations-closed"
+                          }
+                        >
+                          <div className="d-flex flex-wrap gap-2 mb-2">
+                            {authorAwards.map((award) => (
+                              <Link
+                                key={award.id}
+                                to={`/awards#award-${award.id}`}
+                                className="text-decoration-none card author-card p-1"
+                              >
+                                {award.category} {award.year}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <p className="text-muted mb-2 fst-italic">
+                          No nominations yet
+                        </p>
                       )}
 
                       {/* Awards Won */}
-                      <h4 className="mb-0">
+                      {/* <h4 className="mb-0">
                         Awards Won: <span>{wins.length}</span> <br />{" "}
                         {wins.length > 0 ? (
                           wins.map((award, i) => (
-                            <span key={award.id}>
+                            <span
+                              key={award.id}
+                              className="author-card card ps-1 m-1 "
+                            >
                               {award.category} {""}
                               {award.year}
                               {i < wins.length && " ⭐ "}
@@ -509,14 +444,53 @@ export default function Profiles() {
                         ) : (
                           <span className="fst-italic">No awards won</span>
                         )}
+                      </h4> */}
+                      <h4
+                        className="fw-semibold mb-1 d-flex align-items-center justify-content-between"
+                        style={{
+                          cursor: isSmallScreen ? "pointer" : "default",
+                        }}
+                        onClick={() =>
+                          isSmallScreen && setShowAwards((prev) => !prev)
+                        }
+                      >
+                        🥇 Awards Won: {wins.length}
+                        {isSmallScreen && (
+                          <span className="ms-2">{showAwards ? "▲" : "▼"}</span>
+                        )}
                       </h4>
+                      {/* Collapsible Section */}
+                      <div
+                        className={`collapse ${
+                          showAwards ? "show" : ""
+                        } d-md-block`}
+                      >
+                        {wins.length > 0 ? (
+                          <div className="d-flex flex-wrap gap-2 mb-2">
+                            {wins.map((award, i) => (
+                              <span
+                                key={award.id}
+                                className="author-card card ps-1 m-1  text-decoration-none"
+                              >
+                                {award.category} {award.year}
+                                {i < wins.length && " ⭐ "}
+                                {/* {i < wins.length - 1 && " , "} */}
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <span className="fst-italic text-muted">
+                            No awards won
+                          </span>
+                        )}
+                      </div>
                     </div>
                   );
                 })()}
               </div>
             </div>
 
-            <h5 className="fw-light italics mb-3">Prompts written so far... ({works.length})</h5>
+            <h3 className="fw-light italics mb-3">Prompts....</h3>
 
             {/* Accordion for works */}
             {works.length > 0 ? (
@@ -535,15 +509,15 @@ export default function Profiles() {
                       id={`heading-${authorIndex}-${poemIndex}`}
                     >
                       <button
-                        className="accordion-button collapsed d-flex justify-content-between fw-semibold"
+                        className="accordion-button collapsed d-block justify-content-between fw-semibold"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
                         aria-expanded="false"
                         aria-controls={`collapse-${authorIndex}-${poemIndex}`}
                       >
-                        <span className="">{poem.title}</span>{" "}
-                        <span className="italics ms-auto me-1 text-muted">
+                        <h4 className="">{poem.title}</h4>{" "}
+                        <span className="italics  me-1 text-muted">
                           ({poem.month}
                           {poem.year})
                         </span>

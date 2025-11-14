@@ -104,4 +104,11 @@ body {
   outline: none !important;
 }
 
+.nominations-open {
+  display: block;
+}
+
+.nominations-closed {
+  display: none;
+}
 
