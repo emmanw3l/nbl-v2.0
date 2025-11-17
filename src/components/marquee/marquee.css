@@ -1,0 +1,72 @@
+.review-wrapper{}
+
+.review-card {
+  min-width: 280px;
+  max-width: 350px;
+  margin: 0 22px;
+  padding: 22px 24px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers avatar */
+  text-align: center;
+
+  transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Avatar */
+.review-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background: #5f3205; /* You can change theme color */
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.7rem;
+  font-weight: 700;
+
+  margin-bottom: 12px;
+}
+
+.review-text {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  padding: 0 6px;
+}
+
+.review-author-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #444;
+  text-decoration: none;
+}
+
+.review-author-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+
+  .author-card {
+    /* display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0 12px; */
+    margin: 20px 0;
+  }
+}

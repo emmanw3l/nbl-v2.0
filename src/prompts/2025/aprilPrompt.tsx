@@ -14,6 +14,8 @@ export const aprilPrompts = [
     id: 0,
     title: "Can I rise up",
     author: "Nwabueze Emmanuel",
+    month: "april ",
+    year: "2025",
     content: [
       <p>
         Buried beneath a pile of my own insecurities, <br />
