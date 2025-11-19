@@ -40,26 +40,22 @@ import {
   promptIndexMJ,
   promptIndexJuly,
   promptIndexSeptember,
-  promptIndexoctober2024
+  promptIndexoctober2024,
 } from "../components/promptIndexing";
 import "./promptpage.css";
 import { motion } from "framer-motion";
-
-
 
 const januaryPrompts = promptIndex([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 const februaryPrompts = promptIndexFeb([
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
 ]);
 const aprilPrompts = promptIndexApril([0, 1, 2, 3, 4, 5, 6]);
-const MJPrompts = promptIndexMJ([0,1,2,3,4])
-const julyPrompts =promptIndexJuly([0,1,2,3,4,5])
-const septemberPrompts = promptIndexSeptember([0,1,2,3,4,5,6,7])
-
+const MJPrompts = promptIndexMJ([0, 1, 2, 3, 4]);
+const julyPrompts = promptIndexJuly([0, 1, 2, 3, 4, 5]);
+const septemberPrompts = promptIndexSeptember([0, 1, 2, 3, 4, 5, 6, 7]);
 
 // 2024
-const octoberPrompts2024 = promptIndexoctober2024([0,1,2,3,4])
-
+const octoberPrompts2024 = promptIndexoctober2024([0, 1, 2, 3, 4]);
 
 // ✅ consistent slugify
 function slugify(name: string) {
@@ -81,6 +77,7 @@ export default function PromptViewer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5 }}
+            id={`january-${slugify(prompts.id.toString())}`}
           >
             <h1 className="bold">{prompts.title}</h1>
             <h4>{prompts.title1}</h4>
@@ -104,7 +101,15 @@ export function PromptViewerFeb() {
     <div className="page-container py-4">
       <div className="row justify-content-evenly">
         {februaryPrompts.map((prompts) => (
-          <div key={prompts.id} className="mb-4 card col-md-5 col-10">
+          <motion.div
+            key={prompts.id}
+            className="mb-4 card col-md-5 col-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            id={`february-${slugify(prompts.id.toString())}`}
+          >
             <h1 className="bold">{prompts.title}</h1>
             {/* <h4>{prompts.title1}</h4> */}
             <h4 className="text-end blockquote">
@@ -115,7 +120,7 @@ export function PromptViewerFeb() {
               </cite>
             </h4>
             <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
@@ -127,9 +132,17 @@ export function PromptViewerApril() {
     <div className="page-container py-4">
       <div className="row justify-content-evenly">
         {aprilPrompts.map((prompts) => (
-          <div key={prompts.id} className="mb-4 card col-md-5 col-10">
+          <motion.div
+            key={prompts.id}
+            className="mb-4 card col-md-5 col-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            id={`april-${slugify(prompts.id.toString())}`}
+          >
             <h1 className="bold">{prompts.title}</h1>
-            {/* <h4>{prompts.title1}</h4> */}
+            <h4>{prompts.title1}</h4>
             <h4 className="text-end blockquote">
               <cite className="blockquote-footer">
                 <Link to={`/Profile#${slugify(prompts.author)}`}>
@@ -138,7 +151,7 @@ export function PromptViewerApril() {
               </cite>
             </h4>
             <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
@@ -150,7 +163,11 @@ export function PromptViewerMJ() {
     <div className="page-container py-4">
       <div className="row justify-content-evenly">
         {MJPrompts.map((prompts) => (
-          <div key={prompts.id} className="mb-4 card col-md-5 col-10">
+          <div
+            key={prompts.id}
+            className="mb-4 card col-md-5 col-10"
+            id={`mj-${slugify(prompts.id.toString())}`}
+          >
             <h1 className="bold">{prompts.title}</h1>
             {/* <h4>{prompts.title1}</h4> */}
             <h4 className="text-end blockquote">
@@ -173,7 +190,11 @@ export function PromptViewerJuly() {
     <div className="page-container py-4">
       <div className="row justify-content-evenly">
         {julyPrompts.map((prompts) => (
-          <div key={prompts.id} className="mb-4 card col-md-5 col-10">
+          <div
+            key={prompts.id}
+            className="mb-4 card col-md-5 col-10"
+            id={`july-${slugify(prompts.id.toString())}`}
+          >
             <h1 className="bold">{prompts.title}</h1>
             {/* <h4>{prompts.title1}</h4> */}
             <h4 className="text-end blockquote">
@@ -196,7 +217,15 @@ export function PromptViewerSeptember() {
     <div className="page-container py-4">
       <div className="row justify-content-evenly">
         {septemberPrompts.map((prompts) => (
-          <div key={prompts.id} className="mb-4 card col-md-5 col-10">
+          <motion.div
+            key={prompts.id}
+            className="mb-4 card col-md-5 col-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            id={`september-${slugify(prompts.id.toString())}`}
+          >
             <h1 className="bold">{prompts.title}</h1>
             {/* <h4>{prompts.title1}</h4> */}
             <h4 className="text-end blockquote">
@@ -207,34 +236,29 @@ export function PromptViewerSeptember() {
               </cite>
             </h4>
             <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
   );
 }
 
+// 2024 PROMPTS
 
-
-
-
-
-
-
-
-
-
-
-
-
-            // 2024 PROMPTS
-
-export function PromptViewerOctober2024(){
+export function PromptViewerOctober2024() {
   return (
     <div className="page-container py-4">
       <div className="row justify-content-evenly">
         {octoberPrompts2024.map((prompts) => (
-          <div key={prompts.id} className="mb-4 card col-md-5 col-10">
+          <motion.div
+            key={prompts.id}
+            className="mb-4 card col-md-5 col-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            id={`october-${slugify(prompts.id.toString())}`}
+          >
             <h1 className="bold">{prompts.title}</h1>
             {/* <h4>{prompts.title1}</h4> */}
             <h4 className="text-end blockquote">
@@ -245,7 +269,7 @@ export function PromptViewerOctober2024(){
               </cite>
             </h4>
             <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

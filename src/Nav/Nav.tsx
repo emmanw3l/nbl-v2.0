@@ -30,6 +30,7 @@ export default function Layout() {
         <a href="#" className="navbar-brand h1 fs-sm-6 fs-sm-6 fs-lg-1 ">
           <span className="">NAIJA BOOK LOVERS</span>
         </a>
+        
         <button className="btn pe-4 navbar-brand tree" onClick={toggleSidebar}>
           <i className={`bi ${sidebarOpen ? "bi-x" : "bi-list"} fs-3`}></i>
         </button>

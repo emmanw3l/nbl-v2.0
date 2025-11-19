@@ -76,10 +76,10 @@ export default function PromptsPage2024() {
         <ArrowUp size={20} />
       </button>
 
-      <div className="page-container twentyfive" id="2025">
+      <div className="page-container twentyfive" id="2024">
         <div className="">
           <section id="october" className="">
-            <h1 className="text-center twenty ">October 2025</h1>
+            <h1 className="text-center twenty ">October 2024</h1>
             <h3 className="jan-head text-center">Theme: The Year We Turned 64</h3>
 
             <h3 className="text-center">PROMPT: The Year We Turned 64</h3>

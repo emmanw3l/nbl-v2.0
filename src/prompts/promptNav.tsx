@@ -79,7 +79,7 @@ export default function PromptNav() {
                   <ul>
                     <li>
                       <Link
-                        to="/2024PromptPage#january"
+                        to="/2024PromptPage#january2024"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -88,7 +88,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/2024PromptPage#february"
+                        to="/2024PromptPage#february2024"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -97,7 +97,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/2024PromptPage#march"
+                        to="/2024PromptPage#march2024"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -106,7 +106,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/2024PromptPage#june"
+                        to="/2024PromptPage#june2024"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -115,7 +115,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/2024PromptPage#august"
+                        to="/2024PromptPage#august2024"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -124,7 +124,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/2024PromptPage#september"
+                        to="/2024PromptPage#september2024"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -133,7 +133,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/2024PromptPage#october"
+                        to="/2024PromptPage#october2024"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -169,7 +169,7 @@ export default function PromptNav() {
                   <ul>
                     <li>
                       <Link
-                        to="/mainPromptPage"
+                        to="/mainPromptPage#january2025"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -178,7 +178,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/mainPromptPage#february"
+                        to="/mainPromptPage#february2025"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -188,7 +188,7 @@ export default function PromptNav() {
 
                     <li>
                       <Link
-                        to="/mainPromptPage#april"
+                        to="/mainPromptPage#april2025"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -197,7 +197,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/mainPromptPage#mj"
+                        to="/mainPromptPage#may2025"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -206,7 +206,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/mainPromptPage#mj"
+                        to="/mainPromptPage#may2025"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -215,7 +215,7 @@ export default function PromptNav() {
                     </li>
                     <li>
                       <Link
-                        to="/mainPromptPage#july"
+                        to="/mainPromptPage#july2025"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >
@@ -225,7 +225,7 @@ export default function PromptNav() {
 
                      <li>
                       <Link
-                        to="/mainPromptPage#september"
+                        to="/mainPromptPage#september2025"
                         onClick={() => setIsOpen(false)}
                         className="nav-link"
                       >

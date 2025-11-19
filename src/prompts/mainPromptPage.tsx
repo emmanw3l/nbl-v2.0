@@ -82,7 +82,7 @@ export default function PromptsPage() {
 
       <div className="page-container twentyfive" id="2025">
         <div className="">
-          <section id="january" className="">
+          <section id="january2025" className="">
             <h1 className="text-center twenty ">JANUARY 2025</h1>
             <h3 className="jan-head text-center">Theme: Realm of Divinity</h3>
 
@@ -94,7 +94,7 @@ export default function PromptsPage() {
         </div>
 
         <div className="page-container">
-          <section id="february" className="">
+          <section id="february2025" className="">
             <h1 className="text-center twenty">FEBRUARY 2025</h1>
             <h3 className="jan-head text-center">
               Theme: Embracing the mirrors of reflection
@@ -106,7 +106,7 @@ export default function PromptsPage() {
         </div>
 
         <div className="page-container">
-          <section id="april" className="">
+          <section id="april2025" className="">
             <h1 className="text-center twenty">APRIL 2025</h1>
             <h3 className="jan-head text-center">Theme: </h3>
             <h3 className="text-center">PROMPT: Can I rise up?</h3>
@@ -115,7 +115,7 @@ export default function PromptsPage() {
         </div>
 
         <div className="page-container">
-          <section id="mj" className="">
+          <section id="may2025" className="">
             <h1 className="text-center twenty">MAY/JUNE 2025</h1>
             <h3 className="jan-head text-center">Theme: </h3>
             <h3 className="text-center">PROMPT: Back when I was a child</h3>
@@ -124,7 +124,7 @@ export default function PromptsPage() {
         </div>
 
         <div className="page-container">
-          <section id="july" className="">
+          <section id="july2025" className="">
             <h1 className="text-center twenty">JULY 2025</h1>
             <h3 className="jan-head text-center">
               Theme: Me, myself and my mind
@@ -135,7 +135,7 @@ export default function PromptsPage() {
         </div>
 
         <div className="page-container">
-          <section id="september">
+          <section id="september2025">
             <h1 className="text-center twenty">September 2025</h1>
             <h3 className="jan-head text-center">
               Theme: The Break I Never Thought I Needed
