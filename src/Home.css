@@ -3,6 +3,9 @@ body{
     /* background-color: #e2d7db; */
     
 }
+.cap::first-letter{
+    font-style: uppercase;
+}
 
 .container-fluid{
     margin-top: 3rem;

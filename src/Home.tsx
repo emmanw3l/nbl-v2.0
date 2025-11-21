@@ -65,7 +65,7 @@ export default function Home() {
 
       <Content />
 
-      {/* Random Poem Card */}
+      {/* Random Prompt Card */}
       <div className="container my-5">
         {randomPrompt && (
           <div className="card shadow-lg p-4 mb-5 rounded-4">
@@ -82,7 +82,7 @@ export default function Home() {
             </Link>
 
             <p className="text-muted mb-3">
-              {randomPrompt.month} {randomPrompt.year}
+              <span className="cap">{randomPrompt.month}</span> {randomPrompt.year}
             </p>
 
             {/* Preview first two lines */}

@@ -7,6 +7,7 @@ import { JSX } from "react";
 export default function Search() {
   const [query, setQuery] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [showBar, setShowBar] = useState(false);
 
   const extractTextFromContent = (content: JSX.Element[]) => {
     return content
@@ -88,32 +89,42 @@ export default function Search() {
         });
 
   return (
-    <div className="container py-4 ">
-      <h2 className="mb-3">
-        <i className="bi bi-search"></i>
-      </h2>
-
-      {/* SEARCH BAR + CLEAR BUTTON */}
-
-      <div className="input-group mb-4">
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Press Enter to search..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        {searchTerm && (
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            onClick={handleClear}
-          >
-            Clear
-          </button>
-        )}
+    <div className="container py-2">
+      {/* SEARCH ICON (toggles input visibility) */}
+      <div className="d-flex justify-content-end mb-3">
+        <button
+          className="btn btn-outline-dark rounded-circle"
+          onClick={() => setShowBar(!showBar)}
+        >
+          <i className="bi bi-search"></i>
+        </button>
       </div>
+
+      {/* SEARCH BAR: HIDDEN UNTIL CLICK */}
+      {showBar && (
+        <div className="d-flex justify-content-end">
+          <div className="input-group mb-4" style={{ maxWidth: "350px" }}>
+            <input
+              className="form-control text-end"
+              type="text"
+              placeholder="Press Enter to search..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
+            {searchTerm && (
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={handleClear}
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* RESULTS */}
       {searchTerm && (
@@ -128,7 +139,7 @@ export default function Search() {
 
           <div
             className="d-flex flex-wrap gap-3"
-            style={{ maxHeight: "400px", overflowY: "auto" }}
+            style={{ maxHeight: "300px", overflowY: "auto" }}
           >
             {filtered.map((p) => (
               <div
@@ -136,15 +147,13 @@ export default function Search() {
                 className="card shadow-sm p-3 flex-fill"
                 style={{ minWidth: "250px", maxWidth: "300px" }}
               >
-                <strong className="d-block mb-1">
-                  {highlightMatch(p.title, searchTerm)}
-                </strong>
+                <strong className="d-block mb-1">{p.title}</strong><span className="text-muted italic small">{p.month} {p.year}</span>
 
                 <Link
                   to={`/profile#${p.author.replace(/\s+/g, "-").toLowerCase()}`}
                   className="text-decoration-none text-primary d-block mb-2"
                 >
-                  <small>{highlightMatch(p.author, searchTerm)}</small>
+                  <small>{p.author}</small>
                 </Link>
 
                 <small className="text-muted">{getSnippet(p)}</small>
