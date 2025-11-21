@@ -82,7 +82,7 @@ export default function Home() {
             </Link>
 
             <p className="text-muted mb-3">
-              <span className="cap">{randomPrompt.month}</span> {randomPrompt.year}
+              <span className="cap"></span>{randomPrompt.month} {randomPrompt.year}
             </p>
 
             {/* Preview first two lines */}

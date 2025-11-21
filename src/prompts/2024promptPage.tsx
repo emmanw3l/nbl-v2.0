@@ -6,6 +6,7 @@ import { ArrowUp } from "lucide-react";
 import Footer from "../components/footer/footer";
 import { PromptViewerOctober2024 } from "./pagetext";
 import PromptNav from "./promptNav";
+import Search from "../components/search/search";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -52,7 +53,7 @@ export default function PromptsPage2024() {
       transition={{ duration: 0.5 }}
     >
     <PromptNav/>
-      
+      <Search/>
 
       <button
         onClick={scrollToTop}

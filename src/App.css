@@ -6,6 +6,9 @@
     --primary-color-1: #e2d7db;
 
 }
+html{
+    scroll-behavior: smooth;
+}
 body {
     background-color: var(--bs-body-bg);
     overflow-x: hidden;

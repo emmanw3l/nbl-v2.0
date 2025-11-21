@@ -17,6 +17,7 @@ import { ArrowUp } from "lucide-react";
 import Footer from "../components/footer/footer";
 import { awardCategories } from "../awards/awardCategories";
 import { awardCategories2023 } from "../awards/awardCategories2023";
+import Search from "../components/search/search";
 
 // Merge all prompts into one array
 const allPrompts = [
@@ -252,7 +253,7 @@ export default function Profiles() {
           </div>
         </div>
       </div>
-
+      <Search />
       <div className="container py-4 mt-5">
         <h1 className="mt-4 text-center ">AUTHOR PROFILES</h1>
 

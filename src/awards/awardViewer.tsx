@@ -35,7 +35,8 @@ export default function AwardsAccordion2024() {
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.5 }}
     >
-      {/* <h1 className="mb-4 text-center mt-4 fw-bold">2024</h1> */}
+            <h1 className="mb-4 text-center mt-4 fw-bold">2024</h1>
+
 
       <div className="accordion">
         {awardCategories.map((award) => (

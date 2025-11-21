@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Footer from "../components/footer/footer";
 import PromptNav from "./promptNav";
+import Search from "../components/search/search";
 // import { ArrowUp } from "react-bootstrap-icons";
 
 const pageVariants = {
@@ -56,6 +57,7 @@ export default function PromptsPage() {
       transition={{ duration: 0.5 }}
     >
       <PromptNav />
+      <Search/>
       {/* <Carousel1 /> */}
 
       <button
