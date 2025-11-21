@@ -56,7 +56,7 @@ export default function PromptsPage() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
-      <PromptNav />
+      <PromptNav /><br /><br /><br />
       <Search/>
       {/* <Carousel1 /> */}
 

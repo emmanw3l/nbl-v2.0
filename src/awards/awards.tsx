@@ -7,6 +7,7 @@ import "./awards.css";
 
 import AwardsAccordion2024 from "./awardViewer";
 import AwardsAccordion2023 from "./awardViewer2023";
+import Search from "../components/search/search";
 // import AwardCard from "./awardViewerTesting";
 
 // function slugify(name: string) {
@@ -29,6 +30,8 @@ export default function AwardsAccordion() {
       transition={{ duration: 0.5 }}
     >
       <Layout />
+      <br />
+      <Search/>
 
 
       <AwardsAccordion2024/>

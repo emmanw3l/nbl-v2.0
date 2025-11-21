@@ -15,7 +15,7 @@ export default function PromptNav() {
   }, [location]);
   return (
     <>
-      <nav className="navbar  navbar-dark navbars fixed-top">
+      <nav className="navbar  navbar-dark navbars fixed-top mb-4">
         <NavLink to="/">
           <span className="bi bi-house fs-3 navbar-brand ms-2"></span>
         </NavLink>

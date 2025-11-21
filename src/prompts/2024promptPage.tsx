@@ -52,7 +52,7 @@ export default function PromptsPage2024() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
-    <PromptNav/>
+    <PromptNav/><br /><br /><br />
       <Search/>
 
       <button

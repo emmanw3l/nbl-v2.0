@@ -22,21 +22,20 @@ function slugify(name: string) {
 export default function AwardsAccordion2024() {
   const [openId, setOpenId] = useState<number | null>(null);
 
-
   const toggleAccordion = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
   return (
     <motion.div
-      className="container py-4 accordion"
+      className="container py-4"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.5 }}
     >
-            <h1 className="mb-4 text-center mt-4 fw-bold">2024</h1>
-
+      <h1 className="mb-4 text-center mt-4 fw-bold">2024</h1>
+      {/* <span className="h1 bg-primary text-center  fw-bold">2024</span> */}
 
       <div className="accordion">
         {awardCategories.map((award) => (
@@ -46,7 +45,6 @@ export default function AwardsAccordion2024() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
-            
           >
             {/* Accordion Header */}
             <h2 className="accordion-header" id={`heading-${award.id}`}>
