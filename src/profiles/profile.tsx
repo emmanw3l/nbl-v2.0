@@ -209,10 +209,11 @@ export default function Profiles() {
           className={` offcanvas sidebars offcanvas-end ${
             isOpen ? "show" : ""
           }`}
-          style={{ visibility: isOpen ? "visible" : "hidden" }}
+          style={{ visibility: isOpen ? "visible" : "hidden"}}
           tabIndex={-1}
         >
-          <div className="offcanvas-header   ">
+          <div className="offcanvas-header "
+          >
             <nav className="mx-auto">
               <Link to="/awards" className="nav-link  fw-semibold dib">
                 Awards
@@ -253,8 +254,9 @@ export default function Profiles() {
           </div>
         </div>
       </div>
-      <Search />
+      
       <div className="container py-4 mt-5">
+        <Search />
         <h1 className="mt-4 text-center ">AUTHOR PROFILES</h1>
 
         <div className="mb-5">

@@ -89,18 +89,19 @@ export default function Search() {
         });
 
   return (
-    <div className="container py-2">
+    <div className="container py-2 ">
       {/* SEARCH ICON (toggles input visibility) */}
-      <div className="d-flex justify-content-end mb-3">
+      <div className="d-flex justify-content-end fixed-top mb-3 "
+      style={{top: "10px", right: "60px"}}>
         <button
-          className="btn btn-outline-dark rounded-circle"
+          className="btn btn-outline-light rounded-circle"
           onClick={() => setShowBar(!showBar)}
         >
           <i className="bi bi-search"></i>
         </button>
       </div>
 
-      {/* SEARCH BAR: HIDDEN UNTIL CLICK */}
+      
       {showBar && (
         <div className="d-flex justify-content-end">
           <div className="input-group mb-4" style={{ maxWidth: "350px" }}>

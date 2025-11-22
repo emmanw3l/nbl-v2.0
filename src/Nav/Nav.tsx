@@ -28,7 +28,8 @@ export default function Layout() {
           <span className="bi bi-house navbar-brand ms-2 fs-3"></span>
         </NavLink>
         <a href="#" className="navbar-brand h1 fs-sm-6 fs-sm-6 fs-lg-1 ">
-          <span className="">NAIJA BOOK LOVERS</span>
+          <span className="d-none d-lg-block">NAIJA BOOK LOVERS</span>
+          <span className=" d-sm-block d-md-none">NBL</span>
         </a>
         
         <button className="btn pe-4 navbar-brand tree" onClick={toggleSidebar}>
