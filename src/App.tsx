@@ -12,7 +12,7 @@ import PageLoader from "./components/PageLoader";
 import { AnimatePresence } from "framer-motion";
 import PageNotFound from "./components/pagenotfound/pageNotFound";
 import January2025 from "./prompts/2025/January";
-import February2025 from "./prompts/2025/february";
+import February2025 from "./prompts/2025/February";
 import April2025 from "./prompts/2025/April";
 import MayJune2025 from "./prompts/2025/MayJune";
 import July2025 from "./prompts/2025/July";
