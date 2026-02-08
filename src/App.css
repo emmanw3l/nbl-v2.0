@@ -1,0 +1,16 @@
+:root {
+    --primary-color: #5f3205;
+    --primary-color-opacity: #0a1118;
+    --primary-color-highlight: rgba(95, 50, 5, 0.1);
+    --bs-body-bg: #e2d7db;
+    --primary-color-1: #e2d7db;
+
+}
+html{
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--bs-body-bg);
+    overflow-x: hidden;
+
+}

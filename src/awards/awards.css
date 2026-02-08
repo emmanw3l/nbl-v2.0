@@ -1,0 +1,155 @@
+body {
+  background: var(--body-bg);
+}
+.aww {
+  /* background-image: url("/src/assets/Images/dash.jpeg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; */
+  background: var(--primary-color);
+}
+
+.acc {
+  background-color: white !important;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.trophy-pulse {
+  animation: pulse 1.5s infinite ease-in-out;
+  color: #ff9500; /* Bootstrap warning/gold */
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #ff9500 !important; /* or your preferred bg */
+}
+
+.accordion-item {
+  border: none;
+  margin-bottom: 0.8rem;
+  background: #212529;
+  color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.accordion-button {
+  background: var(--primary-color);
+  color: #f8f9fa;
+}
+
+.accordion-button:not(.collapsed) {
+  /* background: ; */
+  color: #fff;
+}
+
+.accordion-body {
+  background: var(--primary-color);
+}
+
+.list-group-item {
+  background: transparent;
+  color: #adb5bd;
+}
+
+.list-group-item.winner {
+  border: 2px dotted #ff9500;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  /* box-shadow: 0 0 10px rgba(255, 193, 7, 0.4); */
+}
+
+.winner {
+  background-color: #37643d !important;
+}
+.winner .text-dark {
+  color: white !important;
+}
+
+/* === Responsive Accordion as Cards on Larger Screens === */
+@media (min-width: 992px) {
+  .accordion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    max-height: min-content;
+    /* padding: 1rem; */
+  }
+
+  .accordion-item {
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-height: min-content;
+    transition: all 0.3s ease;
+    /* background: #fff; */
+  }
+
+  .accordion-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Make each item act like a standalone card */
+  .accordion-button {
+    border-radius: 0;
+    /* background: #212529; */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    justify-content: space-between;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background: #ffc107;
+    color: #000;
+  }
+
+  .accordion-collapse {
+    display: block !important; /* Always visible content on desktop */
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .accordion-body {
+    /* background: #fafafa; */
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.25rem;
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .list-group-item.acc {
+    background: #fff;
+    border: none;
+    padding: 0.75rem 0;
+  }
+
+  /* .list-group-item.acc:hover {
+    background: #f8f9fa;
+  } */
+
+  /* Hide toggle behavior on large screens */
+  .accordion-button::after {
+    display: none;
+  }
+
+  .text-dark {
+    padding-left: 13px;
+    margin: 0;
+  }
+
+}

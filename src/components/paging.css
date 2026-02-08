@@ -1,0 +1,14 @@
+
+
+button:disabled{
+    border: none;
+}
+
+.span{
+    font-family:'papyrus', sans-serif;
+}
+
+.footer{
+margin-top: auto;
+background-color: var(--primary-color-highlight);
+}

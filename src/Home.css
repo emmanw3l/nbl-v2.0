@@ -1,0 +1,65 @@
+body{
+    background-color: var(--primary-color-1) !important; 
+    /* background-color: #e2d7db; */
+    
+}
+.cap::first-letter{
+    font-style: uppercase;
+}
+
+.container-fluid{
+    margin-top: 3rem;
+}
+
+.animate__animated.animate__zoomInDown {
+    --animate-duration: 3s;
+}
+
+.first-heading {
+    
+    color: var(--primary-color);
+    /* margin-left: 5%; */
+    text-align: center;
+    font-weight:700;
+    font-size: 3rem;
+}
+.first-word{
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 0.5rem;
+    font-weight: 900;
+    font-size: 6rem;
+}
+.lottie{
+    margin: 0;
+    padding: 0;
+    width: 450px;
+    height: 450px;
+    justify-content: end;
+    /* justify-content: center; */
+}
+
+
+
+
+
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .first-heading {
+
+  }
+}
+@media screen and (max-width:576px) {
+    .first-heading{
+        font-size: 30px;
+        text-align: center;
+        width: 100vw;
+    }
+    .first-word{
+        padding-left: 0;
+        margin-left: 0;
+        font-size: 40px;
+        text-align: center;
+        letter-spacing: 10.9px;
+    }
+    
+}

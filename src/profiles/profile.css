@@ -1,0 +1,114 @@
+body {
+  background-color: var(--primary-color-highlight);
+}
+
+.navbars{
+  z-index: 1000;
+  background-color: var(--primary-color);
+  /* margin-bottom: 100px; */
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+
+}
+
+.sidebars, .list-group-item{
+  background-color: var(--primary-color);
+}
+
+.btn-close{
+  color: white;
+}
+
+/* ol.list-group-numbered li::marker{
+  color: white;
+  font-size: 1.7rem;
+} */
+
+.list-group-numbered > .list-group-item::before {
+  /* background: #0d6efd; */
+  color: #fff;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  margin-right: .5rem;
+  font-weight: 600;
+}
+
+.dib{
+  display: inline-block;
+  margin: 13px;
+  background-color: var(--body-bg);
+  padding: 8px;
+  color: black;
+}
+
+.accordion-body {
+  background-color: var(--primary-color-highlight);
+  /* border: 2px solid #5f3205; */
+}
+.pr {
+  border: 2px solid #5f3205;
+}
+.cards{
+    background-color: var(--body-bg);
+}
+.accordion-button{
+    background-color: var(--body-bg);
+}
+
+.author-card{
+  background-color: var(--primary-color);
+  color: white;
+}
+.pill{
+  background-color: #5f3205;
+  color: white;
+}
+
+.br-bottom{
+  padding: 13px;
+  
+}
+.ac .italics{
+  /* background: linear-gradient(135deg, #f9f9f9, #ececec); */
+  font-style: italic;
+  
+}
+.ac:nth-child(odd) {
+  background: linear-gradient(135deg, #5f3205, #fce4ec); /* blueish */
+  color: #fff;
+}
+
+
+.ac:nth-child(even) {
+  background: linear-gradient(135deg, #fce4ec, #5f3205); /* pinkish */
+}
+
+.bg{
+  background-color: #5f320544;
+}
+.bg-warn{
+  background-color: #1b2b1d;
+
+}
+.bg-4{
+  background-color: #37643d;
+}
+.accordion-button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.nominations-open {
+  display: block;
+}
+
+.nominations-closed {
+  display: none;
+}
+

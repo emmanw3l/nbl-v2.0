@@ -1,0 +1,26 @@
+:root {
+    --primary-color: #5f3205;
+    --primary-color-opacity: #0a1118;
+    --primary-color-highlight: rgba(95, 50, 5, 0.1);
+    --bs-body-bg: #e2d7db;
+    --body-bg: #e2d7db;
+
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: var(--bs-body-bg);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #fff !important;   /* or your preferred bg */
+
+  box-shadow: none !important;
+}
+
+

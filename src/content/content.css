@@ -1,0 +1,71 @@
+.accordion-button{
+    background-color:var(--primary-color-1);
+}
+.accordion-body{
+    background-color: var(--primary-color);
+    color: white;
+}
+.accordion-item{
+  margin-bottom: 1rem;
+  max-height: fit-content;
+}
+
+.about-accordion .accordion-item {
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.about-accordion .accordion-button {
+  font-weight: 600;
+  
+  background: var(--primary-color);
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.about-accordion .accordion-button:not(.collapsed) {
+  background: #ffc107;
+  color: #000;
+}
+
+.about-accordion .accordion-body {
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ====== Larger Screens (Cards Layout) ====== */
+@media (min-width: 992px) {
+  .about-accordion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .about-accordion .accordion-item {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+  }
+
+  .about-accordion .accordion-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Disable collapsing behavior visually */
+  .about-accordion .accordion-collapse {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .about-accordion .accordion-button::after {
+    display: none;
+  }
+
+  .about-accordion .accordion-button {
+    cursor: default;
+  }
+}
