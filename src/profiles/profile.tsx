@@ -186,10 +186,17 @@ export default function Profiles() {
     >
       {/* <Layout /> */}
 
-      <div>
-        <nav className="navbar navbars text-white ">
-          <div className="container-fluid ">
-            <Link to="/" className="navbar-brand">
+      <motion.div
+        className=""
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ duration: 0.5 }}
+      >
+        <nav className="navbar navbar-dark fixed-top 100vw text-white ">
+          
+            <Link to="/" className="navbar-brand ">
               <i className="bi bi-house fs-3 text-white"></i>
             </Link>
 
@@ -205,7 +212,7 @@ export default function Profiles() {
             >
               ☰
             </button>
-          </div>
+          
         </nav>
 
         {/* Sidebar */}
@@ -256,7 +263,7 @@ export default function Profiles() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="container py-4 mt-5">
         <Search />
@@ -269,7 +276,7 @@ export default function Profiles() {
               <a
                 key={author}
                 href={`#${slugify(author)}`}
-                className="card p-2 px-3 text-decoration-none shadow author-card"
+                className="rounded-pill p-2 px-3 text-decoration-none shadow author-card"
                 style={{ minWidth: "10px" }}
               >
                 <span className="fw-semibold">{author}</span>

@@ -46,12 +46,12 @@ export default function App() {
             <Route path="/mainPromptPage" element={<PromptsPage />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/awards" element={<Awards />} />
-            <Route path="/2025/January" element={<January2025 />} />
-            <Route path="/2025/February" element={<February2025 />} />
-            <Route path="/2025/April" element={<April2025 />} />
-            <Route path="/2025/May" element={<MayJune2025 />} />
-            <Route path="/2025/July" element={<July2025 />} />
-            <Route path="/2025/September" element={<September2025 />} />
+            <Route path="mainPromptPage/2025/January" element={<January2025 />} />
+            <Route path="mainPromptPage/2025/February" element={<February2025 />} />
+            <Route path="mainPromptPage/2025/April" element={<April2025 />} />
+            <Route path="mainPromptPage/2025/May" element={<MayJune2025 />} />
+            <Route path="mainPromptPage/2025/July" element={<July2025 />} />
+            <Route path="mainPromptPage/2025/September" element={<September2025 />} />
             {/* <Route path="/2024PromptPage" element={<PromptsPage2024 />} /> */}
             {/* {months.map(({ month, year }) => (
               <Route

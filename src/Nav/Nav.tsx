@@ -25,8 +25,9 @@ export default function Layout() {
       transition={{ duration: 0.5 }}> 
       {/* Navbar */}
       <nav className="navbar navbar-dark fixed-top 100vw">
-        <NavLink to= "/">
-          <span className="bi bi-house navbar-brand ms-2 fs-3"></span>
+        <NavLink to= "/"
+        className="navbar-brand">
+          <span className="bi bi-house navbar-brand ms-2 fs-3 text-decoration-none"></span>
         </NavLink>
         <a href="#" className="navbar-brand h1 fs-sm-6 fs-sm-6 fs-lg-1 ">
           <span className="d-none d-lg-block">NAIJA BOOK LOVERS</span>

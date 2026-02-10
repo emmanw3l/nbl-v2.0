@@ -8,6 +8,7 @@ import Footer from "../../components/footer/footer";
 import PagedText from "../../components/paging";
 import { Link } from "react-router-dom";
 import { promptIndexMJ } from "../../components/promptIndexing";
+import PromptNav from "../promptNav";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -49,6 +50,7 @@ export default function MayJune2025() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
+      <PromptNav/>
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${

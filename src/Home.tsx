@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 // import Search from "./components/search/search";
 
 // Define the interface for your prompts
-interface Poem {
+interface Prompt {
   id: number;
   title: string;
   author: string;
@@ -27,7 +27,7 @@ const pageVariants = {
 };
 
 export default function Home() {
-  const [randomPrompt, setRandomPrompt] = useState<Poem | null>(null);
+  const [randomPrompt, setRandomPrompt] = useState<Prompt | null>(null);
 
   useEffect(() => {
     setRandomPrompt(getRandomPrompt());
@@ -66,7 +66,10 @@ export default function Home() {
       <Content />
 
       {/* Random Prompt Card */}
-      <div className="container my-5">
+      <div className="container my-5 ">
+        <h1 className="text-center my-4">
+          <u> Random Prompts</u>
+        </h1>
         {randomPrompt && (
           <div className="card shadow-lg p-4 mb-5 rounded-4">
             <h2 className="fw-bold mb-1">{randomPrompt.title}</h2>
@@ -81,28 +84,40 @@ export default function Home() {
               <h5 className="mb-3">{randomPrompt.author}</h5>
             </Link>
 
-            <p className="text-muted mb-3">
-              <span className="cap"></span>{randomPrompt.month} {randomPrompt.year}
-            </p>
+            <Link
+              className="text-decoration-none"
+              to={`/${randomPrompt.year === "2024" ? "mainPromptPage/2024/" : "mainPromptPage/2025/"}${randomPrompt.month.toLowerCase().trim()}`}
+            >
+              <p className="text-muted mb-3">
+                <span className="cap"></span>
+                {randomPrompt.month} {randomPrompt.year}
+              </p>
+            </Link>
 
             {/* Preview first two lines */}
             <div className="mb-3">
-              {randomPrompt.content.slice(0, 2)}
-              <span className="text-muted">...</span>
+              {randomPrompt.content.slice(0, 1)}
+              <span className="h3">...</span>
             </div>
 
             <div className="d-flex gap-2">
               <Link
                 to={`/${
-                  randomPrompt.year === "2024" ? "2024promptPage" : "mainPromptPage"
-                }#${randomPrompt.month.toLowerCase().trim()}-${randomPrompt.id}`}
+                  randomPrompt.year === "2024"
+                    ? "mainPromptPage/2024/"
+                    : randomPrompt.year === "2025"
+                      ? "mainPromptPage/2025/"
+                      : randomPrompt.year === "2026"
+                        ? "mainPromptPage/2026/"
+                        : "mainPromptPage/2023/"
+                }${randomPrompt.month.toLowerCase().trim()}#${randomPrompt.id}`}
                 className="btn btn-outline-dark btn-sm mt-3 w-100 rounded-3"
               >
                 Read full prompt →
               </Link>
 
               <button
-                className="btn btn-outline-primary btn-sm rounded-3"
+                className="btn btn-outline-dark btn-sm rounded-3"
                 onClick={() => setRandomPrompt(getRandomPrompt())}
               >
                 Another Prompt

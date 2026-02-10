@@ -14,3 +14,13 @@ body {
     overflow-x: hidden;
 
 }
+.cards {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7px;
+  background-color: var(--primary-color); 
+  font-family: "Poppins", sans-serif;
+  border: 2px solid var(--primary-color);
+  max-height: fit-content;
+  color: white;
+}

@@ -243,8 +243,8 @@ export default function Content() {
             title: "Community & Growth",
             body: (
               <>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-                laboriosam ad rerum.
+                72,000 lines of code and counting... <br />
+                Buy me mental health
               </>
             ),
           },

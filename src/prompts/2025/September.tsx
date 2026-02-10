@@ -7,6 +7,7 @@ import Footer from "../../components/footer/footer";
 import PagedText from "../../components/paging";
 import { Link } from "react-router-dom";
 import { septemberPrompts } from "../../assets/prompts/2025/septemberPrompt";
+import PromptNav from "../promptNav";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -45,6 +46,7 @@ export default function September2025() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
+      <PromptNav/>
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Footer from "../../components/footer/footer";
 import PromptNavigation from "../promptNavigation";
+import PromptNav from "../promptNav";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -36,6 +37,7 @@ export default function January2025() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
+      <PromptNav />
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${
@@ -67,11 +69,12 @@ export default function January2025() {
           <hr />
 
           <PromptViewer />
+          <div className="promptnav">
+            <PromptNavigation />
+          </div>
         </section>
       </div>
-      <div className="promptnav">
-        <PromptNavigation />  
-      </div>
+
       <Footer />
     </motion.div>
   );

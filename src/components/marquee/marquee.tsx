@@ -64,7 +64,7 @@ export default function ReviewMarquee() {
     // </div>
     <div className="review-wrapper mb-5">
       {isMobile ? (
-        // ⬇️ MOBILE VERSION — static column layout
+        
         <div className="review-column">
           <h2 className="text-center mb-3">
             What the community members are saying
@@ -83,7 +83,7 @@ export default function ReviewMarquee() {
           ))}
         </div>
       ) : (
-        // ⬇️ DESKTOP VERSION — sliding marquee
+        
         <div className="d-inline-block d-flex">
             <h1 className=" mb-3">What The community members are saying!</h1>
           <Marquee pauseOnHover speed={100} gradient={false}>

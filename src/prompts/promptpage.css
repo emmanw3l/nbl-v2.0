@@ -1,5 +1,7 @@
 body {
-  background-color: var(--primary-color-highlight);
+  /* background-color: var(--primary-color-highlight); */
+    background-color: var(--primary-color-1) !important; 
+
 }
 /* .first-word{
   text-decoration: underline;
@@ -32,14 +34,7 @@ body {
     /* justify-content: center; */
 }
 
-.navbars {
-  background-color: var(--primary-color);
-  z-index: 1000;
-  /* top: 0; */
-  /* margin-bottom: 100px; */
-  /* position: fixed; */
-  width: 100vw;
-}
+
 
 .page-container {
   margin-top: 5%;
@@ -53,11 +48,18 @@ body {
   background-color: var(--primary-color);
   /* margin-bottom: 100px; */
   width: 100vw;
-  position: fixed;
+  position: fixed ;
   top: 0;
   left: 0;
 
+}
 
+.offcanvas-body, .offcanvas-header{
+  background-color: var(--body-bg);
+}
+
+.space{
+  margin-bottom: 5rem;
 }
 
 .sidebars, .list-group-item{
@@ -106,9 +108,10 @@ body {
 
 .card {
   display: flex;
+  padding: 10px;
   flex-direction: column;
   margin-bottom: 7px;
-  background-color: var(--primary-color); 
+  background-color: var(--primary-color-highlight) !important; 
   font-family: "Poppins", sans-serif;
   border: 2px solid var(--primary-color);
   max-height: fit-content;
@@ -138,6 +141,16 @@ body {
   background-color: blue;
   font-size: 300px;
 }
+
+.ac {
+  background: linear-gradient(135deg, #5f3205, #fce4ec); /* blueish */
+  color: black;
+}
+
+
+/* .ac:nth-child(even) {
+  background: linear-gradient(135deg, #fce4ec, #5f3205); 
+} */
 
 @media (max-width: 768px){
   .twentyfive{

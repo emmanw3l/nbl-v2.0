@@ -8,6 +8,7 @@ import { aprilPrompts } from "../../assets/prompts/2025/aprilPrompt";
 import { Link } from "react-router-dom";
 import PagedText from "../../components/paging";
 import PromptNavigation from "../promptNavigation";
+import PromptNav from "../promptNav";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -46,6 +47,8 @@ export default function April2025() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
+      <PromptNav />
+
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${

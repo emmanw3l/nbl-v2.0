@@ -3,6 +3,7 @@ import { allPrompts } from "../../prompts/promptCollection";
 import { Prompt } from "../../prompts/promptCollection";
 import { Link } from "react-router-dom";
 import { JSX } from "react";
+import "./search.css"
 
 export default function Search() {
   const [query, setQuery] = useState("");
@@ -12,7 +13,7 @@ export default function Search() {
   const extractTextFromContent = (content: JSX.Element[]) => {
     return content
       .map((el) =>
-        typeof el.props.children === "string" ? el.props.children : ""
+        typeof el.props.children === "string" ? el.props.children : "",
       )
       .join(" ");
   };
@@ -37,7 +38,7 @@ export default function Search() {
             </mark>
           ) : (
             part
-          )
+          ),
         )}
       </>
     );
@@ -91,8 +92,10 @@ export default function Search() {
   return (
     <div className="container py-2 ">
       {/* SEARCH ICON (toggles input visibility) */}
-      <div className="d-flex justify-content-end fixed-top mb-3 "
-      style={{top: "10px", right: "60px"}}>
+      <div
+        className="d-flex justify-content-end fixed-top mb-3 "
+        style={{ top: "10px", right: "70px" }}
+      >
         <button
           className="btn btn-outline-light rounded-circle"
           onClick={() => setShowBar(!showBar)}
@@ -101,7 +104,6 @@ export default function Search() {
         </button>
       </div>
 
-      
       {showBar && (
         <div className="d-flex justify-content-end">
           <div className="input-group mb-4" style={{ maxWidth: "350px" }}>
@@ -129,7 +131,7 @@ export default function Search() {
 
       {/* RESULTS */}
       {searchTerm && (
-        <>
+        <div className="result">
           <p className="text-muted mb-3">
             Found {filtered.length} result{filtered.length !== 1 && "s"}
           </p>
@@ -148,7 +150,15 @@ export default function Search() {
                 className="card shadow-sm p-3 flex-fill"
                 style={{ minWidth: "250px", maxWidth: "300px" }}
               >
-                <strong className="d-block mb-1">{p.title}</strong><span className="text-muted italic small">{p.month} {p.year}</span>
+                <strong className="d-block mb-1">{p.title}</strong>
+                <Link
+                to={`/mainPromptPage/${p.year}/${p.month}`}
+                className="text-decoration-none">
+                  <span className="text-muted italic small">
+                  {p.month} {p.year}
+                </span>
+                </Link>
+                
 
                 <Link
                   to={`/profile#${p.author.replace(/\s+/g, "-").toLowerCase()}`}
@@ -161,8 +171,14 @@ export default function Search() {
 
                 <Link
                   to={`/${
-                    p.year === "2024" ? "2024promptPage" : "mainPromptPage"
-                  }#${p.month.toLowerCase().trim()}-${p.id}`}
+                    p.year === "2024"
+                      ? "mainPromptPage/2024/"
+                      : p.year === "2025"
+                        ? "mainPromptPage/2025/"
+                        : p.year === "2026"
+                          ? "mainPromptPage/2026"
+                          : "mainPromptPage/2023"
+                  }${p.month.toLowerCase().trim()}#${p.id}`}
                   className="btn btn-outline-dark btn-sm mt-3 w-100 rounded-3"
                 >
                   Read full prompt →
@@ -170,7 +186,7 @@ export default function Search() {
               </div>
             ))}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

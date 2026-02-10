@@ -7,6 +7,7 @@ import Footer from "../../components/footer/footer";
 import { julyPrompts } from "../../assets/prompts/2025/july";
 import { Link } from "react-router-dom";
 import PagedText from "../../components/paging";
+import PromptNav from "../promptNav";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -45,6 +46,7 @@ export default function July2025() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
+      <PromptNav />
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${
@@ -74,28 +76,31 @@ export default function July2025() {
             Theme: Me, myself and my mind
           </h3>
           <h3 className="text-center">PROMPT: The voice within</h3>
-              <div className="page-container py-4">
-      <div className="row justify-content-evenly">
-        {julyPrompts.map((prompts) => (
-          <div
-            key={prompts.id}
-            className="mb-4 card col-md-5 col-10"
-            id={`july-${slugify(prompts.id.toString())}`}
-          >
-            <h1 className="bold">{prompts.title}</h1>
-            {/* <h4>{prompts.title1}</h4> */}
-            <h4 className="text-end blockquote">
-              <cite className="blockquote-footer">
-                <Link to={`/Profile#${slugify(prompts.author)}`}>
-                  {prompts.author}
-                </Link>
-              </cite>
-            </h4>
-            <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
+          <div className="page-container py-4">
+            <div className="row justify-content-evenly">
+              {julyPrompts.map((prompts) => (
+                <div
+                  key={prompts.id}
+                  className="mb-4 card col-md-5 col-10"
+                  id={`july-${slugify(prompts.id.toString())}`}
+                >
+                  <h1 className="bold">{prompts.title}</h1>
+                  {/* <h4>{prompts.title1}</h4> */}
+                  <h4 className="text-end blockquote">
+                    <cite className="blockquote-footer">
+                      <Link to={`/Profile#${slugify(prompts.author)}`}>
+                        {prompts.author}
+                      </Link>
+                    </cite>
+                  </h4>
+                  <PagedText
+                    paragraphs={prompts.content}
+                    paragraphsPerPage={6}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
         </section>
       </div>
 

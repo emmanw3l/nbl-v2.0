@@ -1,3 +1,5 @@
-.input-group{
+.result{
+    background-color: var(--primary-color-highlight);
+    padding: 10px;
     
 }

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { promptIndexFeb } from "../../components/promptIndexing";
 import PagedText from "../../components/paging";
 import PromptNavigation from "../promptNavigation";
+import PromptNav from "../promptNav";
 
 
 const pageVariants = {
@@ -51,6 +52,7 @@ export default function February2025() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
+      <PromptNav/>
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${

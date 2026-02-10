@@ -4,13 +4,30 @@ import { motion, Variants } from "framer-motion";
 import { allPrompts } from "../prompts/promptCollection";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router-dom";
+import "../Home.css";
+import January2024 from "../components/img/Prompts/2024/January_2024.jpg";
+import February2024 from "../components/img/Prompts/2024/february_2024.jpg";
+import March2024 from "../components/img/Prompts/2024/March_2024.jpg";
+import June2024 from "../components/img/Prompts/2024/June_2024.jpg";
+import August2024 from "../components/img/Prompts/2024/August_2024.jpg";
+// import September2024 from "../components/img/Prompts/2024/September_2024.jpg";
+import October2024 from "../components/img/Prompts/2024/October_2024.jpg";
+
+// 2025
+
+import January2025 from "../components/img/Prompts/2025/January_2025.jpg";
+import February2025 from "../components/img/Prompts/2025/February_2025.jpg";
+import April2025 from "../components/img/Prompts/2025/April_2025.jpg";
+import May2025 from "../components/img/Prompts/2025/May_2025.jpg";
+import September2025 from "../components/img/Prompts/2025/September_2025.jpg";
+import July2025 from "../components/img/Prompts/2025/July_2025.jpg";
 
 type PromptMonth = {
   month: string;
   year: string;
-  Theme: string;
-  page: "mainPromptPage" | "2024promptPage";
-  anchor: string;
+  theme: string;
+  // page: "mainPromptPage" | "2024promptPage";
+  // anchor: string;
   title: string;
 };
 
@@ -22,6 +39,11 @@ const containerVariants: Variants = {
       staggerChildren: 0.12,
     },
   },
+};
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
 };
 
 const cardVariants: Variants = {
@@ -41,82 +63,201 @@ const cardVariants: Variants = {
 
 const promptMonths: PromptMonth[] = [
   {
-    month: "September",
+    month: "January",
     year: "2024",
-    Theme: "",
-    page: "2024promptPage",
-    anchor: "september-0",
-    title: "",
+    theme: "My new chapter",
+    // anchor: "january-1",
+    // page: "2024promptPage",
+    title: "My new chapter",
   },
+  {
+    month: "February",
+    year: "2024",
+    theme: "Paradigm of love",
+    // page: "2024promptPage",
+    // anchor: "february-1",
+    title: "Paradigm of love",
+  },
+  {
+    month: "March",
+    year: "2024",
+    theme: "She must be obeyed",
+    // page: "2024promptPage",
+    // anchor: "march-1",
+    title: "She must be obeyed",
+  },
+  {
+    month: "June",
+    year: "2024",
+    theme: "The reality of fatherhood",
+    // page: "2024promptPage",
+    // anchor: "june-1",
+    title: "The reality of fatherhood",
+  },
+  {
+    month: "August",
+    year: "2024",
+    theme: "Creativity meets emotions",
+    // page: "2024promptPage",
+    // anchor: "august-1",
+    title: "[REDACTED]",
+  },
+
+  // {
+  //   month: "September",
+  //   year: "2024",
+  //   theme: "",
+  //   page: "2024promptPage",
+  //   anchor: "september-0",
+  //   title: "",
+  // },
   {
     month: "October",
     year: "2024",
-    Theme: "",
-    page: "2024promptPage",
-    anchor: "october-0",
-    title: "",
+    theme: "The year we turned 64",
+    // page: "2024promptPage",
+    // anchor: "october-0",
+    title: "The year we turned 64",
   },
   {
     month: "January",
     year: "2025",
-    Theme: "Realm of divinity",
-    page: "mainPromptPage",
-    anchor: "january-0",
+    theme: "Realm of divinity",
+    // page: "mainPromptPage",
+    // anchor: "january-0",
     title: "Reminisce of transcendence",
   },
   {
     month: "February",
     year: "2025",
-    Theme: "Embracing the mirrors of reflection",
-    page: "mainPromptPage",
-    anchor: "february-0",
+    theme: "Embracing the mirrors of reflection",
+    // page: "mainPromptPage",
+    // anchor: "february-0",
     title: "Mirror mirror, who am I?",
   },
   {
     month: "April",
     year: "2025",
-    Theme: "Can I rise up?",
-    page: "mainPromptPage",
-    anchor: "april-0",
+    theme: "Can I rise up?",
+    // page: "mainPromptPage",
+    // anchor: "april-0",
     title: "Can I rise up?",
   },
   {
     month: "May",
     year: "2025",
-    Theme: "Back when I was a child",
-    page: "mainPromptPage",
-    anchor: "may-0",
+    theme: "Long ago; Days of my childhood",
+    // page: "mainPromptPage",
+    // anchor: "may-0",
     title: "Back when I was a child",
   },
   {
     month: "July",
     year: "2025",
-    Theme: "Me, myself and my mind",
-    page: "mainPromptPage",
-    anchor: "july-0",
+    theme: "Me, myself and my mind",
+    // page: "mainPromptPage",
+    // anchor: "july-0",
     title: "The voice within",
   },
   {
     month: "September",
     year: "2025",
-    Theme: "The break I never thought I needed",
-    page: "mainPromptPage",
-    anchor: "september-0",
+    theme: "The break I never thought I needed",
+    // page: "mainPromptPage",
+    // anchor: "september-0",
     title: "How did you spend your August?",
   },
 ];
 
-function getPromptCount(month: string, year: string) {
+function  getPromptCount(month: string, year: string) {
   return allPrompts.filter(
     (p) =>
       p.month.toLowerCase().trim() === month.toLowerCase().trim() &&
       p.year === year,
   ).length;
 }
+const images = [
+  { month: "january2024", src: January2024 },
+  { month: "february2024", src: February2024 },
+  { month: "march2024", src: March2024 },
+  { month: "june2024", src: June2024 },
+  { month: "august2024", src: August2024 },
+  // { month: "september2024", src: September2024 },
+  { month: "october2024", src: October2024 },
+  { month: "january2025", src: January2025 },
+  { month: "february2025", src: February2025 },
+  { month: "april2025", src: April2025 },
+  { month: "may2025", src: May2025 },
+  { month: "september2025", src: September2025 },
+  { month: "july2025", src: July2025 },
+];
+// function PromptCard({ m, count }: { m: PromptMonth; count: number }) {
+//   return (
+//     <div className=" card cards h-100 shadow-sm rounded-4 p-4">
+//       {images.map((item, index) => (
+//         <div key={item.month}>
+//         <motion.img
+//           src={item.src}
+//           alt={item.month}
+//           className="d-block car"
+//           initial={{ opacity: 0, scale: 0.9 }}
+//           animate={{ opacity: 1, scale: 1 }}
+//           transition={{ duration: 0.8 }}
+//         />
+//         </div>
+//       ))}
+
+//       <h4 className="fw-semibold mb-1">
+//         {m.month} {m.year}
+//       </h4>
+
+//       <small className="text-muted d-block mb-2">
+//         • {count} prompt{count !== 1 && "s"}
+//       </small>
+
+//       <p className=" fst-italic mb-3">
+//         <u>theme</u> : {m.theme || "Monthly prompt theme goes here."}
+//       </p>
+//       <p className="fst-italic mb-3">
+//         <u>Prompt</u> : {m.title || "Prompt title goes here."}
+//       </p>
+
+//       <a
+//         href={`/mainPromptPage/${m.year}/${m.month}`}
+//         className="btn btn-outline-dark btn-sm rounded-3"
+//       >
+//         View prompts →
+//       </a>
+//     </div>
+//   );
+// }
 
 function PromptCard({ m, count }: { m: PromptMonth; count: number }) {
+  const imageKey = `${m.month.toLowerCase()}${m.year}`;
+  const image = images.find((img) => img.month === imageKey);
+
   return (
-    <div className=" card h-100 shadow-sm rounded-4 p-4">
+    <motion.div
+      className="card cards h-100 shadow-sm rounded-4 ac p-4"
+      whileHover={{
+        y: -6,
+        boxShadow: "0px 20px 40px rgba(0,0,0,0.15)",
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
+      {image && (
+        <motion.img
+          src={image.src}
+          alt={`${m.month} ${m.year}`}
+          className="d-block mb-3 rounded-3 img-fluid"
+          whileHover={{scale: 1.05}}
+          
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        />
+      )}
+
       <h4 className="fw-semibold mb-1">
         {m.month} {m.year}
       </h4>
@@ -125,26 +266,23 @@ function PromptCard({ m, count }: { m: PromptMonth; count: number }) {
         • {count} prompt{count !== 1 && "s"}
       </small>
 
-      <p className=" fst-italic mb-3">
-        <u>Theme</u> : {m.Theme || "Monthly prompt Theme goes here."}
-      </p>
       <p className="fst-italic mb-3">
-        <u>Prompt</u> : {m.title || "Prompt title goes here."}
+        <u>Theme</u>: {m.theme || "Monthly prompt theme goes here."}
       </p>
 
-      {/* <a
-        href={`/${m.page}#${m.anchor}`}
+      <p className="fst-italic mb-3">
+        <u>Prompt</u>: {m.title || "Prompt title goes here."}
+      </p>
+
+      <motion.a
+        href={`/mainPromptPage/${m.year}/${m.month.toLowerCase()}`}
         className="btn btn-outline-dark btn-sm rounded-3"
+        whileHover={{ x: 4 }}
+        transition={{type:"spring", stiffness: 400 }}
       >
         View prompts →
-      </a> */}
-      <a
-        href={`/${m.year}/${m.month}`}
-        className="btn btn-outline-dark btn-sm rounded-3"
-      >
-        View prompts →
-      </a>
-    </div>
+      </motion.a>
+    </motion.div>
   );
 }
 
@@ -153,7 +291,13 @@ export default function PromptsPage() {
   const promptMonths2025 = promptMonths.filter((m) => m.year === "2025");
 
   return (
-    <>
+    <motion.div
+          variants={pageVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.5 }}
+          className="container-fluid">
       <Layout />
       <div className="row my-5">
         <div className="col-lg-6 col-sm-12 col-6">
@@ -223,6 +367,6 @@ export default function PromptsPage() {
           </div>
         </section>
       </motion.div>
-    </>
+    </motion.div>
   );
 }
