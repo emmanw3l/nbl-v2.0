@@ -6,6 +6,7 @@ import { ArrowUp } from "lucide-react";
 import Footer from "../../components/footer/footer";
 import PromptNavigation from "../promptNavigation";
 import PromptNav from "../promptNav";
+import { useLocation } from "react-router-dom";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -15,6 +16,28 @@ const pageVariants = {
 
 export default function January2025() {
   const [visible, setVisible] = useState(false);
+    const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      console.log("HASH:", location.hash);
+      const id = location.hash.replace("#", "");
+
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const yOffset = -80; 
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+          window.scrollTo({
+            top: y,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -45,7 +68,7 @@ export default function January2025() {
         }`}
         style={{
           position: "fixed",
-          bottom: "20px",
+          bottom: "70px",
           right: "20px",
           width: "50px",
           background: "#5f3205",

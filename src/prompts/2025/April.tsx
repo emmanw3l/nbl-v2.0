@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Footer from "../../components/footer/footer";
 import { aprilPrompts } from "../../assets/prompts/2025/aprilPrompt";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PagedText from "../../components/paging";
 import PromptNavigation from "../promptNavigation";
 import PromptNav from "../promptNav";
@@ -25,6 +25,28 @@ function slugify(name: string) {
 
 export default function April2025() {
   const [visible, setVisible] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      console.log("HASH:", location.hash);
+      const id = location.hash.replace("#", "");
+
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const yOffset = -80;
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+          window.scrollTo({
+            top: y,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -56,7 +78,7 @@ export default function April2025() {
         }`}
         style={{
           position: "fixed",
-          bottom: "20px",
+          bottom: "70px",
           right: "20px",
           width: "50px",
           background: "#5f3205",

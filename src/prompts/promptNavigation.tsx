@@ -21,7 +21,7 @@ export default function PromptNavigation() {
   return (
     <div className="d-flex justify-content-between my-5">
       {prev ? (
-        <Link to={prev.path} className="btn btn-outline-dark">
+        <Link to={prev.path} className="btn btn-dark ">
           ← {prev.label}
         </Link>
       ) : <span />}

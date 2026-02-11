@@ -57,7 +57,9 @@ body {
 .offcanvas-body, .offcanvas-header{
   background-color: var(--body-bg);
 }
-
+.offcanvas-header{
+  z-index: 100111;
+}
 .space{
   margin-bottom: 5rem;
 }
@@ -138,8 +140,12 @@ body {
 .promptnav{
   position: sticky;
   bottom: 1rem;
-  background-color: blue;
+  /* background-color: blue; */
   font-size: 300px;
+}
+.promptnav .btn{
+  background-color: var(--primary-color);
+  opacity: 0.9;
 }
 
 .ac {

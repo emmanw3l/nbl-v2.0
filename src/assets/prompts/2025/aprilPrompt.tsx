@@ -182,7 +182,7 @@ export const aprilPrompts = [
     id: 3,
     title: "RISE UP",
     author: "Oladimeji Ifeoluwa",
-    title1: `Diary Entry: August 9, 1826 ${(<br />)}Bart Marie-Therese`,
+    title1: "Diary Entry: August 9, 1826\nBart Marie-Therese",
     month: "april",
     year: "2025",
     content: [

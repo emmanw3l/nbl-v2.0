@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Footer from "../../components/footer/footer";
 import { julyPrompts } from "../../assets/prompts/2025/july";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PagedText from "../../components/paging";
 import PromptNav from "../promptNav";
+import PromptNavigation from "../promptNavigation";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -24,6 +25,28 @@ function slugify(name: string) {
 
 export default function July2025() {
   const [visible, setVisible] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      console.log("HASH:", location.hash);
+      const id = location.hash.replace("#", "");
+
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const yOffset = -80;
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+          window.scrollTo({
+            top: y,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -54,7 +77,7 @@ export default function July2025() {
         }`}
         style={{
           position: "fixed",
-          bottom: "20px",
+          bottom: "70px",
           right: "20px",
           width: "50px",
           background: "#5f3205",
@@ -103,7 +126,9 @@ export default function July2025() {
           </div>
         </section>
       </div>
-
+      <div className="promptnav">
+        <PromptNavigation />
+      </div>
       <Footer />
     </motion.div>
   );

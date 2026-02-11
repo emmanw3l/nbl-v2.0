@@ -320,20 +320,19 @@ export default function PromptNav() {
           style={{ visibility: isOpen ? "visible" : "hidden" }}
           tabIndex={-1}
         >
-          <div className="offcanvas-header ">
-            <nav className="mx-auto">
-              {/* <Link to="/awards" className="nav-link  fw-semibold dib">
-              Awards
-            </Link>
+          <div className="offcanvas-header justify-content-between">
+            <nav className="btn m-0 p-0  btn-outline-dark "> 
+             
             <Link to="/mainPromptPage" className="nav-link  fw-semibold dib">
-              Prompts
-            </Link> */}
+                <i className="bi bi-arrow-90deg-left"></i>
+            </Link>
             </nav>
+            
             <button
-              className="btn btn-outline-dark "
+              className="btn btn-outline-dark fs-2"
               onClick={() => setIsOpen(false)}
             >
-              x
+              <i className="bi bi-x"></i>
             </button>
           </div>
           <div className="offcanvas-body">

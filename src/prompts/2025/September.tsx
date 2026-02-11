@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Footer from "../../components/footer/footer";
 import PagedText from "../../components/paging";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { septemberPrompts } from "../../assets/prompts/2025/septemberPrompt";
 import PromptNav from "../promptNav";
+import PromptNavigation from "../promptNavigation";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -24,6 +25,28 @@ function slugify(name: string) {
 
 export default function September2025() {
   const [visible, setVisible] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      console.log("HASH:", location.hash);
+      const id = location.hash.replace("#", "");
+
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const yOffset = -80;
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+          window.scrollTo({
+            top: y,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -46,7 +69,7 @@ export default function September2025() {
       exit="exit"
       transition={{ duration: 0.5 }}
     >
-      <PromptNav/>
+      <PromptNav />
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${
@@ -54,7 +77,7 @@ export default function September2025() {
         }`}
         style={{
           position: "fixed",
-          bottom: "20px",
+          bottom: "70px",
           right: "20px",
           width: "50px",
           background: "#5f3205",
@@ -110,7 +133,9 @@ export default function September2025() {
           </div>
         </section>
       </div>
-
+      <div className="promptnav">
+        <PromptNavigation />
+      </div>
       <Footer />
     </motion.div>
   );

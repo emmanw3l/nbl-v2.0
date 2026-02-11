@@ -1,9 +1,11 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { allPrompts } from "../../prompts/promptCollection";
 import { Prompt } from "../../prompts/promptCollection";
 import { Link } from "react-router-dom";
 import { JSX } from "react";
 import "./search.css"
+
+
 
 export default function Search() {
   const [query, setQuery] = useState("");
@@ -176,9 +178,9 @@ export default function Search() {
                       : p.year === "2025"
                         ? "mainPromptPage/2025/"
                         : p.year === "2026"
-                          ? "mainPromptPage/2026"
-                          : "mainPromptPage/2023"
-                  }${p.month.toLowerCase().trim()}#${p.id}`}
+                          ? "mainPromptPage/2026/"
+                          : "mainPromptPage/2023/"
+                  }${p.month.charAt(0).toUpperCase().trim()+p.month.slice(1).toLowerCase()}#${p.month.toLocaleLowerCase()}-${p.id}`}
                   className="btn btn-outline-dark btn-sm mt-3 w-100 rounded-3"
                 >
                   Read full prompt →

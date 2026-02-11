@@ -1,13 +1,13 @@
 import "../promptpage.css";
-// import PromptViewerMJ from "../pagetext";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Footer from "../../components/footer/footer";
-import PagedText from "../../components/paging";
+import { octPrompts2024 } from "../../assets/prompts/2024/october";
+
 import { Link, useLocation } from "react-router-dom";
-import { promptIndexMJ } from "../../components/promptIndexing";
+import PagedText from "../../components/paging";
 import PromptNav from "../promptNav";
 import PromptNavigation from "../promptNavigation";
 
@@ -17,8 +17,6 @@ const pageVariants = {
   exit: { opacity: 0, y: -20 },
 };
 
-const MJPrompts = promptIndexMJ([0, 1, 2, 3, 4]);
-
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -26,7 +24,7 @@ function slugify(name: string) {
     .replace(/[^\w-]+/g, "");
 }
 
-export default function MayJune2025() {
+export default function October2024() {
   const [visible, setVisible] = useState(false);
   const location = useLocation();
 
@@ -73,6 +71,7 @@ export default function MayJune2025() {
       transition={{ duration: 0.5 }}
     >
       <PromptNav />
+
       <button
         onClick={scrollToTop}
         className={`btn  rounded-circle text-white shadow transition-opacity ${
@@ -96,18 +95,17 @@ export default function MayJune2025() {
       </button>
 
       <div className="">
-        <section id="may2025" className="">
-          <h1 className="text-center twenty">MAY/JUNE 2025</h1>
-          <h3 className="jan-head text-center">Theme: </h3>
-          <h3 className="text-center">PROMPT: Back when I was a child</h3>
-          {/* <PromptViewerMJ /> */}
+        <section id="october2024" className="">
+          <h1 className="text-center twenty">OCTOBER 2024</h1>
+          <h3 className="jan-head text-center">Theme: The year we turned 64</h3>
+          <h3 className="text-center">PROMPT: The year we turned 64</h3>
           <div className="page-container py-4">
             <div className="row justify-content-evenly">
-              {MJPrompts.map((prompts) => (
+              {octPrompts2024.map((prompts) => (
                 <div
                   key={prompts.id}
                   className="mb-4 card col-md-5 col-10"
-                  id={`may-${slugify(prompts.id.toString())}`}
+                  id={`october-${slugify(prompts.id.toString())}`}
                 >
                   <h1 className="bold">{prompts.title}</h1>
                   {/* <h4>{prompts.title1}</h4> */}
