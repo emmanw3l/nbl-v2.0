@@ -1,7 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 body {
   /* background-color: var(--primary-color-highlight); */
     background-color: var(--primary-color-1) !important; 
 
+
+}
+
+[id] {
+  scroll-margin-top: 80px; 
 }
 /* .first-word{
   text-decoration: underline;
@@ -47,7 +56,7 @@ body {
   z-index: 1000;
   background-color: var(--primary-color);
   /* margin-bottom: 100px; */
-  width: 100vw;
+  /* width: 100vw; */
   position: fixed ;
   top: 0;
   left: 0;

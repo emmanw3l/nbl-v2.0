@@ -255,9 +255,10 @@
 // }
 
 import "./promptpage.css";
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Search from "../components/search/search";
+import { motion } from "framer-motion";
 
 const promptMonths = [
   { month: "January", year: 2024 },
@@ -276,44 +277,69 @@ const promptMonths = [
   { month: "September", year: 2025 },
 ];
 
-  const isSmallScreen = window.innerWidth < 768;
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
+};
+
+const isSmallScreen = window.innerWidth < 768;
 
 export default function PromptNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    const navbar = document.querySelector(".navbar-collapse");
+    if (navbar?.classList.contains("show")) {
+      navbar.classList.remove("show");
+    }
+  }, [location]);
+
   return (
-    <>
-      <div className="navbars ">
-        <nav className="navbar text-white ">
-          <div className="container-fluid ">
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div
+        className=""
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ duration: 0.5 }}
+      >
+        <nav className="navbar navbars text-white navbar-dark fixed-top 100vw">
             <Link to="/" className="navbar-brand">
               <i className="bi bi-house fs-3 text-white"></i>
             </Link>
 
-            
-              {promptMonths.map((m) => (
-                
-                  <NavLink
-                    key={`${m.month}-${m.year}`}
-                    to={`/mainPromptPage/${m.year}/${m.month}`}
-                    className={({ isActive }) =>
-                      `h2 text-decoration-none  ${isActive ? "" : "d-none"}`
-                    }
-                  >
-                    
-                     {isSmallScreen ? m.month.slice(0,3).toUpperCase() : (m.month === "May" && m.year === 2025 ? "May/June" : m.month.toUpperCase())
-                      } {m.year}
-                    
-                  </NavLink>
-                
-              ))}
-            
+            {promptMonths.map((m) => (
+              <NavLink
+                key={`${m.month}-${m.year}`}
+                to={`/mainPromptPage/${m.year}/${m.month}`}
+                className={({ isActive }) =>
+                  `h2 text-decoration-none  ${isActive ? "" : "d-none"}`
+                }
+              >
+                {isSmallScreen
+                  ? m.month.slice(0, 3).toUpperCase()
+                  : m.month === "May" && m.year === 2025
+                    ? "May/June"
+                    : m.month.toUpperCase()}{" "}
+                {m.year}
+              </NavLink>
+            ))}
+
             <button
               className="btn btn-outline-light"
               onClick={() => setIsOpen(!isOpen)}
             >
               ☰
             </button>
-          </div>
+          
         </nav>
         <div
           className={` offcanvas sidebars offcanvas-end ${isOpen ? "show" : ""}`}
@@ -321,15 +347,14 @@ export default function PromptNav() {
           tabIndex={-1}
         >
           <div className="offcanvas-header justify-content-between">
-            <nav className="btn m-0 p-0  btn-outline-dark "> 
-             
-            <Link to="/mainPromptPage" className="nav-link  fw-semibold dib">
+            <nav className="btn m-0 p-0  btn-outline-dark ">
+              <Link to="/mainPromptPage" className="nav-link  fw-semibold dib">
                 <i className="bi bi-arrow-90deg-left"></i>
-            </Link>
+              </Link>
             </nav>
-            
+
             <button
-              className="btn btn-outline-dark fs-2"
+              className="btn btn-outline-dark "
               onClick={() => setIsOpen(false)}
             >
               <i className="bi bi-x"></i>
@@ -356,9 +381,9 @@ export default function PromptNav() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <div className="space"></div>
       <Search />
-    </>
+    </motion.div>
   );
 }

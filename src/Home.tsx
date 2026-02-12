@@ -86,7 +86,7 @@ export default function Home() {
 
             <Link
               className="text-decoration-none"
-              to={`/${randomPrompt.year === "2024" ? "mainPromptPage/2024/" : "mainPromptPage/2025/"}${randomPrompt.month.toLowerCase().trim()}`}
+              to={`/${randomPrompt.year === "2024" ? "mainPromptPage/2024/" : randomPrompt.year === "2026" ? "mainPromptPage/2026/" : randomPrompt.year === "2023" ? "mainPromptPage/2023/" : "mainPromptPage/2025/"}${randomPrompt.month.toLowerCase().trim()}`}
             >
               <p className="text-muted mb-3">
                 <span className="cap"></span>
@@ -110,7 +110,7 @@ export default function Home() {
                       : randomPrompt.year === "2026"
                         ? "mainPromptPage/2026/"
                         : "mainPromptPage/2023/"
-                }${randomPrompt.month.toLowerCase().trim()}#${randomPrompt.id}`}
+                }${randomPrompt.month.charAt(0).toUpperCase() + randomPrompt.month.slice(1).toLowerCase()}#${randomPrompt.month.toLowerCase()}-${randomPrompt.id}`}
                 className="btn btn-outline-dark btn-sm mt-3 w-100 rounded-3"
               >
                 Read full prompt →
