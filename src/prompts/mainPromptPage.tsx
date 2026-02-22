@@ -87,12 +87,24 @@ const promptMonths: PromptMonth[] = [
     title: "She must be obeyed",
   },
   {
+    month: "April",
+    year: "2024",
+    theme: "Perhaps",
+    title: "Write a prompt starting with the word 'perhaps'"
+  },
+  {
     month: "June",
     year: "2024",
     theme: "The reality of fatherhood",
     // page: "2024promptPage",
     // anchor: "june-1",
     title: "The reality of fatherhood",
+  },
+  {
+    month: "July",
+    year: "2024",
+    theme: "",
+    title: "[REDACTED]"
   },
   {
     month: "August",

@@ -8,6 +8,10 @@ import { septemberPrompts } from "../assets/prompts/2025/septemberPrompt";
 
 // 2024
 import { octPrompts2024 } from "../assets/prompts/2024/october";
+import { januaryPrompts2024 } from "../assets/prompts/2024/january";
+import { februaryPrompts2024 } from "../assets/prompts/2024/february";
+import { aprilPrompts2024 } from "../assets/prompts/2024/april";
+import { marchPrompts2024 } from "../assets/prompts/2024/march";
 
 export function promptIndex(indexes: number[]) {
   return indexes.map((index) => prompts[index]).filter(Boolean);
@@ -33,4 +37,16 @@ export function promptIndexSeptember(indexes: number[]) {
 
 export function promptIndexoctober2024(indexes: number[]) {
   return indexes.map((index) => octPrompts2024[index]).filter(Boolean);
+}
+export function promptIndexJanuary2024(indexes: number[]) {
+  return indexes.map((index) => januaryPrompts2024[index]).filter(Boolean);
+}
+export function promptIndexFebruary2024(indexes: number[]) {
+  return indexes.map((index) => februaryPrompts2024[index]).filter(Boolean);
+}
+export function promptIndexApril2024(indexes: number[]) {
+  return indexes.map((index) => aprilPrompts2024[index]).filter(Boolean);
+}
+export function promptIndexMarch2024(indexes: number[]){
+  return indexes.map((index) => marchPrompts2024[index]).filter(Boolean);
 }

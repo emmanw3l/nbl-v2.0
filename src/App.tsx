@@ -18,6 +18,11 @@ import MayJune2025 from "./prompts/2025/MayJune";
 import July2025 from "./prompts/2025/July";
 import September2025 from "./prompts/2025/September";
 import October2024 from "./prompts/2024/October";
+import January2024 from "./prompts/2024/January";
+import February2024 from "./prompts/2024/February";
+import March2024 from "./prompts/2024/March";
+import April2024 from "./prompts/2024/April";
+
 // import PromptsPage2024 from "./prompts/2024/2024promptPage";
 // import { motion } from "framer-motion";
 // import PromptsPage from "./prompts/mainPromptPage";
@@ -47,13 +52,40 @@ export default function App() {
             <Route path="/mainPromptPage" element={<PromptsPage />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/awards" element={<Awards />} />
-            <Route path="mainPromptPage/2025/January" element={<January2025 />} />
-            <Route path="mainPromptPage/2025/February" element={<February2025 />} />
+            <Route
+              path="mainPromptPage/2025/January"
+              element={<January2025 />}
+            />
+            <Route
+              path="mainPromptPage/2025/February"
+              element={<February2025 />}
+            />
             <Route path="mainPromptPage/2025/April" element={<April2025 />} />
             <Route path="mainPromptPage/2025/May" element={<MayJune2025 />} />
             <Route path="mainPromptPage/2025/July" element={<July2025 />} />
-            <Route path="mainPromptPage/2025/September" element={<September2025 />} />
-            <Route path="mainPromptPage/2024/October" element={<October2024 />} />
+            <Route
+              path="mainPromptPage/2025/September"
+              element={<September2025 />}
+            />
+            <Route
+              path="mainPromptPage/2024/October"
+              element={<October2024 />}
+            />
+            <Route
+              path="mainPromptPage/2024/January"
+              element={<January2024 />}
+            />
+            <Route
+              path="mainPromptPage/2024/February"
+              element={<February2024 />}
+            />
+            <Route
+              path="mainPromptPage/2024/April"
+              element={<April2024 />}
+            />
+            <Route
+              path="mainPromptPage/2024/March"
+              element = {<March2024/>}/>
             {/* <Route path="/2024PromptPage" element={<PromptsPage2024 />} /> */}
             {/* {months.map(({ month, year }) => (
               <Route

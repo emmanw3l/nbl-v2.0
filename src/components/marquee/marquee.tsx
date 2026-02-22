@@ -21,7 +21,7 @@ const reviews = [
     text: "One of the best literary communities I've joined.",
     author: "Moroti",
   },
-  { text: "I love how interactive everything is!", author: "Chika" },
+  { text: "I love how interactive everyone is!", author: "Chikaodili Oyenze" },
 ];
 
 export default function ReviewMarquee() {

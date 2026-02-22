@@ -4,7 +4,7 @@
 export const promptMonthOrder = [
   {
     label: "January 2024",
-    path: "/mainPromptPage/2024/January",
+    path: "/mainPromptPage/2024/january",
   },
   {
     label: "February 2024",
@@ -12,10 +12,18 @@ export const promptMonthOrder = [
   },
   {
     label: "March 2024",
-    path: "/mainPromptPage/2024/March",
+    path: "/mainPromptPage/2024/March"
+  },
+  {
+    label: "April 2024",
+    path: "/mainPromptPage/2024/April"
   },
     {label: "June 2024",
     path: "/mainPromptPage/2024/June",
+    },
+    {
+      label: "July 2024",
+      path: "/mainPromptPage/2024/July"
     },
   {
     label: "August 2024",

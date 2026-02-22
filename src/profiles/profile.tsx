@@ -5,6 +5,10 @@ import { mJPrompts } from "../assets/prompts/2025/mayJune";
 import { julyPrompts } from "../assets/prompts/2025/july";
 import { septemberPrompts } from "../assets/prompts/2025/septemberPrompt";
 import { octPrompts2024 } from "../assets/prompts/2024/october";
+import { januaryPrompts2024 } from "../assets/prompts/2024/january";
+import { februaryPrompts2024 } from "../assets/prompts/2024/february";
+import { marchPrompts2024 } from "../assets/prompts/2024/march";
+import { aprilPrompts2024 } from "../assets/prompts/2024/april";
 import { motion } from "framer-motion";
 // import { NavLink } from "react-router-dom";
 import "./profile.css";
@@ -21,7 +25,13 @@ import Search from "../components/search/search";
 
 // Merge all prompts into one array
 const allPrompts = [
+
+  // 2024
   ...octPrompts2024,
+  ...januaryPrompts2024,
+  ...februaryPrompts2024,
+  ...marchPrompts2024,
+  ...aprilPrompts2024,
 
   // 2025
 
