@@ -22,6 +22,7 @@ import January2024 from "./prompts/2024/January";
 import February2024 from "./prompts/2024/February";
 import March2024 from "./prompts/2024/March";
 import April2024 from "./prompts/2024/April";
+import June2024 from "./prompts/2024/June";
 
 // import PromptsPage2024 from "./prompts/2024/2024promptPage";
 // import { motion } from "framer-motion";
@@ -86,6 +87,8 @@ export default function App() {
             <Route
               path="mainPromptPage/2024/March"
               element = {<March2024/>}/>
+              <Route path="mainPromptPage/2024/June"
+              element={<June2024/>}/>
             {/* <Route path="/2024PromptPage" element={<PromptsPage2024 />} /> */}
             {/* {months.map(({ month, year }) => (
               <Route

@@ -3,6 +3,7 @@ import { JSX } from "react";
 interface marchPrompts2024 {
   id: number;
   title: string;
+  title1: string;
   author: string;
   month: string;
   year: string;
@@ -62,24 +63,24 @@ export const marchPrompts2024 = [
       </p>,
       <p>
         Jealous I can't find happiness in everything, jealous I can't make
-        friends, jealous I can't find love, jealous love wont find me. <br />
-        I mean, who would love me? <br />
+        friends, jealous I can't find love, jealous love wont find me. <br/>
+        I mean, who would love me? <br/>
         I always hear God loves us, despite our imperfections but I'm sure if
         you saw me, you'll probably laugh and shake your head so I decided to
-        talk to him, Ask him why I was this way, not like the others <br />
+        talk to him, Ask him why I was this way, not like the others <br/>
         Why didn't he stop the fire, why wasn't a miracle present in my case?{" "}
-        <br />
-        Did he love and protect others more than me? <br />
-        Why did I have to suffer for something I didn't do? <br />
-        Why?!!!!! <br />
+        <br/>
+        Did he love and protect others more than me? <br/>
+        Why did I have to suffer for something I didn't do? <br/>
+        Why?!!!!! <br/>
         It was meant to be accusing and filled with hatred but the more I spent
         crying and asking, the more i felt safe, like someone protecting me.{" "}
-        <br />I felt loved, you might not believe me or what I say but it's
+        <br/>I felt loved, you might not believe me or what I say but it's
         true.
       </p>,
       <p>
         'You will not define me,' i whispered to myself in the mirror. 'I will
-        not obey you.' <br />
+        not obey you.' <br/>
         And just like that, I was obeyed, clawing out of darkness one small step
         at a time
       </p>,
@@ -87,20 +88,20 @@ export const marchPrompts2024 = [
         <span className="bold">SILENT ASSASSIN</span>
       </p>,
       <p>
-        "Babe, I have too, this is my only chance" <br />
+        "Babe, I have too, this is my only chance" <br/>
         "And I said no!! What part of no do you not understand? You're not going
-        to any dumb writer's school" <br />
-        "But..." <br />
+        to any dumb writer's school" <br/>
+        "But..." <br/>
         It landed first before you felt the pain in your cheeks, just like every
         other day.
       </p>,
       <p>
-        "You will listen to me" <br />
-        He snatches your book out of your grip. <br />
+        "You will listen to me" <br/>
+        He snatches your book out of your grip. <br/>
         you refused to look in his eyes knowing you would only cry and he would
-        apologize and beg and claim it was all your fault. <br />
+        apologize and beg and claim it was all your fault. <br/>
         you lived with it, the burden of being the reason for the beatings and
-        you hid it behind make-up and dresses. <br />
+        you hid it behind make-up and dresses. <br/>
         You see his hands coming and close your eyes but instead he caresses you
         and leaves, walking away with the project you've spent months on, he
         would probably burn or tear it like he had done with the others, others
@@ -108,32 +109,32 @@ export const marchPrompts2024 = [
         because they would only embarrass him.
       </p>,
       <p>
-        you still remember living in the village, being with your widowed mother. <br />
-you still remember the look on his face when you told him you were going to marry Cheif, that it was the right thing to do for your family. <br />
+        you still remember living in the village, being with your widowed mother. <br/>
+you still remember the look on his face when you told him you were going to marry Cheif, that it was the right thing to do for your family. <br/>
 "I'll take care of you"he said,his voice silky with persuasion. "Just come to Lagos with me" and you agreed, after all he had already taken your virginity and you were just 15.
 
       </p>,
       <p>
-        you still remember your first miscarriage, months after you eloped with him. <br />
+        you still remember your first miscarriage, months after you eloped with him. <br/>
 The chair was held up, ready to hit you again when he saw the blood,a terrified look on his face.
 
       </p>,
       <p>
-        In that moment, you were happy he was scared, he was indeed breakable and fragile and that was when the feeling to hurt him first came on you like a blanket wrapped around your body to give you warmth. <br />
+        In that moment, you were happy he was scared, he was indeed breakable and fragile and that was when the feeling to hurt him first came on you like a blanket wrapped around your body to give you warmth. <br/>
 oh, you clearly remember him saying it was your fault, your womb could not do their job right. it was your fault you lost his son like the chair was nothing.
       </p>,
       <p>
-        You remember him in bed with your neighbor, a young girl who was just your age when you ran away with him. <br />
-"You're not good enough" he said. <br />
+        You remember him in bed with your neighbor, a young girl who was just your age when you ran away with him. <br/>
+"You're not good enough" he said. <br/>
 "You still needed to heal after your miscarriage"
       </p>,
       <p>
-        You keep mum and watch him walk to the room and shut the door. <br />
-You still felt the pain. <br />
-you choose not to remember putting the powder into his food, the powder meant for Rats. <br />
-He was a rat, always taking what wasn't his. <br />
-you choose not to remember him choking and breathing his last, the smile that came on your face when he struggled for life. <br />
-you choose not to remember packing your bags to leave and picking up your book beside him but you know he deserved it. <br />
+        You keep mum and watch him walk to the room and shut the door. <br/>
+You still felt the pain. <br/>
+you choose not to remember putting the powder into his food, the powder meant for Rats. <br/>
+He was a rat, always taking what wasn't his. <br/>
+you choose not to remember him choking and breathing his last, the smile that came on your face when he struggled for life. <br/>
+you choose not to remember packing your bags to leave and picking up your book beside him but you know he deserved it. <br/>
 you had to be obeyed
 
       </p>
@@ -284,7 +285,7 @@ you had to be obeyed
     id: 3,
     title: "She must be obeyed",
     title1: "General fiction",
-    author: "Gracious_writes",
+    author: "Bema",
     month: "march",
     year: "2024",
     content: [
@@ -480,79 +481,79 @@ you had to be obeyed
     year: "2024",
     content: [
       <p>
-        In Eldergrove, where shadows weave, <br />
-A legend old, the people grieve, <br />
-Of Elara, cloaked in forest shade, <br />
+        In Eldergrove, where shadows weave, <br/>
+A legend old, the people grieve, <br/>
+Of Elara, cloaked in forest shade, <br/>
 Whose whispered name they still obeyed.
 
       </p>,
       <p>
-        Through time’s long march, her line held sway, <br />
-The Matriarchs, both night and day, <br />
-Their power bound in ancient lore, <br />
+        Through time’s long march, her line held sway, <br/>
+The Matriarchs, both night and day, <br/>
+Their power bound in ancient lore, <br/>
 A legacy none dared ignore.
 
       </p>,
       <p>
-        She must be obeyed, they said, <br />
-Her voice, the wind, her word, the thread, <br />
-That wove the fates of man and beast, <br />
+        She must be obeyed, they said, <br/>
+Her voice, the wind, her word, the thread, <br/>
+That wove the fates of man and beast, <br/>
 From sunrise bright to twilight’s feast.
 
       </p>,
       <p>
-        Now Liora stands on verdant hill, <br />
-Her heart is young, her spirit still, <br />
-The village waits with bated breath, <br />
+        Now Liora stands on verdant hill, <br/>
+Her heart is young, her spirit still, <br/>
+The village waits with bated breath, <br/>
 For she must guard them all from death.
 
       </p>,
       <p>
-        Yet shadows dance in forest deep, <br />
-Where secrets lie and phantoms creep, <br />
-A stranger comes with eyes of night, <br />
+        Yet shadows dance in forest deep, <br/>
+Where secrets lie and phantoms creep, <br/>
+A stranger comes with eyes of night, <br/>
 His presence stirs both fear and fright.
 
       </p>,
       <p>
-        In midnight’s glow, the ancients sing, <br />
-Of prophecies and darkened rings, <br />
-A choice to make, a path to tread, <br />
+        In midnight’s glow, the ancients sing, <br/>
+Of prophecies and darkened rings, <br/>
+A choice to make, a path to tread, <br/>
 That could bring life or summon dread.
 
       </p>,
       <p>
-        With gentle hand and steady gaze, <br />
-Liora walks through twilight’s haze, <br />
-The villagers, their hopes displayed, <br />
+        With gentle hand and steady gaze, <br/>
+Liora walks through twilight’s haze, <br/>
+The villagers, their hopes displayed, <br/>
 In whispered prayers: She must be obeyed.
 
       </p>,
       <p>
-        Through trials fierce and battles fought, <br />
-With courage wrought from lessons taught, <br />
-She faces storms and fire’s breath, <br />
+        Through trials fierce and battles fought, <br/>
+With courage wrought from lessons taught, <br/>
+She faces storms and fire’s breath, <br/>
 To save her home from certain death.
 
       </p>,
       <p>
-        For in her blood, the power flows, <br />
-A strength that only she bestows, <br />
-The line unbroken, destiny made, <br />
+        For in her blood, the power flows, <br/>
+A strength that only she bestows, <br/>
+The line unbroken, destiny made, <br/>
 In Eldergrove: She must be obeyed.
 
       </p>,
       <p>
-        Her voice, a beacon in the dark, <br />
-Her will, the flame, a guiding spark, <br />
-Through night’s embrace and dawning’s grace, <br />
+        Her voice, a beacon in the dark, <br/>
+Her will, the flame, a guiding spark, <br/>
+Through night’s embrace and dawning’s grace, <br/>
 She leads them to a safer place.
 
       </p>,
       <p>
-        So hear the tale of Eldergrove, <br />
-Where whispers through the ages rove, <br />
-Of Matriarchs who stood unafraid, <br />
+        So hear the tale of Eldergrove, <br/>
+Where whispers through the ages rove, <br/>
+Of Matriarchs who stood unafraid, <br/>
 And knew the truth: She must be obeyed.
 
       </p>
@@ -566,276 +567,807 @@ And knew the truth: She must be obeyed.
     year: "2024",
     content: [
       <p>
-        <span className="bold">THE UGO’S HOUSEHOLD.</span><br />
+        <span className="bold">THE UGO’S HOUSEHOLD.</span><br/>
         <i>“Amaka walks into Chidinma’s room.”</i>
       </p>,
       <p>
-         <span className="bold">AMAKA:</span> <br />
+         <span className="bold">AMAKA:</span> <br/>
 Chidinma!
 
       </p>,
       <p>
-         <span className="bold">CHIDINMA</span><br />
+         <span className="bold">CHIDINMA</span><br/>
 (Angrily opens her eyes which were suffering from lack of sleep)
 Oh, God what is it, Amaka?
 
       </p>,
       <p>
-         <span className="bold">AMAKA</span><br />
+         <span className="bold">AMAKA</span><br/>
 Mummy said I should wake you up.
 
       </p>,
       <p>
- <span className="bold">CHIDINMA</span> <br />
-Go! <br />
+ <span className="bold">CHIDINMA</span> <br/>
+Go! <br/>
 Leave me alone!
 
       </p>,
       <p>
-        <span className="bold">AMAKA</span><br />
+        <span className="bold">AMAKA</span><br/>
         You are going to be late
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
+        <span className="bold">CHIDINMA</span><br/>
         Oh, leave me alone, Amaka!
       </p>,
       <p>
-        <span className="bold">AMAKA</span> <br />
-No! <br />
+        <span className="bold">AMAKA</span> <br/>
+No! <br/>
 (Opens the Curtains)
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
-        (Covers her eyes from the sun rays) <br />
-What is your problem? <br />
-(Gets up angrily) <br />
+        <span className="bold">CHIDINMA</span><br/>
+        (Covers her eyes from the sun rays) <br/>
+What is your problem? <br/>
+(Gets up angrily) <br/>
 Is something wrong with you?
 
       </p>,
       <p>
-         <span className="bold">AMAKA</span><br />
-(Smiles) <br />
-Very good, now you are up. <br />
+         <span className="bold">AMAKA</span><br/>
+(Smiles) <br/>
+Very good, now you are up. <br/>
 (Walks out of the room)
 
       </p>,
       <p>
-        “Chidinma falls wide on the bed in annoyance.” <br />
-  <br />
+        “Chidinma falls wide on the bed in annoyance.” <br/>
+  <br/>
 ****************************
 
       </p>,
       <p>
-         <span className="bold">INT.  DINING ROOM</span> <br />
+         <span className="bold">INT.  DINING ROOM</span> <br/>
  
 “Mrs. Ugo turns to Chinnaza who was running around.”
 
       </p>,
       <p>
-         <span className="bold">Mrs. UGO</span> <br />
-Chinnaza! <br />
-What did I tell you? <br />
-(Chinnaza gazes at her) <br />
+         <span className="bold">Mrs. UGO</span> <br/>
+Chinnaza! <br/>
+What did I tell you? <br/>
+(Chinnaza gazes at her) <br/>
 Now sit-down!
 
       </p>,
       <p>
-        <span className="bold">CHIKE</span><br />
-Come, here. <br />
-(Lifts Chinaza from the ground, and places her on his lap) <br />
+        <span className="bold">CHIKE</span><br/>
+Come, here. <br/>
+(Lifts Chinaza from the ground, and places her on his lap) <br/>
 Why are you running around, eh?
 
       </p>,
       <p>
-        <span className="bold">Mrs. UGO</span><br />
-        (Turns to Amaka) <br />
-Where is your sister? <br />
+        <span className="bold">Mrs. UGO</span><br/>
+        (Turns to Amaka) <br/>
+Where is your sister? <br/>
 I thought you said she was up.
 
       </p>,
       <p>
-        <span className="bold">AMAKA</span> <br />
+        <span className="bold">AMAKA</span> <br/>
 Maybe she went back to bed.
       </p>,
       <p>
         <span className="bold">CHIKE
 
-</span> <br />
-Go and wake her up, jor. <br />
+</span> <br/>
+Go and wake her up, jor. <br/>
 “Chidinma sluggishly walks into the room.”
       </p>,
       <p>
-       <span className="bold">Mrs. UGO</span> <br />
-Madam, what is wrong with you? <br />
+       <span className="bold">Mrs. UGO</span> <br/>
+Madam, what is wrong with you? <br/>
 Do you want to miss the train?
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
-        (Turns to Amaka) <br />
+        <span className="bold">CHIDINMA</span><br/>
+        (Turns to Amaka) <br/>
 The next time you come into my room without my permission again you won't like what will do to you.
 
       </p>,
       <p>
-        <span className="bold">AMAKA</span><br />
-        (Smiles at Chidinma) <br />
-Speaking of your room, where are the keys? <br />
+        <span className="bold">AMAKA</span><br/>
+        (Smiles at Chidinma) <br/>
+Speaking of your room, where are the keys? <br/>
 You know it’s going to be mine now that you are leaving for UNIPORT.
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
+        <span className="bold">CHIDINMA</span><br/>
         That's never going to happen
       </p>,
       <p>
-        <span className="bold">CHIKE</span><br />
-        Yes, it will. <br />
+        <span className="bold">CHIKE</span><br/>
+        Yes, it will. <br/>
 You are leaving so it’s only right that you give to her.
 
       </p>,
       <p>
-        <span className="bold">Mrs. UGO </span><br />
-(Drops a plate of rice in front of Chidinma) <br />
+        <span className="bold">Mrs. UGO </span><br/>
+(Drops a plate of rice in front of Chidinma) <br/>
 Have you packed all your things?
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span> <br />
-        (Rolls her eyes in irritation) <br />
+        <span className="bold">CHIDINMA</span> <br/>
+        (Rolls her eyes in irritation) <br/>
 What’s there to pack it’s not as if Bro Chike bought all the stuff I need.
 
       </p>,
       <p>
-        <span className="bold">CHIKE</span> <br />
+        <span className="bold">CHIKE</span> <br/>
         I know dear, but you have to bear with me you know I just paid your acceptance fee and I still have your school fees to pay before the end of the month.
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
+        <span className="bold">CHIDINMA</span><br/>
 Hmm, whatever.
 
       </p>,
       <p>
-        <span className="bold">Mrs. UGO</span><br />
-        Don’t be that way na. <br />
-At least be thankful and happy that you gained admission, my baby girl is now a student of UNIPORT. <br />
+        <span className="bold">Mrs. UGO</span><br/>
+        Don’t be that way na. <br/>
+At least be thankful and happy that you gained admission, my baby girl is now a student of UNIPORT. <br/>
 (Smiles)
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
-        What’s there to be happy about? <br />
-It’s not like I want to go to UNIPORT. <br />
+        <span className="bold">CHIDINMA</span><br/>
+        What’s there to be happy about? <br/>
+It’s not like I want to go to UNIPORT. <br/>
 You and bro Chike made that choice yourselves.
 
       </p>,
       <p>
-        <span className="bold">CHIKE</span> <br />
-        I thought we had settled this, Chidinma. <br />
+        <span className="bold">CHIKE</span> <br/>
+        I thought we had settled this, Chidinma. <br/>
 There is no way I can afford to send you to a state school; besides we are not from Lagos which may make it difficult for you to get admitted there. You know how political and tribal the system has become.
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span> <br />
-        What happened to UNILAG? <br />
+        <span className="bold">CHIDINMA</span> <br/>
+        What happened to UNILAG? <br/>
 Isn’t it a federal school too?
 
       </p>,
       <p>
-        <span className="bold">Mrs. UGO</span> <br />
-        Chidinma Lagos far, na. <br />
-I can’t allow you to be that far from home. <br />
+        <span className="bold">Mrs. UGO</span> <br/>
+        Chidinma Lagos far, na. <br/>
+I can’t allow you to be that far from home. <br/>
 UNIPORT is a bit close, and the school is good, abeg try and understand us this is for your good too.
 
       </p>,
       <p>
-        <span className="bold">AMAKA</span><br />
-        (Turns to Chidinma) <br />
-Why do you want to go to Lagos self? <br />
-I don’t like that place. <br />
-(Picks up the glass of water in front of her) <br />
+        <span className="bold">AMAKA</span><br/>
+        (Turns to Chidinma) <br/>
+Why do you want to go to Lagos self? <br/>
+I don’t like that place. <br/>
+(Picks up the glass of water in front of her) <br/>
 God knows I won’t want to be far from home.
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span> <br />
+        <span className="bold">CHIDINMA</span> <br/>
         Of course, I don’t expect you to understand, you are still in Ss1 you are still ignorant.
       </p>,
       <p>
-        <span className="bold">AMAKA</span> <br />
+        <span className="bold">AMAKA</span> <br/>
         Ss2!
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span> <br />
+        <span className="bold">CHIDINMA</span> <br/>
         Whatever.
       </p>,
       <p>
-        <span className="bold">Mrs. UGO</span> <br /> 
-That’s enough finish your food! <br /> 
- <br />
+        <span className="bold">Mrs. UGO</span> <br/> 
+That’s enough finish your food! <br/> 
+ <br/>
 ******************************
 
       </p>,
       <p>
-        INT. CHIDINMA’S ROOM. <br /><br />
+        INT. CHIDINMA’S ROOM. <br/><br/>
         “Mrs. Ugo knocks.”
       </p>,
       <p>
         <span className="bold">        Mrs. UGO
-</span> <br />
+</span> <br/>
 Can I come in?
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
-(Zip up her box) <br />
+        <span className="bold">CHIDINMA</span><br/>
+(Zip up her box) <br/>
 Sure.
       </p>,
       <p>
-        <span className="bold">Mrs. UGO</span> <br />
+        <span className="bold">Mrs. UGO</span> <br/>
 Look I know everything is not going as expected but I want you to try and understand.
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span> <br />
-        (Turns to Mrs. UGO) <br />
-For how long? <br />
-I asked for a new phone the other day and nothing has been done about it. <br />
+        <span className="bold">CHIDINMA</span> <br/>
+        (Turns to Mrs. UGO) <br/>
+For how long? <br/>
+I asked for a new phone the other day and nothing has been done about it. <br/>
 You all expect me to go to school with this old, cracked phone.
 Haba it’s not fair na.
 
       </p>,
       <p>
-        <span className="bold">Mrs. UGO</span> <br />
-        (Comes closer to Chidinma) <br />
+        <span className="bold">Mrs. UGO</span> <br/>
+        (Comes closer to Chidinma) <br/>
 My child I wish I could give you everything you desire and I’m sorry I can’t, but I want you to look at things from the brighter side and be thankful for the basic things. There are a lot of children out there who would do anything to be as privileged as you are.
 
       </p>,
       <p>
-        <span className="bold">CHIDINMA</span><br />
-        I know that, Mummy but don’t guilt trip me for wishing for more. <br />
-I deserve more! <br />
+        <span className="bold">CHIDINMA</span><br/>
+        I know that, Mummy but don’t guilt trip me for wishing for more. <br/>
+I deserve more! <br/>
 (Fixes her watery eyes at Mrs. Ugo)
 
       </p>,
       <p>
-        <span className="bold">Mrs. UGO</span> <br />
-(Breathes heavily) <br />
-Hurry up so that your brother can drop you off at the Railway station. <br />
+        <span className="bold">Mrs. UGO</span> <br/>
+(Breathes heavily) <br/>
+Hurry up so that your brother can drop you off at the Railway station. <br/>
 (Walks out of the room)
 
       </p>,
       <p>
-        ********************************* <br /><br />
+        ********************************* <br/><br/>
  
-EXT.  RAILWAY STATION. <br /><br />
+EXT.  RAILWAY STATION. <br/><br/>
  
 “Chike assists Chidinma in carrying her luggage to the train.”
 
       </p>,
-      <p>
-        
-      </p>
+<p>CHIKE<br/>
+(Looks around)<br/>
+Ahh, where is your friend and her mother, na?</p>,
+
+<p>CHIDINMA<br/>
+I have told you, bro.<br/>
+You don’t have to wait.</p>,
+
+<p>CHIKE<br/>
+There is no way I’m leaving you out here on your own.</p>,
+
+<p>Mrs. EMEH walks into the scene alongside Steph.</p>,
+
+<p>Mrs. EMEH<br/>
+Ahh, you guys are already here.</p>,
+
+<p>CHIKE<br/>
+(Smiles at her)<br/>
+Yes, Mummy.<br/>
+Good morning, ma?</p>,
+
+<p>Mrs. EMEH<br/>
+Good morning my son.</p>,
+
+<p>CHIDINMA<br/>
+Good morning, ma.</p>,
+
+<p>Mrs. EMEH<br/>
+Good morning, Chidinma how are you?<br/>
+I know you are excited.</p>,
+
+<p>CHIDINMA<br/>
+(Forces a smile out of her cheeks)<br/>
+Yes, ma.</p>,
+
+<p>CHIKE<br/>
+Alright, Mummy I have to go now I don’t want Amaka and Chinnaza to be late to school.</p>,
+
+<p>Mrs. EMEH<br/>
+Alright, take care, please greet your Mum for me.</p>,
+
+<p>CHIKE<br/>
+Sure, I will, Ma.<br/>
+(Turns to Chidinma)<br/>
+Take care of yourself and call us when you arrive at Port Harcourt.<br/>
+(Goes into his car)</p>,
+
+<p>CHINNAZA<br/>
+Aunty Chidinma, Bye bye.<br/>
+(Waves her tiny hands at Chidinma)<br/>
+Buy something for me when you are coming back, oh.</p>,
+
+<p>Chidinma silently waves back at the four years old.</p>,
+
+<p>*******************************</p>,
+
+<p>INT. TRAIN</p>,
+
+<p>Steph turns to Chidinma.</p>,
+
+<p>STEPH<br/>
+So, you are not going to talk to me, abi?</p>,
+
+<p>CHIDINMA<br/>
+Why should I talk to the person who put me in this position I’m in right now?</p>,
+
+<p>STEPH<br/>
+I have apologized a thousand times already, na.<br/>
+Ehh, forgive me.<br/>
+(Wraps her arms around Chidinma's left arm)</p>,
+
+<p>CHIDINMA<br/>
+You should have just kept your mouth shut about this whole UNIPORT of a thing.</p>,
+
+<p>STEPH<br/>
+But you know my Mum would still have told your Mum all about it.</p>,
+
+<p>CHIDINMA<br/>
+Don’t try and pacify me, Steph.</p>,
+
+<p>STEPH<br/>
+No, I’m not.<br/>
+I’m just saying.<br/>
+You self.</p>,
+
+<p>CHIDINMA<br/>
+Abeg, leave me.</p>,
+
+<p>STEPH<br/>
+I said I’m sorry, na.<br/>
+Besides what do you have to lose?<br/>
+At least we are going to school together shouldn’t you be happy about that?</p>,
+
+<p>CHIDINMA<br/>
+At the expense of my dream school?<br/>
+Hell, no.</p>,
+
+<p>STEPH<br/>
+What is it about that LASU that you like, self?</p>,
+
+<p>CHIDINMA<br/>
+That’s none of your business do I need a reason to want to go there?</p>,
+
+<p>Mrs. EMEH<br/>
+(Turns to Chidinma)<br/>
+Chidinma, have your brother been able to pay your acceptance fee?</p>,
+
+<p>CHIDINMA<br/>
+Yes, ma.</p>,
+
+<p>Mrs. EMEH<br/>
+Alright, because your Mum was complaining about the portal being down the other day.</p>,
+
+<p>CHIDINMA<br/>
+Oh, we were later able to do it.</p>,
+
+<p>Mrs. EMEH<br/>
+Alright.</p>,
+
+<p>************************</p>,
+
+<p>Mrs. Ajayi appears to be in distress.</p>,
+
+<p>Mr. AJAYI<br/>
+Honey, are you okay?</p>,
+
+<p>Mrs. AJAYI<br/>
+I’m fine I just need to adjust.</p>,
+
+<p>Mr. AJAYI<br/>
+(Assists his pregnant wife in adjusting)<br/>
+Are you sure you are, okay?</p>,
+
+<p>Mrs. AJAYI<br/>
+I’m much better now.</p>,
+
+<p>AYO<br/>
+(Mr. Ajay's three-year-old daughter turns to him)<br/>
+Daddy, I’m hungry.</p>,
+
+<p>Mrs. AJAYI<br/>
+But you just finished eating egg roll and biscuit don’t stress me, oh.</p>,
+
+<p>Mr. AJAYI<br/>
+Don’t worry baby we will soon get to Port Harcourt you hear?<br/>
+You will eat when we get home.</p>,
+
+<p>AYO<br/>
+(Weeps subtly)<br/>
+Okay.</p>,
+
+<p>Mrs. AJAYI<br/>
+Madam, don’t start what is wrong with you?<br/>
+(Slaps her hard on the back)</p>,
+
+<p>Ayo cries out loud.</p>,
+
+<p>Mr. AJAYI<br/>
+(Pets her)<br/>
+Sorry.<br/>
+Oya stop crying.<br/>
+(Gazes outside the window of the moving train)</p>,
+
+<p>****************************</p>,
+
+<p>Kunle appears irritated by Ayo’s continued weep.</p>,
+
+<p>KUNLE<br/>
+Make them control that pikin, na.</p>,
+
+<p>FRANK<br/>
+I just tire.<br/>
+How far you don post that content?</p>,
+
+<p>KUNLE<br/>
+Omo, no oh. Network bad.</p>,
+
+<p>FRANK<br/>
+Meaning you would have to wait till will get to Port Harcourt.</p>,
+
+<p>KUNLE<br/>
+Yes, oh, my guy.</p>,
+
+<p>FRANK<br/>
+Alright, wake me up when we arrive.<br/>
+(Closes his eyes)</p>,
+
+<p>*************************</p>,
+
+<p>INT. THE UGO HOUSEHOLD.</p>,
+
+<p>Chike walks into the sitting room.</p>,
+
+<p>Mrs. UGO<br/>
+You are back?</p>,
+
+<p>CHIKE<br/>
+Yeah.<br/>
+(Sits down)</p>,
+
+<p>Mrs. UGO<br/>
+Hope you waited for Mrs. Emeh before you left.</p>,
+
+<p>CHIKE<br/>
+Yes, ma.</p>,
+
+<p>Mrs. UGO<br/>
+Have the train moved before you left?</p>,
+
+<p>CHIKE<br/>
+They were about to.<br/>
+Uncle Ben said he sent you some money this morning.</p>,
+
+<p>Mrs. UGO<br/>
+Oh, yes thirty thousand.</p>,
+
+<p>CHIKE<br/>
+Alright, please use it to get some things we need at the house.</p>,
+
+<p>Mrs. UGO<br/>
+Hmm, that money is no longer available.</p>,
+
+<p>CHIKE<br/>
+Why?</p>,
+
+<p>Mrs. UGO<br/>
+I sent it to Chidinma alongside an extra thirty-five thousand.<br/>
+You know she needs a new phone.</p>,
+
+<p>CHIKE<br/>
+We should be worrying about more important things.<br/>
+Remember we haven’t paid her fees.</p>,
+
+<p>Mrs. UGO<br/>
+I know, but you know she needed a new phone.</p>,
+
+<p>CHIKE<br/>
+Hmm, okay, oh.<br/>
+(Gets up)<br/>
+I’m off to work now.</p>,
+
+<p>Mrs. UGO<br/>
+Alright, please take care of yourself and drive carefully.</p>,
     ],
   },
+  {
+    id: 8,
+    title: "She must be obeyed",
+    title1: "Fantasy",
+    author: "Gracious_Writes",
+    month: "march",
+    year: "2024",
+    content :[
+      <p>
+        In a faraway kingdom, there was a beautiful and wise queen named Circe. She ruled her snowy tundra kingdom- where the bitter winds howl and the nights are long and dark-with justice and compassion, and her people who lived in small cosy, thatched roofs and snow covered streets loved her dearly. Queen Circe had a castle to rule from, a grand ice palace, with walls of glittering ice and turrets that sparkle in the sunlight and a throne carved from a single block of frozen crystal. But one day, a mysterious nobleman named Lord Alder arrived at the castle, and something about him made Queen Circe uneasy. She couldn’t quite put a finger on it. 
+      </p>,
+      <p>
+        The meeting slowly draws to an end and as the last advisor was leaving, Lord Alder steps forward and speaks quietly to the queen. “Your Majesty, I would like to speak to you in private, If I may.” The queen considers Lord Alders request for a moment, and then she nods and gestures for him to follow her as she rises from her throne and leads Lord Alder through the corridors of the castle, until they reach her private study. Lord Alder looks at the queen, with a calculating look in his eyes.
+      </p>,
+      <p>
+        "I know that you have a secret that could destroy your reputation and your standing as queen," Lord Alder says. "I will not reveal this secret to anyone, but I ask that you consider what I am offering you. I can help you secure your position as queen, and ensure that your kingdom remains safe from the king of Karthos. In exchange, I ask only that you grant me a small portion of your kingdom, so that I may live in comfort and safety." The queen is shocked by this proposition, and she is at a loss for words. After a long moment, the queen takes a deep breath and speaks. "I understand your offer, Lord Alder, but I cannot accept it. I cannot sacrifice my people or my kingdom for my own comfort or safety. I am bound by my duty to my people, and I will not betray them. I will not betray the trust they have placed in me." Lord Alder's expression darkens, and he lets out a low growl. "So be it, Your Majesty. But know this: if you do not accept my offer, then I will have no choice but to reveal your secret to the world.The queen's eyes widen in horror at Lord Alder's threat. "You would truly do such a thing, knowing the consequences?" she asks, her voice trembling. "I am afraid that I have no choice," Lord Alder says, his tone cold and hard. "You have left me no other option. I must do what is necessary to protect my own interests." The queen's anger turns to fear as she realizes the gravity of the situation. She cannot allow Lord Alder to expose her secret, but she also cannot allow him to take over her kingdom. She must find a way to stop him, but how?
+      </p>,
+      <p>
+          "There is a young woman in my court who has shown herself to be both brave and resourceful. "Her name is Lady Eleanor," the queen says. "She is the daughter of a minor noble, but she has always had a strong sense of justice and a fierce loyalty to our kingdom. I believe that she would be willing to risk everything to help us stop Lord Alder." 
+      </p>,
+      <p>
+        Sir Gareth's eyes light up. "Lady Eleanor," he says, nodding. "Yes, I think she could be the one to do this. But she must be given all the information and training she needs in order to succeed." The queen agrees, and together, she and Sir Gareth-the Queens right hand man- begin to make their plans.They arrange for Lady Eleanor to be given a false identity, and they teach her everything she needs to know about Lord Alder and his followers. 
+      </p>,
+      <p>
+        "I have orders from the queen," Sir Henry-the only Knight in the kingdom "She has asked me to train you as a knight. I believe that you have what it takes to become a great warrior, and I think that you could be a valuable asset to our kingdom. What do you say?" Lady Eleanor is stunned. She never imagined that she would be asked to become a knight. But she thinks of all that she has been through, and she knows that she is ready for a new challenge. "I accept," she says, her voice filled with determination. And so, Lady Eleanor begins her training. Lady Eleanor is standing in the throne room, wearing her knight's armor and holding her sword. A crowd of people has gathered to see her take her place as a knight, and there is a feeling of anticipation in the air. The queen steps forward and places a hand on Lady Eleanor's shoulder. "You have shown great courage and strength," the queen says, her voice filled with pride. "It is my honor to dub you a knight of this kingdom. 
+      </p>,
+      <p>
+        ”With a determined look in her eyes, Lady Eleanor turns to face the doors of the throne room, which swing open to reveal Lord Alder, standing there with a sneer on his face. He is flanked by a group of his followers, all of whom are armed and ready for battle. "You think you can defeat me?" he taunts, raising his sword. "I am far more powerful than you, and I will destroy you." But Lady Eleanor does not flinch. Instead, she raises her own sword and says, "I am not afraid of you. I will fight for what is right, and I will not relent, the queen must be obeyed, she must be obeyed!” The fight begins, and it is fierce and intense. Lady Eleanor and Lord Alder are evenly matched, their swords clashing and ringing against each other. The crowd is silent, watching with bated breath as the two warriors battle it out. In the end, it is Lady Eleanor who prevails. She raises her sword high and stands over Lord Alder, who is defeated and on the ground. She looks at him and says, "You have caused so much pain and suffering. But your reign of terror is over. You will be taken to prison, where you will face justice for your crimes." The crowd erupts in cheers. 
+      </p>,
+      <p>
+         Few weeks later, and Lady Eleanor is standing in the throne room once again. But this time, she is not in her knight's armor. Instead, she is wearing a beautiful gown, and she looks radiant and happy. The queen approaches her, a smile on her face. "My dear Lady Eleanor," she says. "I am pleased to announce that you have been appointed to a new role. From this day forward, you will be known as Lady Eleanor, the Protector of the Realm." Lady Eleanor's eyes widen, and she curtsies deeply. "Your Majesty," she says, "I AM READY TO SERVE YOU AND YOU MUST BE OBEYED!” 
+      </p>
+    ]
+  },
+  {
+    id: 9,
+    title: "She must be obeyed",
+    title1: "Traditional",
+    author: "Chikaodili Oyenze",
+    month: "march",
+    year: "2024",
+    content: [
+      <p>The first time Adaora had publicly called Queen Ezinne "mother" was five years ago in Amo ju'ogwu, the queen's home town. Normally when a child is born, they are dedicated to the family god or goddess and ask the deity for favour in the child's life. If Adaora was going to become the daughter (adopted) of Queen Ezinne, the ceremony had to be done.</p>,
+
+<p>They had been on the road for four days, and though Adaora was tired, she kept vigorously drawing and taking notes of landscapes that caught her eye. They had just crossed the border between Amo ju'ogwu and Nnene when Adaora, "your maj—mother I heard this was the mountain where Nnene soldiers fled because your papa and Amo ju'ogwu soldiers killed their comrades in hundreds, how did that happen?" Adaora hoped the queen wouldn't she didn't acknowledge her as mother.</p>,
+
+<p>Queen Ezinne smiled, in that knowing way of hers. "You can address me as the queen, it is what I am after all."</p>,
+
+<p>"I apologize."</p>,
+
+<p>"I do not want you to feel forced to have a relationship with me. We take it one step at a time, alright?" Adaora nodded, she did not bother saying she would probably never feel like she belonged in a palace. For so long she had accepted the fate the gods laid out for her. Die or become a slave. It was ironic that Adaora was actually born a noble man's daughter, but that didn't save her from the cruel hands of a fate. As an albino, she was seen a cursed, strange being. Not equal to humans. Her fate was to be a slave or servant, she did not expect to become a royal.</p>,
+
+<p>Queen Ezinne was infertile. Some said her father, who was the Chief Priest of Amo ju'ogwu gave his daughters' womb to the gods in exchange for special power. Others said karma had finally caught up to her. Adaora was not naive to think the queen a saint, but was she truly the monster people painted her as?</p>,
+
+<p>"We're here your majesties," a guard announced gruffly, pulling her out of her reverie. Adaora's eyes widened at the grandeur before her. The house was simply beautiful. Right next to it was a shrine dedicated to the family god —Nii, god of harvest. Nii was delicately carved out, depicted as a scruffy, three headed man, clad with a hunters' attire and surrounded by fruits and vegetables. "Is this...yours?" Adaora whispered, still dazed.</p>,
+
+<p>"I bought the land, and had the house designed by the Head Palace Architect," the pride in the queen's voice was loud and clear. Queen Ezinne smile faded a bit when a stern looking woman stepped outside. From her garments and demeanour, Adaora perceived her to be the Chief Priestess.</p>,
+
+<p>"That is Olachi, my sister," Queen Ezinne said calmly. "She will perform the ceremony, and welcome you into the Atama Household."</p>,
+
+<p>Adaora just stared at the giant of the woman that was Olachi.</p>,
+
+<p>"Do not let her intimidate you darling. Though Olachi acts like and spend her time with wild animals, she is gentle at heart."</p>,
+
+<p>"And are you? Gentle at heart that is. Are you not dangerous?" Adaora challenged the queen.</p>,
+
+<p>Queen Ezinne gave her predatory, shark-like grin, "only to my enemies love."</p>,
+
+<p>Olachi bowed as they stepped out of the carriage, "welcome your highness." Her gaze flew from the Queen to Adaora. The reverence in her eyes quickly morphed into disgust. Adaora struggled to maintain an impassive look. She did not want Olachi to think she cared what she thought of her. Only a fool show his fear to a wolf.</p>,
+
+<p>"Olachi, don't let me remind you to bow," Queen Ezinne chided. The threat was crystal clear even if her tone was playful.</p>,
+
+<p>Olachi smiled, "The soon to be Princess Adaora, welcome to my humble abode." And bowed, slightly.</p>,
+
+<p>"It is quite nice," Adaora said honestly.</p>,
+
+<p>"I'm glad the princess approves. Do you mind if I talk to your mother alone for a bit?"</p>,
+
+<p>"Do you want to be alone with her because you don't want to be near to me?" Adaora asked, her resolve to not show anger was wearing thin.</p>,
+
+<p>The priestess was taken aback, "it is sensitive matter we meet discuss. Not everything revolves around you princess."</p>,
+
+<p>A warm feeling spread around her chest. Olachi had finally acknowledged her as princess. Acknowledged her power even if she disliked her. Adaora raised her chin up. "There is nothing I haven't seen. What you want to tell mother, you can tell me."</p>,
+
+<p>Olachi was amused, she turned her gaze to her sister who had observing them silently. "Do you agree with her your highness?"</p>,
+
+<p>Queen Ezinne held her shoulder proudly. "As the future queen, her word is law and she must be obeyed. Tell me why I shouldn't agree with her." Olachi nodded in approval, leading to the Nii's shrine. That was the first time Adaora truly felt powerful. And she was determined to keep herself that way.</p>,
+    ]
+  },  
+  {
+    id: 10,
+    title: "She must be obeyed",
+    title1: "History",
+    author: "Gracious",
+    month: "march",
+    year: "2024",
+    content: [
+        
+  <p>
+    “You will never get rid of me." Queen Elizabeth spat into thin air, laughing maniacally as she was being pulled into the evil forest by the guards, with her hands tied together.
+  </p>,
+
+  <p>
+    This gory scene was unusual. Queen Elizabeth, the ruler of Tsukeun chiefdom had been accused of witchcraft and sorcery. The eldest chief claimed to have seen her in the act, and as the jury, the chiefs had to pass judgement upon her, according to the laws of the land.
+  </p>,
+
+  <p>
+    In Tsukeun, when a queen was found to be a witch or a sorceress, she had to be killed in the evil forest. There was no exemption for madam.
+  </p>,
+
+  <p>
+    Although, madam blatantly denied having anything to do with sorcery and claimed that the corpse and the big pot found in her bedroom were planted there by a spy to set her up, no one believed her. Madam was a witch for all they cared. This was their only opportunity to get rid of her.
+  </p>,
+
+  <p>
+    Infact, ever since King Gboma died and she took over the throne, she had never known peace from her subjects. Rumor even had it that she killed her husband and made him appoint her as next in line to the throne, instead of the eldest chief.
+  </p>,
+
+  <p>
+    Other sources had it that she sold her womb for power and beauty and so she never bore any child, which was why she had to adopt Sona. Madam had succeeded in expanding the chiefdom widely and has conquered in all expansionist wars, since she sat on the throne. But now, the same people who praised her, threw stones at her without withdrawal.
+  </p>,
+
+  <p>
+    The women chanted and ululated after her, calling her names like murderer, witch, claiming that she got her powers and fame from killing innocent souls. She was defenceless in her innocence and found these allegations to be disrespectful, humiliating and insulting.
+  </p>,
+
+  <p>
+    However, she kept laughing with a blood-stained mouth as she was being pulled into the forest by the guards, chiefs and a few subjects. Her head was covered with a bag and she was tied to a tree. Just as soon as the sword was drawn to her neck, they all heard a shrill voice from behind them and they turned to see who it was.
+  </p>,
+
+  <p>
+    “I was wrong, she was neither a witch nor a sorceress… my claims were false. Please let her go.” Chief Yvome, the eldest chief rambled. There was something awry about his presence, something behind those black and white eyes, but he was the eldest chief, who could question him? Madam was immediately set free.
+  </p>,
+
+  <p>
+    Back at the palace, Madam had been attended to and she was in her royal splendour again. She walked towards a room and flung the door open in uncontrollable rage. The musty smell of old sweat and mildew permeated the air in the dark and dank room. Spears, matchetes and raffia skirts hung over the walls of the room.
+  </p>,
+
+  <p>
+    “Bring him in." She ordered. A man in his mid twenties was dragged in immediately, almost lifeless. Madam walked towards him, swinging her waist and made as though she wanted to kick him in the face. She laughed infectiously when the young man cringed.
+  </p>,
+
+  <p>
+    “You are freaking out already." Madam said in sarcasm.<br/>
+    "Madam, I did not spy on you, I don't even know about the false allegations laid against you. I'm so sorry madam…” The young man stuttered.<br/>
+    Madam paused for a while, her lips suddenly curved into a cunning smile, then she turned towards Rufus.
+  </p>,
+
+  <p>
+    “Rufus!! He is innocent. Take him, wear him clean clothes and let him go." She ordered and Rufus nodded.
+  </p>,
+
+  <p>
+    “Madam madam, you are not only so beautiful, you have a kind heart too. Thank you madam." The young man praised in excitement. The men who brought him in, jacked him up and began to take him away. Then, there was a gunshot. The young man groaned and rolled on the floor in agony, Rufus had shot him from behind.
+  </p>,
+
+  <p>
+    “Don't take him out until you're sure he's dead." Madam uttered. Rufus bowed before her and she gave him a pat on the back.
+  </p>,
+
+  <p>
+    "My most trusted servant.” She said and walked briskly into her closet.
+  </p>,
+
+  <p>
+    "He should have obeyed you." Sona voiced as she dressed Madam’s hair.<br/>
+    “Yes child, they all should have obeyed me." Madam said.<br/>
+    Sona smirked, knowing the same fate awaited the chiefs. No one dared with Queen Elizabeth.
+  </p>,
+
+  <p>
+    “I love you so much Sona and I must give you the best life. You have so much to learn from me, because you must take my place when I'm gone." Madam said.
+  </p>,
+
+  <p>
+    “I certainly will," Sona grinned, showing off her white set of teeth.<br/>
+    “The alliance with King Ade is tomorrow and he has sent for me today, I might spend the night." Madam said and questioned,<br/>
+    “Are the artisans ready? And what’s the drama for tomorrow all about?”
+  </p>,
+
+  <p>
+    Sona took a script from the drawer nearby and handed it to Madam who scrutinized it and shook her head in dissatisfaction.
+  </p>,
+
+  <p>
+    "Goodness gracious! Child, the drama piece must be about me and not King Ade. I need to be portrayed in all my splendour, graciousness, majesty and…” Madam said before Sona interrupted.
+  </p>,
+
+  <p>
+    "Fine Nene… I understand, and King Ade is nothing but a pawn in your quest for influence, territorial expansion, dominance and power? Wow Queen Oliver asks for more. You’ve launched brutal invasions on nearly all neighbouring kingdoms and you’re never satisfied, I thought this one was a selfless alliance." Sona said.
+  </p>,
+
+  <p>
+    “First my child, there’s no such thing as selfless; we all give and take. You still have a lot to learn from me, you are just in your early twenties my dear. Secondly, I am not Oliver, neither am I asking for more. I am Queen Elizabeth and it's my right to have everything, everyone must obey me, I will rule over as many kingdoms as possible and you know an alliance with King Ade is the best thing that can ever happen to us, he has widely expanded his territories over the years.” Madam said fanning herself majestically.
+  </p>,
+
+  <p>
+    "Almighty queen Elizabeth.” Sona muttered under her breath.<br/>
+    Madam sighed, her eyes wandered through the whole room and she sprang up immediately.
+  </p>,
+
+  <p>
+    "It's time, get my purse.” King Ade’s envoy was already waiting, to take Madam to his palace.
+  </p>,
+
+  <p>
+    She exuded so much charisma as she sat beside King Ade, smiling radiantly. He spoke up first,<br/>
+    "I love progress and anything that comes with it. I refer to you if you must know.”
+  </p>,
+
+  <p>
+    Madam crossed her laps and chuckled this time.<br/>
+    “I have never known a woman so brave, beautiful and strong. Your people should be so proud of you but instead, they are jealous of the powers you possess." King Ade remarked.
+  </p>,
+
+  <p>
+    Madam laughed, her laughter brightening up the atmosphere.<br/>
+    "I like it that you are happy. Have a drink, the lioness herself.” King Ade teased and added just immediately,<br/>
+    "With this alliance, you will have access over all my territories and I will have access over yours.” He lifted a glass of juice towards her lips and she took a sip.
+  </p>,
+
+  <p>
+    “I payed your chief off, I knew you were innocent of the claims. I couldn't stand you being dead, so as soon as I heard of it, I had to do something." Madam smiled, slowly resting her head on his shoulders.
+  </p>,
+
+  <p>
+    Queen Elizabeth was good at playing the game, but this time, it was the case of the guiler beguiled, someone played it more than her. As she stood before her people, reality began to dawn on her; how King Ade had drugged her and made her sign a document which was treason to her people. She had unconsciously sold all her territories to the British colony, for juice.
+  </p>,
+
+  <p>
+    “You didn't love me after all," She said addressing King Ade who held a document to her face.
+  </p>,
+
+  <p>
+    “Did you?" He asked in mockery.<br/>
+    Just then, Sona walked towards them.
+  </p>,
+
+  <p>
+    “Sona baby come, come." Madam beckoned with her hands.<br/>
+    Sona clinged to King Ade, rubbing his shoulders and smiling from ear to ear.<br/>
+    Madam gaped.
+  </p>,
+
+  <p>
+    “Oh Sona I trusted you," Madam shook her head, her eyes red with anger already.<br/>
+    “You betrayed me." Tears gathered around her eyes, threatening to rain down, as she gulped again, probably the fifth time in few seconds.
+  </p>,
+
+  <p>
+    “Rufus get me my sword." She said amidst tears in a shaky voice, as her eyes still remained fixed on Sona.<br/>
+    Rufus refused to move an inch from where he stood beside King Ade.
+  </p>,
+
+  <p>
+    “My sword Rufus!!" Madam said.<br/>
+    “I am loyal to the throne Madam, not you." Rufus blurted out, bowing his head simply as a courtesy.<br/>
+    Her brows furrowed in self-pity and her eyes widened in disbelief.
+  </p>,
+
+  <p>
+    “Look at your people, you sold them because of your greed. Now you’ve lost your kingdom and there's no stepping down for a queen, it's either death or exile.” King Ade spoke, bringing her attention back to him.
+  </p>,
+
+  <p>
+    “We love you, but the quest for power knows no ties" He added in sarcasm, caressing Sona’s hair gently.
+  </p>,
+
+  <p>
+    Madam looked towards the angry mob who were ready to stone her to death at the slightest command, looked back at King Ade who had taken control over her territories overnight and never told her he was submissive to the British colony, turned towards Sona and Rufus, the only people she had trusted.
+  </p>,
+
+  <p>
+    Madam saw this as a disgrace. She remembered the last words of her late husband Gboma —<br/>
+    "Behind every set of white teeth, there lurks an evil plotting mind.”
+  </p>,
+
+  <p>
+    She ran towards Rufus and grabbed his sword.
+  </p>,
+
+  <p>
+    "I’ld rather kill myself.” She thrusted the sword into her chest and died.
+  </p>,
+
+  <p>
+    Never was there and never has there been a woman in power as beautiful, ambitious and courageous as Queen Elizabeth, before and after her, in the whole of Africa, such that she was feared by her male contemporaries and envied by the women in her constituency. Rather than being killed by those who betrayed
+  </p>
+
+    ]
+  }
 ];

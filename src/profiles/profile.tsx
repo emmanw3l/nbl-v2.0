@@ -27,11 +27,11 @@ import Search from "../components/search/search";
 const allPrompts = [
 
   // 2024
-  ...octPrompts2024,
   ...januaryPrompts2024,
   ...februaryPrompts2024,
   ...marchPrompts2024,
   ...aprilPrompts2024,
+  ...octPrompts2024,
 
   // 2025
 

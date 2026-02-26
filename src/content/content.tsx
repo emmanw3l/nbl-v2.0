@@ -169,7 +169,7 @@ export default function Content() {
         <h4 className="italics text-center">Preview of some of the best works over the years</h4>
         <InstagramPost url="https://www.instagram.com/p/DPgbNyQDbgm/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" maxWidth={375}/>
         
-
+        {/* <InstagramPost url="https://www.instagram.com/p/DGxl903teI-/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" maxWidth={375}/> */}
 
       </div>
 

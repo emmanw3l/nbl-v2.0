@@ -10,7 +10,8 @@ import {
   promptIndexJanuary2024,
   promptIndexFebruary2024,
   promptIndexApril2024,
-  promptIndexMarch2024
+  promptIndexMarch2024,
+  promptIndexJune2024
 } from "../components/promptIndexing";
 
 
@@ -30,8 +31,8 @@ const octoberPrompts2024 = promptIndexoctober2024([0,1,2,3,4]);
 const januaryPrompts2024 = promptIndexJanuary2024([0,1,2,3,4,5]);
 const februaryPrompts2024 = promptIndexFebruary2024([0,1,2,3,4,5]);
 const aprilPrompts2024 = promptIndexApril2024([0,1,2,3,4,5]);
-const marchPrompts2024 = promptIndexMarch2024([0,1,2,3,4,5,6,7]);
-
+const marchPrompts2024 = promptIndexMarch2024([0,1,2,3,4,5,6,7,8,9,10]);
+const junePrompts2024 = promptIndexJune2024([0,1,2,3,4,5,6])
 
 
 
@@ -42,16 +43,18 @@ export const allPrompts = [
   ...MJPrompts,
   ...julyPrompts,
   ...septemberPrompts,
-  ...octoberPrompts2024,
   ...januaryPrompts2024,
   ...februaryPrompts2024,
+  ...marchPrompts2024,
   ...aprilPrompts2024,
-  ...marchPrompts2024
+  ...junePrompts2024,
+  ...octoberPrompts2024,
 ];
 
 export interface Prompt {
   id: number;
   title: string;
+  // title1: string; 
   author: string;
   month: string;
   year: string;

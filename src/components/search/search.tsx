@@ -20,6 +20,7 @@ export default function Search() {
       .join(" ");
   };
 
+
   const highlightMatch = (text: string, term: string) => {
     if (!term) return text;
 

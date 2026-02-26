@@ -35,9 +35,10 @@ interface InstagramPostProps {
   maxWidth?: number | string;
 }
 
-const InstagramPost: React.FC<InstagramPostProps> = ({ url, maxWidth = 500 }) => {
+const InstagramPost: React.FC<InstagramPostProps> = ({ url, maxWidth = 500, }) => {
   return (
-    <div style={{ width: "100%", maxWidth, margin: "0 auto" }}>
+    <div style={{ width: "100%", maxWidth, margin: "0 auto" }}
+    >
       <InstagramEmbed url={url} width="100%" />
     </div>
   );
