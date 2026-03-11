@@ -3,7 +3,7 @@ import "../awards/awards.css";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Trophy } from "lucide-react";
-import { awardCategories2023 } from "./awardCategories2023";
+import { awardCategories2025 } from "./awardCategories2025";
 import { useState } from "react";
 
 function slugify(name: string) {
@@ -12,7 +12,7 @@ function slugify(name: string) {
     .replace(/\s+/g, "-")
     .replace(/[^\w-]+/g, "");
 }
-export default function AwardsAccordion2023() {
+export default function AwardsAccordion2025() {
   const [openId, setOpenId] = useState<number | null>(null);
 
 
@@ -28,10 +28,10 @@ export default function AwardsAccordion2023() {
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.5 }}
     >
-      <h1 className="mb-4 text-center mt-4 fw-bold">2023</h1>
+      <h1 className="mb-4 text-center mt-4 fw-bold">2025</h1>
 
       <div className="accordion">
-        {awardCategories2023.map((award) => (
+        {awardCategories2025.map((award) => (
           <motion.div
             key={award.id}
             className="accordion-item mb-2 shadow-sm rounded-3 overflow-hidden"
@@ -55,7 +55,7 @@ export default function AwardsAccordion2023() {
 
             {/* Accordion Body */}
             <div
-              id={`2023-${award.id}`}
+              id={`2025-${award.id}`}
               className={`accordion-collapse collapse ${
                 openId === award.id ? "show" : ""
               }`}

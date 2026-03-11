@@ -22,7 +22,7 @@ body {
   justify-content: space-between;
 }
 
-.offcanvas-body{ background-color: var(--primary-color); color: white; }
+/* .offcanvas-body{ background-color: var(--primary-color); color: white; } */
 
 
 .sidebars, .list-group-item{

@@ -94,7 +94,7 @@ export default function Home() {
               </p>
             </Link>
 
-            {/* Preview first two lines */}
+            {/* Preview lines */}
             <div className="mb-3">
               {randomPrompt.content.slice(0, 1)}
               <span className="h3">...</span>

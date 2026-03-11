@@ -7,6 +7,7 @@ import "./awards.css";
 
 import AwardsAccordion2024 from "./awardViewer";
 import AwardsAccordion2023 from "./awardViewer2023";
+import AwardsAccordion2025 from "./awardViewer2025";
 import Search from "../components/search/search";
 // import AwardCard from "./awardViewerTesting";
 
@@ -33,7 +34,7 @@ export default function AwardsAccordion() {
       <br />
       <Search/>
 
-
+      <AwardsAccordion2025/>
       <AwardsAccordion2024/>
       <AwardsAccordion2023/>
       {/* <AwardCard/> */}

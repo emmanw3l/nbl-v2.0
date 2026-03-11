@@ -21,7 +21,7 @@ const reviews = [
     text: "One of the best literary communities I've joined.",
     author: "Moroti",
   },
-  { text: "I love how interactive everyone is!", author: "Chikaodili Oyenze" },
+  { text: "I love how interactive everyone is!", author: "Chikaodili Onyenze" },
 ];
 
 export default function ReviewMarquee() {
@@ -64,7 +64,6 @@ export default function ReviewMarquee() {
     // </div>
     <div className="review-wrapper mb-5">
       {isMobile ? (
-        
         <div className="review-column">
           <h2 className="text-center mb-3">
             What the community members are saying
@@ -83,9 +82,8 @@ export default function ReviewMarquee() {
           ))}
         </div>
       ) : (
-        
         <div className="d-inline-block d-flex">
-            <h1 className=" mb-3">What The community members are saying!</h1>
+          <h1 className=" mb-3">What The community members are saying!</h1>
           <Marquee pauseOnHover speed={100} gradient={false}>
             {reviews.map((review, i) => (
               <div className="review-card author-card" key={i}>

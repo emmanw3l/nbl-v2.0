@@ -52,7 +52,7 @@ export const septemberPrompts = [
   {
     id: 1,
     title: "August: A Time for Work and Rest",
-    author: "Chikaodili Oyenze",
+    author: "Chikaodili Onyenze",
     month: "September",
     year: "2025",
     content: [
@@ -580,41 +580,40 @@ export const septemberPrompts = [
     month: "September",
     year: "2025",
     content: [
-    <p>
+      <p>
         To be honest, writing has been feeling like a burden as of late, <br />
-Ideas that once flowed freely have been starting to stagnate, <br />
-Creativity, out of my pores it evaporates, <br />
-For if I can’t paint a scenario am I even a poet?
-
-    </p>,
-    <p>
+        Ideas that once flowed freely have been starting to stagnate, <br />
+        Creativity, out of my pores it evaporates, <br />
+        For if I can’t paint a scenario am I even a poet?
+      </p>,
+      <p>
         And I could make silly excuses like “Oh I’ve been too busy, <br />
-Been writing codes and battling school, juggling things ain’t easy” <br />
-But the truth of the matter is I’ve been burnt out for the longest time, <br />
-And the stuff I’ve put out these past few months have been nothing but subpar.
-
-    </p>,
-    <p>
+        Been writing codes and battling school, juggling things ain’t easy”{" "}
+        <br />
+        But the truth of the matter is I’ve been burnt out for the longest time,{" "}
+        <br />
+        And the stuff I’ve put out these past few months have been nothing but
+        subpar.
+      </p>,
+      <p>
         Am I a shadow of myself? <br />
-Have I regressed so badly, I can’t string together a sentence? <br />
-Been putting off writing so much my drafts seem more like a life sentence <br />
-Than the ramblings of an educated youth, nothing in there makes sense.
-
-    </p>,
-    <p>
-         Did I take a break from writing to focus on other things, <br />
-Or did I just not write anything and then did that repeatedly, <br />
-I ask myself these questions but even I do not know, <br />
-But one thing I do know, my writing has been put on hold.
-
-    </p>,
-    <p>
+        Have I regressed so badly, I can’t string together a sentence? <br />
+        Been putting off writing so much my drafts seem more like a life
+        sentence <br />
+        Than the ramblings of an educated youth, nothing in there makes sense.
+      </p>,
+      <p>
+        Did I take a break from writing to focus on other things, <br />
+        Or did I just not write anything and then did that repeatedly, <br />
+        I ask myself these questions but even I do not know, <br />
+        But one thing I do know, my writing has been put on hold.
+      </p>,
+      <p>
         So here I am trying to come back into the scene with a bang, <br />
-Been gone for so long, I might as well be a new man, <br />
-My mind feels refreshed ready to give this another chance, <br />
-Who would’ve thought a break from all this was the spark I needed
-
-    </p>
-],
+        Been gone for so long, I might as well be a new man, <br />
+        My mind feels refreshed ready to give this another chance, <br />
+        Who would’ve thought a break from all this was the spark I needed
+      </p>,
+    ],
   },
 ];

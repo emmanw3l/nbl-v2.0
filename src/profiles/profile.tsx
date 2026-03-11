@@ -22,15 +22,18 @@ import Footer from "../components/footer/footer";
 import { awardCategories } from "../awards/awardCategories";
 import { awardCategories2023 } from "../awards/awardCategories2023";
 import Search from "../components/search/search";
+import { awardCategories2025 } from "../awards/awardCategories2025";
+import { junePrompts2024 } from "../assets/prompts/2024/june";
 
 // Merge all prompts into one array
 const allPrompts = [
-
   // 2024
   ...januaryPrompts2024,
   ...februaryPrompts2024,
   ...marchPrompts2024,
   ...aprilPrompts2024,
+  ...junePrompts2024,
+
   ...octPrompts2024,
 
   // 2025
@@ -70,23 +73,25 @@ const workAuthors = new Set(sortedAuthors.map(([author]) => author));
 
 // Get all authors from award categories (nominees + winners)
 const awardAuthors = new Set<string>();
-[...awardCategories, ...awardCategories2023].forEach((award) => {
-  award.nominees.forEach((nominee) => {
-    if (Array.isArray(nominee)) {
-      nominee.forEach((n) => awardAuthors.add(n));
-    } else {
-      awardAuthors.add(nominee);
-    }
-  });
+[...awardCategories, ...awardCategories2023, ...awardCategories2025].forEach(
+  (award) => {
+    award.nominees.forEach((nominee) => {
+      if (Array.isArray(nominee)) {
+        nominee.forEach((n) => awardAuthors.add(n));
+      } else {
+        awardAuthors.add(nominee);
+      }
+    });
 
-  if (award.winner) {
-    if (Array.isArray(award.winner)) {
-      award.winner.forEach((w) => awardAuthors.add(w));
-    } else {
-      awardAuthors.add(award.winner);
+    if (award.winner) {
+      if (Array.isArray(award.winner)) {
+        award.winner.forEach((w) => awardAuthors.add(w));
+      } else {
+        awardAuthors.add(award.winner);
+      }
     }
-  }
-});
+  },
+);
 
 // Merge both sets
 const allAuthors = Array.from(new Set([...workAuthors, ...awardAuthors]));
@@ -141,36 +146,44 @@ export default function Profiles() {
 
   const sortedProfiles = [...authorsWithWorks].sort(
     ([aName, aWorks], [bName, bWorks]) => {
-      const aNoms = [...awardCategories, ...awardCategories2023].filter(
-        (award) =>
-          award.nominees.some((nominee) =>
-            Array.isArray(nominee)
-              ? nominee.includes(aName)
-              : nominee === aName,
-          ),
+      const aNoms = [
+        ...awardCategories2023,
+        ...awardCategories,
+        ...awardCategories2025,
+      ].filter((award) =>
+        award.nominees.some((nominee) =>
+          Array.isArray(nominee) ? nominee.includes(aName) : nominee === aName,
+        ),
       ).length;
 
-      const bNoms = [...awardCategories, ...awardCategories2023].filter(
-        (award) =>
-          award.nominees.some((nominee) =>
-            Array.isArray(nominee)
-              ? nominee.includes(bName)
-              : nominee === bName,
-          ),
+      const bNoms = [
+        ...awardCategories2023,
+        ...awardCategories,
+        ...awardCategories2025,
+      ].filter((award) =>
+        award.nominees.some((nominee) =>
+          Array.isArray(nominee) ? nominee.includes(bName) : nominee === bName,
+        ),
       ).length;
 
-      const aWins = [...awardCategories, ...awardCategories2023].filter(
-        (award) =>
-          Array.isArray(award.winner)
-            ? award.winner.includes(aName)
-            : award.winner === aName,
+      const aWins = [
+        ...awardCategories2023,
+        ...awardCategories,
+        ...awardCategories2025,
+      ].filter((award) =>
+        Array.isArray(award.winner)
+          ? award.winner.includes(aName)
+          : award.winner === aName,
       ).length;
 
-      const bWins = [...awardCategories, ...awardCategories2023].filter(
-        (award) =>
-          Array.isArray(award.winner)
-            ? award.winner.includes(bName)
-            : award.winner === bName,
+      const bWins = [
+        ...awardCategories2023,
+        ...awardCategories,
+        ...awardCategories2025,
+      ].filter((award) =>
+        Array.isArray(award.winner)
+          ? award.winner.includes(bName)
+          : award.winner === bName,
       ).length;
 
       if (sortOption === "works") return bWorks.length - aWorks.length;
@@ -205,24 +218,22 @@ export default function Profiles() {
         transition={{ duration: 0.5 }}
       >
         <nav className="navbar navbar-dark fixed-top 100vw text-white ">
-          
-            <Link to="/" className="navbar-brand ">
-              <i className="bi bi-house fs-3 text-white"></i>
-            </Link>
+          <Link to="/" className="navbar-brand ">
+            <i className="bi bi-house fs-3 text-white"></i>
+          </Link>
 
-            <h2 className="text-white">
-              <a href="#" className="text-decoration-none text-white">
-                Profiles
-              </a>
-            </h2>
+          <h2 className="text-white">
+            <a href="#" className="text-decoration-none text-white">
+              Profiles
+            </a>
+          </h2>
 
-            <button
-              className="btn btn-outline-light"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              ☰
-            </button>
-          
+          <button
+            className="btn btn-outline-light"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            ☰
+          </button>
         </nav>
 
         {/* Sidebar */}
@@ -243,7 +254,7 @@ export default function Profiles() {
               </Link>
             </nav>
             <button
-              className="btn btn-outline-light "
+              className="btn btn-outline-light btn-dark"
               onClick={() => setIsOpen(false)}
             >
               x
@@ -251,14 +262,14 @@ export default function Profiles() {
           </div>
           <div className="offcanvas-body">
             <div className="mb-5">
-              <h4 className="mb-3 text-center text-white">
+              <h4 className="mb-3 text-center text-dark">
                 List of NBL Authors
               </h4>
-              <ol className="list-group list-group-numbered text-white">
+              <ol className="list-group list-group-numbered text-white ">
                 {authorsWithWorks.map(([author]) => (
                   <li
                     key={author}
-                    className="list-group-item  justify-content-between align-items-center"
+                    className="list-group-item rounded-pill my-1 justify-content-between align-items-center"
                   >
                     <a
                       href={`#${slugify(author)}`}
@@ -358,8 +369,9 @@ export default function Profiles() {
                 {/* 🏆 Nominations + Awards */}
                 {(() => {
                   const allAwards = [
-                    ...awardCategories,
                     ...awardCategories2023,
+                    ...awardCategories,
+                    ...awardCategories2025,
                   ];
                   const authorAwards = allAwards.filter((award) =>
                     award.nominees.some((nominee) =>
@@ -435,7 +447,7 @@ export default function Profiles() {
                             {authorAwards.map((award) => (
                               <Link
                                 key={award.id}
-                                to={`/awards#award-${award.id}`}
+                                to={`/awards#${award.year}-${award.id}`}
                                 className="text-decoration-none card author-card p-1"
                               >
                                 {award.category} {award.year}
@@ -450,24 +462,7 @@ export default function Profiles() {
                       )}
 
                       {/* Awards Won */}
-                      {/* <h4 className="mb-0">
-                        Awards Won: <span>{wins.length}</span> <br />{" "}
-                        {wins.length > 0 ? (
-                          wins.map((award, i) => (
-                            <span
-                              key={award.id}
-                              className="author-card card ps-1 m-1 "
-                            >
-                              {award.category} {""}
-                              {award.year}
-                              {i < wins.length && " ⭐ "}
-                              {i < wins.length - 1 && " , "}
-                            </span>
-                          ))
-                        ) : (
-                          <span className="fst-italic">No awards won</span>
-                        )}
-                      </h4> */}
+
                       <h4
                         className="fw-semibold mb-1 d-flex align-items-center justify-content-between"
                         style={{
@@ -491,14 +486,15 @@ export default function Profiles() {
                         {wins.length > 0 ? (
                           <div className="d-flex flex-wrap gap-2 mb-2">
                             {wins.map((award, i) => (
-                              <span
+                              <Link
+                                to={`/awards#${award.year}-${award.id}`}
                                 key={award.id}
                                 className="author-card card ps-1 m-1  text-decoration-none"
                               >
                                 {award.category} {award.year}
                                 {i < wins.length && " ⭐ "}
                                 {/* {i < wins.length - 1 && " , "} */}
-                              </span>
+                              </Link>
                             ))}
                           </div>
                         ) : (

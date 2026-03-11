@@ -287,7 +287,95 @@ export const junePrompts2024 = [
         month: "june",
         year: "2024",
         content:[
+<p>On the Thirteenth of July, 2023 my father walked into the house, tired just like any other day but we all knew something was wrong. He wasn't speaking, talking to anyone as he ate silently.</p>,
 
+<p>I waited patiently to hear him say something and when I didn't hear him speak, I decided to say something.</p>,
+
+<p>“Daddy, this one that you're not talking, Shey you are okay, abi?” I had asked him. He nodded his head in reply and ate his food silently.</p>,
+
+<p>There was no light that night so he didn't stay to watch the television. He stood up and while walking to the room, we all saw his body stiffen. He stayed there for about seven seconds before he moved and almost fell.</p>,
+
+<p>He then walked into his room and we didn't see him till the next day. My mom had complained to us throughout the night that something was wrong but I dismissed her thoughts saying that he was just tired from all the work and he doesn't rest but she still persisted until the next morning.</p>,
+
+<p>My Dad couldn't move and while he tried to, he almost fell. He drove himself to the hospital with my Mom and my elder brother while I went to school. My exams were starting the next day and I tried not to worry about the situation going on at home.</p>,
+
+<p>I had a whole lot to worry about at that time. The night before that, I just got an email that I was accepted into Project Pen, I had exams coming up and a whole lot of stuff. I didn't want to kill my spirits with the thought of my Dad's sickness getting serious, not until I came home that day.</p>,
+
+<p>He wasn't at home.</p>,
+
+<p>That was the first time my father had stayed long in a hospital. Since I was born, my dad had never spent more than five hours in a hospital but it was 3:54pm and he wasn't back.</p>,
+
+<p>I walked into my room and I met my brother sitting on my bed, praying. I didn't want to disturb him so I walked to the Parlor and I saw my brother talking with his friend.</p>,
+
+<p>The aura was different. My house was always lively, it had never been this dull. My brother wasn't blasting music from the speakers as usual and my Dad wasn't back home. I didn't need a soothsayer to tell me that something was wrong.</p>,
+
+<p>“Mommy asked us to pray, Sharon. She asked you to prepare because Daddy is coming home this night.”</p>,
+
+<p>At least, he said my dad was coming home in the night. That was all that mattered at that moment so together we prayed for good health for my father.</p>,
+
+<p>My father had complained about how his hair was the day before so we decided to go to the barber shop for his haircut. We called my mom and she told us that all was Okay, not until my Uncles walked in to pick up the Duvet for my Dad.</p>,
+
+<p>I called my father in the phone and asked to speak with him. Immediately he heard my voice, he called me “My Queen.”</p>,
+
+<p>I was scared because I didn't want that to be the last word I'll ever hear my father tell me. I wanted him alive. My mom returned home 1:00am that night or maybe later. She kept saying that I wasn't going to lose my father because I was too young to lose him.</p>,
+
+<p>She promised me that my Dad would be there for his birthday. She promised me that he wasn't going to celebrate his birthday at the hospital.</p>,
+
+<p>Just like you might have guessed, I didn't read for my exams. I wrote whatever came to mind. That was the least of my problems at that point. All I wanted was my Father.</p>,
+
+<p>The next day, he wasn't back.</p>,
+
+<p>On the fifteenth of July, normally I'd have been bugging my father about his birthday and how I wanted to bake a cake for his birthday and he'll tell me that he didn't want to celebrate his birthday but eventually, he'd still give me some money to make his cake for him.</p>,
+
+<p>I wasn't resting at home. I kept praying and crying apparently so no one sees me. My mom tried to be strong for us but she was always crying so I decided to be the strong one which I failed at obviously.</p>,
+
+<p>Maybe I was successful because my mom once told me that I acted like I didn't care like I was going to lose my father. I knew I wasn't going to lose my father, it only wondered—‘What if?’</p>,
+
+<p>My mom had told me earlier that morning that my father was getting better because he was able to sit up but he needed help to move. That sounded very weird to my ears because my father never needed help to do anything, not even the hardest of tasks.</p>,
+
+<p>My mom came back late that night with tears in her eyes. She said my father couldn't speak when she left the hospital and he had a bad hiccup, like he was choking.</p>,
+
+<p>We prayed and cried to God that night. The next day was a Sunday apparently and we were supposed to sleep early. My Dad would've given us a long lecture on why we should sleep early before church but he wasn't there.</p>,
+
+<p>For the first time ever, I actually didn't fancy the idea of going to church the next day.</p>
+,
+<p>We woke up around 8:00am and tried our best to prepare for church. We reached church late that day and my uncle had dropped us at church.</p>
+,
+<p>When I walked into the church with my Mom, I followed her into the Pastor's office with my brothers and right there in front of him, we all broke down crying.</p>
+,
+<p>He told us that my father won't be there in the hospital next week but I was tired of hearing those promises. I wanted to see him so I told my mother that I was going to see him at the hospital.</p>
+,
+<p>They were scared, that I was going to cry in front of my Dad but I had promised myself that I wasn't going to cry. It was on our way to the hospital that my Mom had told us that my Dad had Double stroke.</p>
+,
+<p>Apparently, the first stroke had hit him right in front of us while he was walking to his room. I sucked in all the tears and when I walked into the room, my Dad looked at me and smiled.</p>
+,
+<p>“The Queen has finally come to see me,” he said as I ran towards him to hug him.</p>
+,
+<p>My Mom asked me not to hug him tightly because he wasn't healed properly so I quickly pulled out of the hug and took his hands in my palms.</p>
+,
+<p>His hands felt different, they didn't feel like my Father's hands. My Father's hand would never wrap around mine but he would move his fingers every time I held his hands.</p>
+,
+<p>My father did not.</p>
+,
+<p>He talked with us a lot that day and the doctors said that his B.P. that day had reduced. The next day was his birthday but my Mom asked me not to say anything about it to my Father. She was avoiding any situation that would make him scared or worried.</p>
+,
+<p>The next day was my father's birthday and in school, I couldn't focus. Tears were always falling from my eyes and I never wanted to lose my father.</p>
+,
+<p>When I came home, I'd quickly mixed a birthday cake for my father and started baking it. I rushed to quickly get dressed because in some minutes time, we would be going to the hospital.</p>
+,
+<p>I was done baking the cake in some minutes and when I was done, I packed it up and got into the car with my uncle and brothers. We didn't get to the hospital early enough but seeing the smile on the face when I arrived with the cake, everything was worth it.</p>
+,
+<p>He was getting so much better than I expected and soon enough, the hospital gave my parents a day for him to be discharged from the hospital.</p>
+,
+<p>It wasn't until three months after my father had started healing that I realized that I would have been the one to read the Eulogy at his funeral if we had lost him to the sickness.</p>
+,
+<p>Life would definitely be different if I had lost my father, my first best friend. From the day I was born, my mom said at the hospital, he branded me as his queen and his First Lady.</p>,
+
+<p>When I was little, he would tuck me in his car and drive me around, to show me off. He gave me my identity—Sharon Kamsiyochukwu Oputa— he always wrote my name on my palms since I was able to spell my name.</p>,
+
+<p>If I were to write a biography about my father, I'd start it by saying <em>the man who wasn't perfect, but was perfection in himself</em> and end it with <em>the man who couldn't give me the world but gave me himself as the greatest gift</em> and that's why I believe that the Joy of fatherhood is not to be felt by a father but the people around him.</p>,
+
+<p>And that Joy truly is the reality of Fatherhood.</p>,
         ]
     },
     {
@@ -298,6 +386,7 @@ export const junePrompts2024 = [
         year: "2024",
         content:[
 
+
         ]
-    }
+    },
 ]

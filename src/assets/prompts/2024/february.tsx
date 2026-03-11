@@ -13,7 +13,7 @@ export const februaryPrompts2024 = [
   {
     id: 0,
     title: "To love and to be loved makes life worth living",
-    author: "Chikaodili Oyenze",
+    author: "Chikaodili Onyenze",
     month: "february",
     year: "2024",
     content: [

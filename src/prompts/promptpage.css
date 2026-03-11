@@ -75,10 +75,16 @@ body {
 
 .sidebars, .list-group-item{
   background-color: var(--primary-color);
+  
 }
 
 .btn-close{
   color: white;
+}
+.btn-activee{
+  background-color: #5f3205 !important;
+  font-size: 1.2rem !important;
+  color: white !important;
 }
 
 .dib{

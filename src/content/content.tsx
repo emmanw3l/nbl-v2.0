@@ -173,7 +173,7 @@ export default function Content() {
 
       </div>
 
-
+    
 
       <ReviewMarquee/>
         <h1 className="mb-3 text-center"><u>Core NBL Tenets</u> </h1>
