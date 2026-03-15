@@ -378,15 +378,17 @@ export const junePrompts2024 = [
 <p>And that Joy truly is the reality of Fatherhood.</p>,
         ]
     },
-    {
-        id: 6,
-        title: "",
-        author: "",
-        month: "june",
-        year: "2024",
-        content:[
+    // {
+    //     id: 6,
+    //     title: "",
+    //     author: "",
+    //     month: "june",
+    //     year: "2024",
+    //     content:[
+    //         <p>
+    //             <span className="text-muted">content is currently unavailable...</span>
+    //         </p>
 
-
-        ]
-    },
+    //     ]
+    // },
 ]

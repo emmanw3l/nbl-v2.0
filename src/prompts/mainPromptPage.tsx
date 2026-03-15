@@ -1,10 +1,10 @@
-import "./promptpage.css";
+// import "./promptpage.css";
 import Layout from "../Nav/Nav";
 import { motion, Variants } from "framer-motion";
 import { allPrompts } from "../prompts/promptCollection";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router-dom";
-import "../Home.css";
+// import "../Home.css";
 import January2024 from "../components/img/Prompts/2024/January_2024.jpg";
 import February2024 from "../components/img/Prompts/2024/february_2024.jpg";
 import March2024 from "../components/img/Prompts/2024/March_2024.jpg";
@@ -21,6 +21,12 @@ import April2025 from "../components/img/Prompts/2025/April_2025.jpg";
 import May2025 from "../components/img/Prompts/2025/May_2025.jpg";
 import September2025 from "../components/img/Prompts/2025/September_2025.jpg";
 import July2025 from "../components/img/Prompts/2025/July_2025.jpg";
+
+// 2026
+
+import January2026 from "../components/img/Prompts/2026/January_2026.jpg";
+import February2026 from "../components/img/Prompts/2026/February_2026.jpg";
+
 
 type PromptMonth = {
   month: string;
@@ -179,6 +185,18 @@ const promptMonths: PromptMonth[] = [
     // anchor: "september-0",
     title: "How did you spend your August?",
   },
+  {
+    month: "January",
+    year: "2026",
+    theme: "Making Audacious Moves",
+    title: "When Fear Meets My Eyes"
+  },
+  {
+    month: "February",
+    year: "2026",
+    theme: "Love and Confessions",
+    title: "Do I Choose Love?"
+  }
 ];
 
 function  getPromptCount(month: string, year: string) {
@@ -202,6 +220,8 @@ const images = [
   { month: "may2025", src: May2025 },
   { month: "september2025", src: September2025 },
   { month: "july2025", src: July2025 },
+  {month: "january2026", src: January2026},
+  {month: "february2026", src: February2026}
 ];
 // function PromptCard({ m, count }: { m: PromptMonth; count: number }) {
 //   return (
@@ -250,7 +270,7 @@ function PromptCard({ m, count }: { m: PromptMonth; count: number }) {
 
   return (
     <motion.div
-      className="card cards h-100 shadow-sm rounded-4 ac p-4"
+      className="card cards h-100 shadow-lg rounded-4 ac p-4"
       whileHover={{
         y: -6,
         boxShadow: "0px 20px 40px rgba(0,0,0,0.15)",
@@ -301,6 +321,7 @@ function PromptCard({ m, count }: { m: PromptMonth; count: number }) {
 export default function PromptsPage() {
   const promptMonths2024 = promptMonths.filter((m) => m.year === "2024");
   const promptMonths2025 = promptMonths.filter((m) => m.year === "2025");
+  const promptMonths2026 = promptMonths.filter((m) => m.year === "2026");
 
   return (
     <motion.div
@@ -364,6 +385,27 @@ export default function PromptsPage() {
 
           <div className="row g-4">
             {promptMonths2025.map((m) => {
+              const count = getPromptCount(m.month, m.year);
+
+              return (
+                <motion.div
+                  key={`${m.month}-${m.year}`}
+                  className="col-md-6 col-lg-4"
+                  variants={cardVariants}
+                >
+                  <PromptCard m={m} count={count} />
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* 2026 PROMPTS  */}
+                <section>
+          <h2 className="fw-bold mb-4 text-center">2026 Prompts</h2>
+
+          <div className="row g-4">
+            {promptMonths2026.map((m) => {
               const count = getPromptCount(m.month, m.year);
 
               return (

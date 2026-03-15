@@ -23,6 +23,8 @@ const promptMonths = [
   // { month: "June", year: 2025 },
   { month: "July", year: 2025 },
   { month: "September", year: 2025 },
+  {month: "January", year: 2026},
+  {month: "February", year: 2026}
 ];
 
 const pageVariants = {

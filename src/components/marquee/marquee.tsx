@@ -10,8 +10,12 @@ function slugify(name: string) {
     .replace(/[^\w-]+/g, "");
 }
 
+
+
+
 const reviews = [
-  { text: "Amazing community! Learned so much.", author: "Nwabueze Emmanuel" },
+  { text: "Amazing community! I'm Learnig so much.", author: "Nwabueze Emmanuel" },
+  {text: "Came for the vibes, stayed for the experiences",author: "Gracious"},
   { text: "The writing prompts revived my creativity!", author: "Aangrron" },
   {
     text: "Joining the community was the best decision I ever made",
@@ -95,6 +99,7 @@ export default function ReviewMarquee() {
                 >
                   — {review.author}
                 </Link>
+
               </div>
             ))}
           </Marquee>

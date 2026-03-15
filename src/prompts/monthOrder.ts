@@ -60,5 +60,13 @@ export const promptMonthOrder = [
   {
     label: "September 2025",
     path: "/mainPromptPage/2025/September",
+  },
+  {
+    label: "January 2026",
+    path: "/mainPromptPage/2026/January"
+  },
+  {
+    label: "February 2026",
+    path: "/mainPromptPage/2026/February"
   }
 ];

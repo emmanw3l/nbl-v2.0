@@ -127,8 +127,8 @@ body {
   display: flex;
   padding: 10px;
   flex-direction: column;
-  margin-bottom: 7px;
-  background-color: var(--primary-color-highlight) !important; 
+  /* margin-bottom: 7px; */
+  /* background-color: var(--primary-color-highlight) !important;  */
   font-family: "Poppins", sans-serif;
   border: 2px solid var(--primary-color);
   max-height: fit-content;
@@ -164,8 +164,10 @@ body {
 }
 
 .ac {
-  background: linear-gradient(135deg, #5f3205, #fce4ec); /* blueish */
+  background: linear-gradient(135deg, #5f3205, #fce4ec); 
   color: black;
+  border: none;
+  
 }
 
 

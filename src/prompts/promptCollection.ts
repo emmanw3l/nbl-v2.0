@@ -11,8 +11,13 @@ import {
   promptIndexFebruary2024,
   promptIndexApril2024,
   promptIndexMarch2024,
-  promptIndexJune2024
+  promptIndexJune2024,
+  promptIndexJanuary2026,
 } from "../components/promptIndexing";
+
+
+// 2026
+const januaryPrompts2026 = promptIndexJanuary2026([0,1,2,3,4]);
 
 
 // 2025
@@ -37,6 +42,7 @@ const junePrompts2024 = promptIndexJune2024([0,1,2,3,4,5,6])
 
 
 export const allPrompts = [
+  ...januaryPrompts2026,
   ...januaryPrompts,
   ...februaryPrompts,
   ...aprilPrompts,

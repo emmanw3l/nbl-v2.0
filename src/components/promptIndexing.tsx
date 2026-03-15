@@ -1,4 +1,4 @@
-// getPoemsByIndex.ts
+// getPromptsByIndex.ts
 import { prompts } from "../assets/prompts/2025/januaryPrompts";
 import { febPrompts } from "../assets/prompts/2025/februaryPrompts";
 import { aprilPrompts } from "../assets/prompts/2025/aprilPrompt";
@@ -13,6 +13,18 @@ import { februaryPrompts2024 } from "../assets/prompts/2024/february";
 import { aprilPrompts2024 } from "../assets/prompts/2024/april";
 import { marchPrompts2024 } from "../assets/prompts/2024/march";
 import { junePrompts2024 } from "../assets/prompts/2024/june";
+
+// 2026
+import { januaryPrompts2026 } from "../assets/prompts/2026/january";
+
+
+
+
+export function promptIndexJanuary2026(indexes: number[]){
+  return indexes.map((index) => januaryPrompts2026[index]).filter(Boolean);
+}
+
+
 
 export function promptIndex(indexes: number[]) {
   return indexes.map((index) => prompts[index]).filter(Boolean);

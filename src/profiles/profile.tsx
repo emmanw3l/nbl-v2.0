@@ -24,6 +24,8 @@ import { awardCategories2023 } from "../awards/awardCategories2023";
 import Search from "../components/search/search";
 import { awardCategories2025 } from "../awards/awardCategories2025";
 import { junePrompts2024 } from "../assets/prompts/2024/june";
+import { januaryPrompts2026 } from "../assets/prompts/2026/january";
+import { februaryPrompts2026 } from "../assets/prompts/2026/february";
 
 // Merge all prompts into one array
 const allPrompts = [
@@ -33,7 +35,8 @@ const allPrompts = [
   ...marchPrompts2024,
   ...aprilPrompts2024,
   ...junePrompts2024,
-
+  // ...julyPrompts2024,
+    // ...augustPrompts2024,
   ...octPrompts2024,
 
   // 2025
@@ -44,6 +47,10 @@ const allPrompts = [
   ...mJPrompts,
   ...julyPrompts,
   ...septemberPrompts,
+
+  // 2026
+    ...januaryPrompts2026,
+    ...februaryPrompts2026,
 ];
 
 // sluuuugssss

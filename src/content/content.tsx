@@ -243,7 +243,7 @@ export default function Content() {
             title: "Community & Growth",
             body: (
               <>
-                72,000 lines of code and counting... <br />
+                70,000 lines of code and counting... <br />
                 Buy me mental health
               </>
             ),
