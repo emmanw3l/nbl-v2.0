@@ -170,6 +170,10 @@ body {
   
 }
 
+.spotify{
+  color: green;
+  font-size: 1.8rem;
+}
 
 /* .ac:nth-child(even) {
   background: linear-gradient(135deg, #fce4ec, #5f3205); 

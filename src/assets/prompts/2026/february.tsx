@@ -7,6 +7,7 @@ interface februaryPrompts2026 {
   author: string;
   month: string;
   year: string;
+//   livelink: JSX.Element;
   content: JSX.Element[];
 }
 
@@ -17,6 +18,7 @@ export const februaryPrompts2026 = [
         title1: "Sun Kisses by Citizens",
         author: "Moroti",
         month: "february",
+        livelink: "https://open.spotify.com/track/2UZwS0arh9gRZztD9f2PYU?si=efa8cf693a7c4d3d",
         year: "2026",
         content: [
             <p>
@@ -79,6 +81,7 @@ in one night
         id: 1,
         title: "Do I Choose Love?",
         title1: "Love by Keyshia Cole",
+        livelink: "https://open.spotify.com/track/0W4NhJhcqKCqEP2GIpDCDq?si=5350ef2e29c04ce0",
         author: "Bema",
         month: "february",
         year: "2026",
@@ -111,6 +114,7 @@ in one night
         id: 2,
         title: "Do I Choose Love?",
         title1: "Then by Anne-Marie",
+        livelink: "https://open.spotify.com/track/4iiOb1mdmh0PCYI4BZYUU9?si=3e94a87288674b31",
         author: "Nwabueze Emmanuel",
         month: "february",
         year: "2026",
@@ -333,6 +337,7 @@ I loved you… but that was then.
         id: 4,
         title: "Do I Choose Love?",
         title1: "A Couple Minutes by Olivia Dean",
+        livelink: "https://open.spotify.com/track/312z6PZ8wwREck8613PkJk?si=9fba0bbe34e94fbc",
         author: "Ace",
         month: "february",
         year: "2026",
@@ -473,6 +478,7 @@ and you know it—yes, it's real life.
         id: 5,
         title: "Do I Choose Love?",
         title1: "Traitor by Olivia Rodrigo",
+        livelink: "https://open.spotify.com/track/5CZ40GBx1sQ9agT82CLQCT?si=1036fdecd5bc4754",
         author: "Oladimeji Ifeoluwa",
         month: "february",
         year: "2026",

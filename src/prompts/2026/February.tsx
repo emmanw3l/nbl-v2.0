@@ -98,7 +98,7 @@ export default function February2026() {
                   id={`february-${slugify(prompts.id.toString())}`}
                 >
                   <h1 className="bold">{prompts.title}</h1>
-                  <h6>{prompts.title1} <i className="bi bi-moon"></i></h6>
+                  <h4><a href={prompts.livelink} target="blank_" className="text-decoration-none text-dark"><i className="bi bi-spotify spotify pe-2"></i>{prompts.title1}</a> </h4>
                   <h4 className="text-end blockquote">
                     <cite className="blockquote-footer">
                       <Link to={`/Profile#${slugify(prompts.author)}`}>
