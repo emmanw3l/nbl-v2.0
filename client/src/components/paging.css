@@ -1,0 +1,16 @@
+.cardss {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  /* margin-bottom: 7px; */
+  background-color: var(--primary-color-highlight) !important; 
+  font-family: "Poppins", sans-serif;
+  border: 1px solid var(--primary-color);
+    border-radius: 15px;
+  max-height: fit-content;
+  /* color: white; */
+}
+.cardss:hover {
+  transition-delay: 0s;
+  transition: 0.4s;
+}

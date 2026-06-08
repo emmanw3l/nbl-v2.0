@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(ADMIN)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  prompts   Prompt[]
+
+  @@map("users")
+}
+
+model Author {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  prompts   Prompt[]
+
+  @@map("authors")
+}
+
+model Prompt {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  month     Int
+  year      Int
+  slug      String   @unique
+  authorId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int?
+  theme     String?
+  wordCount Int      @default(0)
+  author    Author   @relation(fields: [authorId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
+
+  @@index([year])
+  @@index([year, month])
+  @@map("prompts")
+}
+
+model Award {
+  id          Int      @id @default(autoincrement())
+  description String
+  year        Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  category    String
+  nominees    Json
+  winner      Json
+
+  @@map("awards")
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+}
