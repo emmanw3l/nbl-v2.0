@@ -49,9 +49,26 @@ import adminRoutes   from "./routes/admin.routes";
 
 const app  = express();
 const PORT = process.env.PORT ?? 5000;
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://nbl-v2-0.vercel.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true
+}));
 
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL ?? "http://localhost:5173", credentials: true }));
+// app.use(cors({ origin: process.env.CLIENT_URL ?? "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
