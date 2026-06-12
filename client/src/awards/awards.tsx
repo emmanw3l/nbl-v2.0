@@ -1,10 +1,8 @@
-
-
 // src/awards/awards.tsx
 import { useEffect, useState } from "react";
-import { motion, Variants }    from "framer-motion";
-import { Link }                from "react-router-dom";
-import Layout                  from "../Nav/Nav";
+import { motion, Variants } from "framer-motion";
+import { Link } from "react-router-dom";
+import Layout from "../Nav/Nav";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
@@ -15,40 +13,45 @@ interface Nominee {
 }
 
 interface Award {
-  id:          number;
-  category:    string;
+  id: number;
+  category: string;
   description: string;
-  nominees:    Nominee[];
-  winner:      Nominee;
-  year:        number;
+  nominees: Nominee[];
+  winner: Nominee;
+  year: number;
 }
 
 // ── Animations ─────────────────────────────────────────────────────────────
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  exit:    { opacity: 0, y: -20 },
+  exit: { opacity: 0, y: -20 },
 };
 
 const containerVariants: Variants = {
-  hidden:  { opacity: 0 },
+  hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants: Variants = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+  },
 };
+
+function toSlug(name: string) {
+  return name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+}
 
 // ── Award Card ─────────────────────────────────────────────────────────────
 function AwardCard({ award }: { award: Award }) {
   const [showNominees, setShowNominees] = useState(false);
 
   return (
-    <motion.div
-      className="col-12 col-md-6 col-lg-4"
-      variants={cardVariants}
-    >
+    <motion.div className="col-12 col-md-6 col-lg-4" variants={cardVariants}>
       <motion.div
         className="card h-100 shadow-sm rounded-4 p-4"
         whileHover={{ y: -4, boxShadow: "0 12px 32px rgba(0,0,0,0.12)" }}
@@ -58,11 +61,11 @@ function AwardCard({ award }: { award: Award }) {
         <span
           className="badge mb-3 text-uppercase fw-semibold"
           style={{
-            background:    "rgba(108,99,255,0.1)",
-            color:         "#6c63ff",
+            background: "rgba(108,99,255,0.1)",
+            color: "#6c63ff",
             letterSpacing: ".5px",
-            fontSize:      11,
-            width:         "fit-content",
+            fontSize: 11,
+            width: "fit-content",
           }}
         >
           {award.category}
@@ -74,7 +77,10 @@ function AwardCard({ award }: { award: Award }) {
         {/* Winner */}
         <div
           className="rounded-3 p-3 mb-3"
-          style={{ background: "rgba(62,207,142,0.08)", border: "1px solid rgba(62,207,142,0.2)" }}
+          style={{
+            background: "rgba(62,207,142,0.08)",
+            border: "1px solid rgba(62,207,142,0.2)",
+          }}
         >
           <p
             className="text-uppercase fw-semibold mb-1"
@@ -84,7 +90,9 @@ function AwardCard({ award }: { award: Award }) {
           </p>
           <p className="fw-semibold mb-0">{award.winner?.name || "—"}</p>
           {award.winner?.work && (
-            <p className="text-muted small mb-0 fst-italic">{award.winner.work}</p>
+            <p className="text-muted small mb-0 fst-italic">
+              {award.winner.work}
+            </p>
           )}
         </div>
 
@@ -95,8 +103,11 @@ function AwardCard({ award }: { award: Award }) {
               className="btn btn-link p-0 text-decoration-none text-muted small text-start mb-2"
               onClick={() => setShowNominees((p) => !p)}
             >
-              <i className={`bi bi-chevron-${showNominees ? "up" : "down"} me-1`} />
-              {showNominees ? "Hide" : "Show"} nominees ({award.nominees.length})
+              <i
+                className={`bi bi-chevron-${showNominees ? "up" : "down"} me-1`}
+              />
+              {showNominees ? "Hide" : "Show"} nominees ({award.nominees.length}
+              )
             </button>
 
             {showNominees && (
@@ -115,9 +126,17 @@ function AwardCard({ award }: { award: Award }) {
                   >
                     <span className="text-muted mt-1">•</span>
                     <span>
-                      <span className="fw-semibold">{n.name}</span>
+                      <Link
+                        to={`/profile/${toSlug(n.name)}`}
+                        className="fw-semibold text-decoration-none"
+                      >
+                        {n.name}
+                      </Link>
                       {n.work && (
-                        <span className="text-muted fst-italic"> — {n.work}</span>
+                        <span className="text-muted fst-italic">
+                          {" "}
+                          — {n.work}
+                        </span>
                       )}
                     </span>
                   </li>
@@ -133,9 +152,9 @@ function AwardCard({ award }: { award: Award }) {
 
 // ── Page ───────────────────────────────────────────────────────────────────
 export default function Awards() {
-  const [awards,  setAwards]  = useState<Award[]>([]);
+  const [awards, setAwards] = useState<Award[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error,   setError]   = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetch(`${API}/awards`)
@@ -152,7 +171,9 @@ export default function Awards() {
     return acc;
   }, {});
 
-  const years = Object.keys(byYear).map(Number).sort((a, b) => a - b);
+  const years = Object.keys(byYear)
+    .map(Number)
+    .sort((a, b) => a - b);
 
   return (
     <motion.div
@@ -182,9 +203,7 @@ export default function Awards() {
         )}
 
         {/* Error */}
-        {error && (
-          <div className="alert alert-danger text-center">{error}</div>
-        )}
+        {error && <div className="alert alert-danger text-center">{error}</div>}
 
         {/* Empty */}
         {!loading && !error && awards.length === 0 && (
@@ -192,29 +211,33 @@ export default function Awards() {
         )}
 
         {/* Awards by year */}
-        {!loading && years.map((year) => (
-          <section key={year} className="mb-5">
-            {/* Year heading */}
-            <div className="d-flex align-items-center gap-3 mb-4">
-              <h2 className="fw-bold mb-0">{year}</h2>
-              <div className="flex-grow-1" style={{ height: 1, background: "rgba(0,0,0,0.1)" }} />
-              <span className="text-muted small">
-                {byYear[year].length} award{byYear[year].length !== 1 && "s"}
-              </span>
-            </div>
+        {!loading &&
+          years.map((year) => (
+            <section key={year} className="mb-5">
+              {/* Year heading */}
+              <div className="d-flex align-items-center gap-3 mb-4">
+                <h2 className="fw-bold mb-0">{year}</h2>
+                <div
+                  className="flex-grow-1"
+                  style={{ height: 1, background: "rgba(0,0,0,0.1)" }}
+                />
+                <span className="text-muted small">
+                  {byYear[year].length} award{byYear[year].length !== 1 && "s"}
+                </span>
+              </div>
 
-            <motion.div
-              className="row g-4"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {byYear[year].map((award) => (
-                <AwardCard key={award.id} award={award} />
-              ))}
-            </motion.div>
-          </section>
-        ))}
+              <motion.div
+                className="row g-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {byYear[year].map((award) => (
+                  <AwardCard key={award.id} award={award} />
+                ))}
+              </motion.div>
+            </section>
+          ))}
       </div>
     </motion.div>
   );
