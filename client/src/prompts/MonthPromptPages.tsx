@@ -47,7 +47,7 @@ const pageVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } as const },
 };
 
 const containerVariants = {
@@ -95,7 +95,7 @@ export default function MonthPromptPage() {
       transition={{ duration: 0.5 }}
       className="container-fluid"
     >
-       <PromptNavbar month={month} year={year} />
+      <PromptNavbar month={month ?? ""} year={year ?? ""} />
 
       <div className="container py-5">
         {/* Breadcrumb */}
