@@ -36,6 +36,7 @@ export interface Prompt {
 export interface Nominee {
   name: string;
   work: string;
+  slug: string;
 }
 
 export interface Award {

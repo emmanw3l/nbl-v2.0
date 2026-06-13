@@ -43,9 +43,10 @@ export default function Home() {
       className="container-fluid"
     >
       <Layout />
+      
       {/* <Search /> */}
 
-      <div className="row my-4">
+      <div className="row ">
         <div className="col-lg-6 col-sm-12 col-6">
           <div className="first-heading animate__animated animate__zoomInDown">
             <h1 className="first-word">WELCOME</h1>
@@ -61,6 +62,7 @@ export default function Home() {
             autoplay
           />
         </div>
+        
       </div>
 
       <Content />

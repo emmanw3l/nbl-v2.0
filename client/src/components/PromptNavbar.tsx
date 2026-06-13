@@ -14,7 +14,7 @@ export default function PromptNavbar({ month, year }: Props) {
     <nav
       className="navbar sticky-top px-3 px-md-4"
       style={{
-        background:   "rgba(255,255,255,0.85)",
+        background:   "rgba(180, 108, 13, 0.56)",
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid rgba(0,0,0,0.08)",
         zIndex: 1030,
@@ -23,13 +23,20 @@ export default function PromptNavbar({ month, year }: Props) {
       <div className="container-fluid d-flex align-items-center justify-content-between">
 
         {/* ── Left — back link ── */}
-        <Link
+        {/* <Link
           to="/mainPromptPage"
           className="btn btn-outline-dark btn-sm rounded-3 d-flex align-items-center gap-1"
           style={{ minWidth: 90 }}
         >
           <i className="bi bi-arrow-left" />
           <span className="d-none d-sm-inline">Prompts</span>
+        </Link> */}
+        <Link
+          to="/"
+          className="navbar-brand fw-bold mb-0"
+          style={{ fontSize: "2rem", minWidth: 90, textAlign: "left" }}
+        >
+          <i className="bi bi-house "></i>
         </Link>
 
         {/* ── Center — month & year ── */}
@@ -54,13 +61,6 @@ export default function PromptNavbar({ month, year }: Props) {
         </motion.div>
 
         {/* ── Right — home link ── */}
-        <Link
-          to="/"
-          className="navbar-brand fw-bold mb-0"
-          style={{ fontSize: "1rem", minWidth: 90, textAlign: "right" }}
-        >
-          NBL
-        </Link>
 
       </div>
     </nav>

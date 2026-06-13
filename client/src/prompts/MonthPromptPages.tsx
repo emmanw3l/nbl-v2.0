@@ -7,6 +7,8 @@ import PromptNavbar from "../components/PromptNavbar";
 import PagedContent from "../components/PagedContent";
 import "../components/paging.css";
 
+import Footer from "../components/footer/footer";
+
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
 const MONTH_NAMES: Record<string, number> = {
@@ -208,6 +210,7 @@ export default function MonthPromptPage() {
           </motion.div>
         )}
       </div>
+      <Footer/>
     </motion.div>
   );
 }
