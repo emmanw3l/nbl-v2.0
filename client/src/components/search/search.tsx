@@ -244,7 +244,7 @@ export default function Search() {
     <>
       {/* Trigger */}
       <button className="search-trigger" onClick={handleOpen} aria-label="Search">
-        <i className="bi bi-search" />
+        <i className="bi bi-search text-white" />
       </button>
 
       {/* Full-width panel beneath navbar */}

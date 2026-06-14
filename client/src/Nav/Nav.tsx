@@ -22,7 +22,7 @@ export default function Layout() {
       animate="animate"
       exit="exit"
       transition={{ duration: 0.5 }}
-      className=""
+      className="mb-5"
     >
       {/* Navbar */}
       <nav

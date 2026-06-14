@@ -62,7 +62,7 @@ model Award {
   updatedAt   DateTime @updatedAt
   category    String
   nominees    AwardNominee[]
-  winner      Json
+
 
   @@map("awards")
 }
