@@ -1,33 +1,54 @@
 // server/src/controllers/awards.controller.ts
 import type { Request, Response, NextFunction } from "express";
-import type { Prisma } from "@prisma/client";
 import prisma from "../config/db";
 
-interface Nominee {
-  name: string;
-  work: string;
+interface NomineeInput {
+  authorId: number | string;
+  work?: string;
+  isWinner: boolean;
 }
 
 interface AwardBody {
   description?: string;
   category?: string;
   year?: number | string;
-  nominees?: Nominee[];
-  winner?: Nominee;
+  nominees?: NomineeInput[];
 }
 
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+// Safely extract a single string from req.query (which can be string | string[])
+function queryString(val: unknown): string | undefined {
+  if (typeof val === "string") return val;
+  if (Array.isArray(val) && typeof val[0] === "string") return val[0];
+  return undefined;
+}
+
+const nomineeInclude = {
+  nominees: {
+    include: {
+      author: { select: { id: true, name: true, slug: true } },
+    },
+    orderBy: { isWinner: "desc" as const },
+  },
+};
+
+// ── Controllers ────────────────────────────────────────────────────────────
+
+// GET /api/awards?year=2025
 export async function getAwards(
   req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> {
   try {
-    const where = req.query.year
-      ? { year: parseInt(req.query.year as string, 10) }
-      : {};
+    const yearStr = queryString(req.query.year);
+    const where = yearStr ? { year: parseInt(yearStr, 10) } : {};
+
     const awards = await prisma.award.findMany({
       where,
       orderBy: [{ year: "desc" }, { category: "asc" }],
+      include: nomineeInclude,
     });
     res.json({ awards });
   } catch (err) {
@@ -35,18 +56,17 @@ export async function getAwards(
   }
 }
 
+// GET /api/awards/:id
 export async function getAward(
-  req: Request<{ id: string }>,
+  req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> {
   try {
-    const awardId = parseInt(req.params.id, 10);
-    if (Number.isNaN(awardId)) {
-      res.status(400).json({ error: "Invalid award id" });
-      return;
-    }
-    const award = await prisma.award.findUnique({ where: { id: awardId } });
+    const award = await prisma.award.findUnique({
+      where: { id: parseInt(String(req.params.id), 10) },
+      include: nomineeInclude,
+    });
     if (!award) {
       res.status(404).json({ error: "Award not found" });
       return;
@@ -57,31 +77,41 @@ export async function getAward(
   }
 }
 
+// POST /api/awards
 export async function createAward(
   req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { description, category, year, nominees, winner } =
-      req.body as AwardBody;
-    if (!description || !category || !year || !nominees || !winner) {
+    const {
+      description,
+      category,
+      year,
+      nominees = [],
+    } = req.body as AwardBody;
+
+    if (!description || !category || !year) {
       res
         .status(400)
-        .json({
-          error:
-            "description, category, year, nominees, and winner are required",
-        });
+        .json({ error: "description, category, and year are required" });
       return;
     }
+
     const award = await prisma.award.create({
       data: {
         description,
         category,
         year: parseInt(String(year), 10),
-        nominees: nominees as unknown as Prisma.InputJsonValue,
-        winner: winner as unknown as Prisma.InputJsonValue,
+        nominees: {
+          create: nominees.map((n) => ({
+            authorId: parseInt(String(n.authorId), 10),
+            work: n.work ?? "",
+            isWinner: n.isWinner ?? false,
+          })),
+        },
       },
+      include: nomineeInclude,
     });
     res.status(201).json({ award });
   } catch (err) {
@@ -89,37 +119,38 @@ export async function createAward(
   }
 }
 
+// PUT /api/awards/:id
 export async function updateAward(
-  req: Request<{ id: string }>,
+  req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { description, category, year, nominees, winner } =
-      req.body as AwardBody;
-    const data: Partial<{
-      description: string;
-      category: string;
-      year: number;
-      nominees: Prisma.InputJsonValue;
-      winner: Prisma.InputJsonValue;
-    }> = {};
-    if (description !== undefined) data.description = description;
-    if (category !== undefined) data.category = category;
-    if (year !== undefined) data.year = parseInt(String(year), 10);
-    if (nominees !== undefined)
-      data.nominees = nominees as unknown as Prisma.InputJsonValue;
-    if (winner !== undefined)
-      data.winner = winner as unknown as Prisma.InputJsonValue;
+    const id = parseInt(String(req.params.id), 10);
+    const { description, category, year, nominees } = req.body as AwardBody;
 
-    const awardId = parseInt(req.params.id, 10);
-    if (Number.isNaN(awardId)) {
-      res.status(400).json({ error: "Invalid award id" });
-      return;
+    // Delete and recreate nominees when provided
+    if (nominees !== undefined) {
+      await prisma.awardNominee.deleteMany({ where: { awardId: id } });
     }
+
     const award = await prisma.award.update({
-      where: { id: awardId },
-      data,
+      where: { id },
+      data: {
+        ...(description !== undefined && { description }),
+        ...(category !== undefined && { category }),
+        ...(year !== undefined && { year: parseInt(String(year), 10) }),
+        ...(nominees !== undefined && {
+          nominees: {
+            create: nominees.map((n) => ({
+              authorId: parseInt(String(n.authorId), 10),
+              work: n.work ?? "",
+              isWinner: n.isWinner ?? false,
+            })),
+          },
+        }),
+      },
+      include: nomineeInclude,
     });
     res.json({ award });
   } catch (err) {
@@ -127,18 +158,17 @@ export async function updateAward(
   }
 }
 
+// DELETE /api/awards/:id
 export async function deleteAward(
-  req: Request<{ id: string }>,
+  req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> {
   try {
-    const awardId = parseInt(req.params.id, 10);
-    if (Number.isNaN(awardId)) {
-      res.status(400).json({ error: "Invalid award id" });
-      return;
-    }
-    await prisma.award.delete({ where: { id: awardId } });
+    // onDelete: Cascade on AwardNominee handles nominees automatically
+    await prisma.award.delete({
+      where: { id: parseInt(String(req.params.id), 10) },
+    });
     res.json({ message: "Award deleted" });
   } catch (err) {
     next(err);

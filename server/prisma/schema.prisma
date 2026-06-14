@@ -25,9 +25,10 @@ model Author {
   id        Int      @id @default(autoincrement())
   name      String
   slug      String   @unique
+  prompts   Prompt[]
+  nominations AwardNominee[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  prompts   Prompt[]
 
   @@map("authors")
 }
@@ -35,17 +36,17 @@ model Author {
 model Prompt {
   id        Int      @id @default(autoincrement())
   title     String
+  theme     String?
   content   String
   month     Int
   year      Int
   slug      String   @unique
   authorId  Int
+  author    Author   @relation(fields: [authorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    Int?
-  theme     String?
   wordCount Int      @default(0)
-  author    Author   @relation(fields: [authorId], references: [id])
   user      User?    @relation(fields: [userId], references: [id])
 
   @@index([year])
@@ -60,7 +61,7 @@ model Award {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   category    String
-  nominees    Json
+  nominees    AwardNominee[]
   winner      Json
 
   @@map("awards")
@@ -70,4 +71,15 @@ enum Role {
   SUPER_ADMIN
   ADMIN
   EDITOR
+}
+model AwardNominee {
+  id       Int     @id @default(autoincrement())
+  awardId  Int
+  award    Award   @relation(fields: [awardId], references: [id], onDelete: Cascade)
+  authorId Int
+  author   Author  @relation(fields: [authorId], references: [id])
+  work     String?
+  isWinner Boolean @default(false)
+
+  @@map("award_nominees")
 }

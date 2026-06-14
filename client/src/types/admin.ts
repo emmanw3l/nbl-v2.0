@@ -22,7 +22,7 @@ export interface Author {
 export interface Prompt {
   id:        number;
   title:     string;
-  theme:     string;
+  theme?:    string;
   content:   string;
   month:     number;
   year:      number;
@@ -33,19 +33,22 @@ export interface Prompt {
   updatedAt: string;
 }
 
-export interface Nominee {
-  name: string;
-  work: string;
-  slug: string;
+// ── Award types — now relational ──────────────────────────────────────────
+
+export interface AwardNominee {
+  id:       number;
+  authorId: number;
+  author:   { id: number; name: string; slug: string };
+  work:     string;
+  isWinner: boolean;
 }
 
 export interface Award {
   id:          number;
   description: string;
   category:    string;
-  nominees:    Nominee[];
-  winner:      Nominee;
   year:        number;
+  nominees:    AwardNominee[];
   createdAt:   string;
 }
 

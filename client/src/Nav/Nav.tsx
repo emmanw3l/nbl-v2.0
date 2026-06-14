@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-// import "./Nav.css";
-// import Search from "../components/search/search";
+import "./Nav.css";
+import Search from "../components/search/search";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -44,13 +44,14 @@ export default function Layout() {
           <span className="d-none d-lg-block">NAIJA BOOK LOVERS</span>
           <span className=" d-sm-block d-md-none">NBL</span>
         </a>
+        
 
+      <Search />
         <button className="btn pe-4 navbar-brand tree" onClick={toggleSidebar}>
           <i className={`bi ${sidebarOpen ? "bi-x" : "bi-list"} fs-3`}></i>
         </button>
       </nav>
 
-      {/* <Search /> */}
       {/* AnimatePresence handles exit animations */}
       <AnimatePresence>
         {sidebarOpen && (
