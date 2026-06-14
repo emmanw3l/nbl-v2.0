@@ -1,25 +1,18 @@
-import { JSX } from "react";
+// import { JSX } from "react";
 import "./home.css";
 import Layout from "./Nav/Nav";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import Content from "./content/content";
 import Footer from "./components/footer/footer";
 import { motion } from "framer-motion";
-import { getRandomPrompt } from "./prompts/promptCollection";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+
+// import { Link } from "react-router-dom";
+// import { useEffect, useState } from "react";
 import RandomPrompt from "./components/RandomPrompt";
 // import Search from "./components/search/search";
 
 // Define the interface for your prompts
-interface Prompt {
-  id: number;
-  title: string;
-  author: string;
-  month: string;
-  year: string;
-  content: JSX.Element[];
-}
+
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -28,11 +21,7 @@ const pageVariants = {
 };
 
 export default function Home() {
-  const [randomPrompt, setRandomPrompt] = useState<Prompt | null>(null);
 
-  useEffect(() => {
-    setRandomPrompt(getRandomPrompt());
-  }, []);
 
   return (
     <motion.div
