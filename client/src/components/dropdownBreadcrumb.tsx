@@ -1,7 +1,7 @@
 // src/components/DropdownBreadcrumb.tsx
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate }           from "react-router-dom";
-import "./DropdownBreadcrumb.css";
+import "./dropdownBreadcrumb.css";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
