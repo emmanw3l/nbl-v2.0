@@ -1,5 +1,5 @@
 // src/components/PromptNavbar.tsx
-import { Link } from "react-router-dom";
+import { Link }   from "react-router-dom";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -8,60 +8,64 @@ interface Props {
 }
 
 export default function PromptNavbar({ month, year }: Props) {
-  const monthLabel = month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
+  const monthLabel = month
+    ? month.charAt(0).toUpperCase() + month.slice(1).toLowerCase()
+    : "";
 
   return (
     <nav
-      className="navbar sticky-top px-3 px-md-4"
+      className="navbar fixed-top px-3 px-md-4"
       style={{
-        background:   "rgba(180, 108, 13, 0.56)",
+        background:     "rgba(255,255,255,0.92)",
         backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,0,0,0.08)",
-        zIndex: 1030,
+        borderBottom:   "1px solid rgba(0,0,0,0.08)",
+        zIndex:         1030,
+        height:         56,
       }}
     >
-      <div className="container-fluid d-flex align-items-center justify-content-between">
-
-        {/* ── Left — back link ── */}
-        {/* <Link
-          to="/mainPromptPage"
-          className="btn btn-outline-dark btn-sm rounded-3 d-flex align-items-center gap-1"
-          style={{ minWidth: 90 }}
-        >
-          <i className="bi bi-arrow-left" />
-          <span className="d-none d-sm-inline">Prompts</span>
-        </Link> */}
-        <Link
-          to="/"
-          className="navbar-brand fw-bold mb-0"
-          style={{ fontSize: "2rem", minWidth: 90, textAlign: "left" }}
-        >
-          <i className="bi bi-house "></i>
-        </Link>
+      {/* Three equal columns — left / center / right */}
+      <div
+        style={{
+          display:       "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          alignItems:    "center",
+          width:         "100%",
+        }}
+      >
+        {/* ── Left — back ── */}<div className="">
+          <Link to="/" className="fw-bold text-decoration-none" style={{ fontSize: "1.5rem" }}>
+            <i className="bi bi-house text-black"></i>
+          </Link>
+        </div>
+        
 
         {/* ── Center — month & year ── */}
         <motion.div
-          className="text-center position-absolute start-50 translate-middle-x"
-          initial={{ opacity: 0, y: -8 }}
+          className="text-center"
+          initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.35 }}
         >
-          <span
-            className="fw-bold"
-            style={{ fontSize: "1.05rem", letterSpacing: ".3px" }}
-          >
+          <span className="fw-bold" style={{ fontSize: "1rem" }}>
             {monthLabel}
           </span>
-          <span
-            className="text-muted ms-2"
-            style={{ fontSize: "1.05rem" }}
-          >
-            {year}
-          </span>
+          {year && (
+            <span className="text-muted ms-2" style={{ fontSize: "1rem" }}>
+              {year}
+            </span>
+          )}
         </motion.div>
 
-        {/* ── Right — home link ── */}
-
+        {/* ── Right — home ── */}
+        <div className="text-end">
+          <Link
+            to="/mainPromptPage"
+            className="btn btn-outline-dark btn-sm rounded-3 d-inline-flex align-items-center gap-1"
+          >
+            <i className="bi bi-arrow-left" />
+            <span className="d-none d-sm-inline">Prompts</span>
+          </Link>
+        </div>
       </div>
     </nav>
   );

@@ -1,0 +1,134 @@
+/* src/components/DropdownBreadcrumb.css */
+
+/* ── Breadcrumb base ──────────────────────────────────────────────────────── */
+.breadcrumb {
+  background:  transparent;
+  padding:     0;
+  margin:      0;
+  font-size:   0.9rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+  color:   #aaa;
+  padding: 0 6px;
+}
+
+.breadcrumb-item a {
+  color:           #555;
+  text-decoration: none;
+  transition:      color .15s;
+}
+.breadcrumb-item a:hover {
+  color: #111;
+}
+
+/* ── Dropdown trigger buttons ─────────────────────────────────────────────── */
+.bc-trigger {
+  background:  transparent;
+  border:      none;
+  padding:     3px 6px;
+  border-radius: 6px;
+  cursor:      pointer;
+  display:     inline-flex;
+  align-items: center;
+  gap:         5px;
+  font-size:   0.9rem;
+  color:       #555;
+  transition:  background .15s, color .15s;
+  line-height: 1;
+}
+
+.bc-trigger:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color:      #111;
+}
+
+.bc-trigger.bc-trigger--active {
+  font-weight: 600;
+  color:       #111;
+}
+
+.bc-trigger i {
+  font-size:  10px;
+  opacity:    0.6;
+  transition: transform .2s;
+}
+
+.bc-trigger.open i {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown panel ───────────────────────────────────────────────────────── */
+.bc-dropdown {
+  position:      absolute;
+  top:           calc(100% + 8px);
+  left:          0;
+  z-index:       1050;
+  background:    #fff;
+  border:        1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow:    0 8px 24px rgba(0, 0, 0, 0.1);
+  min-width:     130px;
+  padding:       6px 0;
+  animation:     bcFadeIn .15s ease;
+}
+
+@keyframes bcFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Dropdown items ───────────────────────────────────────────────────────── */
+.bc-dropdown-item {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  width:       100%;
+  background:  transparent;
+  border:      none;
+  padding:     8px 14px;
+  font-size:   0.875rem;
+  color:       #333;
+  text-align:  left;
+  cursor:      pointer;
+  transition:  background .12s, color .12s;
+  white-space: nowrap;
+}
+
+.bc-dropdown-item:hover {
+  background: #f5f5f5;
+  color:      #111;
+}
+
+.bc-dropdown-item.bc-dropdown-item--current {
+  font-weight: 600;
+  color:       #111;
+  background:  #f0f0f0;
+}
+
+.bc-dropdown-item i {
+  font-size: 11px;
+  opacity:   0.7;
+  flex-shrink: 0;
+}
+
+.bc-dropdown-empty {
+  padding:   10px 14px;
+  font-size: 0.8rem;
+  color:     #aaa;
+  font-style: italic;
+}
+
+/* ── Wrapper ──────────────────────────────────────────────────────────────── */
+.bc-item-wrap {
+  position: relative;
+  display:  inline-block;
+}
+
+/* ── Divider between items (optional) ────────────────────────────────────── */
+.bc-dropdown hr {
+  margin:     4px 0;
+  border:     none;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}

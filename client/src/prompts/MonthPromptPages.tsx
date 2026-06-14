@@ -8,6 +8,7 @@ import PagedContent from "../components/PagedContent";
 import "../components/paging.css";
 
 import Footer from "../components/footer/footer";
+import DropdownBreadcrumb from "../components/dropdownBreadcrumb";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
@@ -86,6 +87,14 @@ export default function MonthPromptPage() {
       .finally(() => setLoading(false));
   }, [year, monthNum]);
 
+
+  useEffect(() => {
+  if (!loading && window.location.hash) {
+    const el = document.querySelector(window.location.hash);
+    if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
+  }
+}, [loading]);
+
   const monthPrompt = prompts[0] ?? null;
 
   return (
@@ -99,9 +108,9 @@ export default function MonthPromptPage() {
     >
       <PromptNavbar month={month ?? ""} year={year ?? ""} />
 
-      <div className="container py-5">
+      <div className="container py-5" style={{ marginTop: "60px" }}>
         {/* Breadcrumb */}
-        <nav aria-label="breadcrumb" className="mb-4">
+        {/* <nav aria-label="breadcrumb" className="mb-4">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link to="/mainPromptPage">Prompts</Link>
@@ -113,7 +122,8 @@ export default function MonthPromptPage() {
               {monthLabel}
             </li>
           </ol>
-        </nav>
+        </nav> */}
+        <DropdownBreadcrumb currentYear={year ?? ""} currentMonth={month ?? ""} />
 
         {loading && (
           <div className="text-center py-5">
@@ -149,12 +159,13 @@ export default function MonthPromptPage() {
                 className="text-muted text-uppercase fw-semibold mb-1"
                 style={{ letterSpacing: ".5px", fontSize: 13 }}
               >
-                {monthLabel} {year}
+                {/* {monthLabel} {year} */}
               </p>
+              {/* <h1> Prompt: {monthPrompt?.title}</h1> */}
               <h1 className="fw-bold display-5 mb-2">THEME: {monthPrompt?.title}</h1>
               {monthPrompt?.theme && (
                 <p className="lead fst-italic text-muted">
-                  Theme: {monthPrompt.theme}
+                  {/* Theme: {monthPrompt.theme} */}
                 </p>
               )}
               <p className="text-muted small mt-2">
@@ -175,7 +186,7 @@ export default function MonthPromptPage() {
                   className="col-10 cardss col-md-5 "
                   variants={cardVariants}
                 >
-                  <div className=" shadow-sm rounded-4 h-100 p-4">
+                  <div className=" shadow-sm rounded-4 h-100 p-4" id={`prompt-${prompt.id}`}>
                     {/* Author header */}
                     <div
                       className="mb-3 pb-3"
