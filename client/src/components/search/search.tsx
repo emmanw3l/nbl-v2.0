@@ -7,40 +7,57 @@ import "./search.css";
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
 const MONTH_NAMES = [
-  "January","February","March","April","May","June",
-  "July","August","September","October","November","December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Prompt {
-  id:     number;
-  title:  string;
-  theme:  string | null;
-  month:  number;
-  year:   number;
-  slug:   string;
+  id: number;
+  title: string;
+  theme: string | null;
+  month: number;
+  year: number;
+  slug: string;
   author: { id: number; name: string; slug: string };
 }
 
+interface AwardNominee {
+  id: number;
+  author: { id: number; name: string; slug: string };
+  work: string;
+  isWinner: boolean;
+}
+
 interface Award {
-  id:          number;
-  category:    string;
+  id: number;
+  category: string;
   description: string;
-  year:        number;
-  winner:      { name: string; work: string };
-  nominees:    { name: string; work: string }[];
+  year: number;
+  winner: { name: string; work: string };
+  nominees: AwardNominee[];
 }
 
 interface Author {
-  id:     number;
-  name:   string;
-  slug:   string;
+  id: number;
+  name: string;
+  slug: string;
   _count?: { prompts: number };
 }
 
 interface Results {
   prompts: Prompt[];
-  awards:  Award[];
+  awards: Award[];
   authors: Author[];
 }
 
@@ -48,13 +65,17 @@ interface Results {
 function Highlight({ text, query }: { text: string; query: string }) {
   if (!query.trim() || !text) return <>{text}</>;
   const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const parts   = text.split(new RegExp(`(${escaped})`, "gi"));
+  const parts = text.split(new RegExp(`(${escaped})`, "gi"));
   return (
     <>
       {parts.map((part, i) =>
-        part.toLowerCase() === query.toLowerCase()
-          ? <mark key={i} className="search-highlight">{part}</mark>
-          : part
+        part.toLowerCase() === query.toLowerCase() ? (
+          <mark key={i} className="search-highlight">
+            {part}
+          </mark>
+        ) : (
+          part
+        ),
       )}
     </>
   );
@@ -63,21 +84,23 @@ function Highlight({ text, query }: { text: string; query: string }) {
 // ── Filter helpers ─────────────────────────────────────────────────────────
 function filterPrompts(prompts: Prompt[], q: string) {
   const l = q.toLowerCase();
-  return prompts.filter((p) =>
-    p.title.toLowerCase().includes(l) ||
-    p.theme?.toLowerCase().includes(l) ||
-    p.author?.name.toLowerCase().includes(l) ||
-    MONTH_NAMES[p.month - 1]?.toLowerCase().includes(l)
+  return prompts.filter(
+    (p) =>
+      p.title.toLowerCase().includes(l) ||
+      p.theme?.toLowerCase().includes(l) ||
+      p.author?.name.toLowerCase().includes(l) ||
+      MONTH_NAMES[p.month - 1]?.toLowerCase().includes(l),
   );
 }
 
 function filterAwards(awards: Award[], q: string) {
   const l = q.toLowerCase();
-  return awards.filter((a) =>
-    a.category.toLowerCase().includes(l) ||
-    a.description.toLowerCase().includes(l) ||
-    a.winner?.name.toLowerCase().includes(l) ||
-    a.nominees?.some((n) => n.name.toLowerCase().includes(l))
+  return awards.filter(
+    (a) =>
+      a.category.toLowerCase().includes(l) ||
+      a.description.toLowerCase().includes(l) ||
+      a.winner?.name.toLowerCase().includes(l) ||
+      a.nominees?.some((n) => n.author?.name?.toLowerCase().includes(l)),
   );
 }
 
@@ -86,7 +109,15 @@ function filterAuthors(authors: Author[], q: string) {
 }
 
 // ── Result cards ───────────────────────────────────────────────────────────
-function PromptResult({ prompt, query, onClick }: { prompt: Prompt; query: string; onClick: () => void }) {
+function PromptResult({
+  prompt,
+  query,
+  onClick,
+}: {
+  prompt: Prompt;
+  query: string;
+  onClick: () => void;
+}) {
   return (
     <div className="search-result-card" onClick={onClick}>
       <div className="search-result-type">Prompt</div>
@@ -99,7 +130,10 @@ function PromptResult({ prompt, query, onClick }: { prompt: Prompt; query: strin
         </p>
       )}
       <p className="search-result-meta">
-        <Highlight text={`${MONTH_NAMES[prompt.month - 1]} ${prompt.year}`} query={query} />
+        <Highlight
+          text={`${MONTH_NAMES[prompt.month - 1]} ${prompt.year}`}
+          query={query}
+        />
         {" · "}
         <Highlight text={prompt.author?.name ?? ""} query={query} />
       </p>
@@ -107,9 +141,17 @@ function PromptResult({ prompt, query, onClick }: { prompt: Prompt; query: strin
   );
 }
 
-function AwardResult({ award, query, onClick }: { award: Award; query: string; onClick: () => void }) {
+function AwardResult({
+  award,
+  query,
+  onClick,
+}: {
+  award: Award;
+  query: string;
+  onClick: () => void;
+}) {
   const matchingNominee = award.nominees?.find((n) =>
-    n.name.toLowerCase().includes(query.toLowerCase())
+    n.author?.name?.toLowerCase().includes(query.toLowerCase()),
   );
   return (
     <div className="search-result-card" onClick={onClick}>
@@ -122,14 +164,36 @@ function AwardResult({ award, query, onClick }: { award: Award; query: string; o
       </p>
       <p className="search-result-meta">
         {award.year}
-        {award.winner?.name && <> · Winner: <Highlight text={award.winner.name} query={query} /></>}
-        {matchingNominee   && <> · Nominee: <Highlight text={matchingNominee.name} query={query} /></>}
+        {award.winner?.name && (
+          <>
+            {" "}
+            · Winner: <Highlight text={award.winner.name} query={query} />
+          </>
+        )}
+        {matchingNominee && (
+          <>
+            {" "}
+            · Nominee:{" "}
+            <Highlight
+              text={matchingNominee.author?.name ?? ""}
+              query={query}
+            />
+          </>
+        )}
       </p>
     </div>
   );
 }
 
-function AuthorResult({ author, query, onClick }: { author: Author; query: string; onClick: () => void }) {
+function AuthorResult({
+  author,
+  query,
+  onClick,
+}: {
+  author: Author;
+  query: string;
+  onClick: () => void;
+}) {
   return (
     <div className="search-result-card" onClick={onClick}>
       <div className="search-result-type">Author</div>
@@ -149,14 +213,22 @@ function AuthorResult({ author, query, onClick }: { author: Author; query: strin
 export default function Search() {
   const navigate = useNavigate();
 
-  const [query,   setQuery]   = useState("");
-  const [open,    setOpen]    = useState(false);
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<Results>({ prompts: [], awards: [], authors: [] });
-  const [cache,   setCache]   = useState<{ prompts: Prompt[]; awards: Award[]; authors: Author[] } | null>(null);
+  const [results, setResults] = useState<Results>({
+    prompts: [],
+    awards: [],
+    authors: [],
+  });
+  const [cache, setCache] = useState<{
+    prompts: Prompt[];
+    awards: Award[];
+    authors: Author[];
+  } | null>(null);
 
-  const inputRef    = useRef<HTMLInputElement>(null);
-  const panelRef    = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Close when clicking outside the panel
@@ -192,13 +264,13 @@ export default function Search() {
     try {
       const [pr, ar, au] = await Promise.all([
         fetch(`${API}/prompts`).then((r) => r.json()),
-        fetch(`${API}/awards`).then((r)  => r.json()),
+        fetch(`${API}/awards`).then((r) => r.json()),
         fetch(`${API}/authors`).then((r) => r.json()),
       ]);
       const data = {
-        prompts: pr.prompts  ?? [],
-        awards:  ar.awards   ?? [],
-        authors: au.authors  ?? [],
+        prompts: pr.prompts ?? [],
+        awards: ar.awards ?? [],
+        authors: au.authors ?? [],
       };
       setCache(data);
       return data;
@@ -220,15 +292,18 @@ export default function Search() {
       const data = await fetchAll();
       setResults({
         prompts: filterPrompts(data.prompts, query),
-        awards:  filterAwards(data.awards,   query),
+        awards: filterAwards(data.awards, query),
         authors: filterAuthors(data.authors, query),
       });
     }, 300);
-    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
   }, [query, fetchAll]);
 
-  const totalResults = results.prompts.length + results.awards.length + results.authors.length;
-  const hasQuery     = query.trim().length > 0;
+  const totalResults =
+    results.prompts.length + results.awards.length + results.authors.length;
+  const hasQuery = query.trim().length > 0;
 
   function handleOpen() {
     setOpen(true);
@@ -243,7 +318,11 @@ export default function Search() {
   return (
     <>
       {/* Trigger */}
-      <button className="search-trigger" onClick={handleOpen} aria-label="Search">
+      <button
+        className="search-trigger"
+        onClick={handleOpen}
+        aria-label="Search"
+      >
         <i className="bi bi-search text-white" />
       </button>
 
@@ -283,7 +362,10 @@ export default function Search() {
             <div className="search-results">
               {loading && (
                 <div className="search-status">
-                  <div className="spinner-border spinner-border-sm text-secondary" role="status" />
+                  <div
+                    className="spinner-border spinner-border-sm text-secondary"
+                    role="status"
+                  />
                   <span>Loading…</span>
                 </div>
               )}
@@ -307,8 +389,14 @@ export default function Search() {
                     </p>
                     {results.prompts.map((p) => (
                       <PromptResult
-                        key={p.id} prompt={p} query={query}
-                        onClick={() => go(`/mainPromptPage/${p.year}/${MONTH_NAMES[p.month - 1]?.toLowerCase()}`)}
+                        key={p.id}
+                        prompt={p}
+                        query={query}
+                        onClick={() =>
+                          go(
+                            `/mainPromptPage/${p.year}/${MONTH_NAMES[p.month - 1]?.toLowerCase()}`,
+                          )
+                        }
                       />
                     ))}
                   </div>
@@ -322,7 +410,9 @@ export default function Search() {
                     </p>
                     {results.awards.map((a) => (
                       <AwardResult
-                        key={a.id} award={a} query={query}
+                        key={a.id}
+                        award={a}
+                        query={query}
                         onClick={() => go("/awards")}
                       />
                     ))}
@@ -337,7 +427,9 @@ export default function Search() {
                     </p>
                     {results.authors.map((a) => (
                       <AuthorResult
-                        key={a.id} author={a} query={query}
+                        key={a.id}
+                        author={a}
+                        query={query}
                         onClick={() => go(`/profile/${a.slug}`)}
                       />
                     ))}
