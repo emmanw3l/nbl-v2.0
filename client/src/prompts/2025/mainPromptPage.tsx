@@ -2,7 +2,7 @@
 // import Carousel from '../components/carousel/carousel';
 import "../promptpage.css";
 // import { prompts } from "./januaryPrompts";
-import PromptViewer, {
+import {
   PromptViewerApril,
   PromptViewerFeb,
   PromptViewerMJ,
@@ -83,17 +83,7 @@ export default function PromptsPage() {
       </button>
 
       <div className="page-container twentyfive" id="2025">
-        <div className="">
-          <section id="january2025" className="">
-            <h1 className="text-center twenty ">JANUARY 2025</h1>
-            <h3 className="jan-head text-center">Theme: Realm of Divinity</h3>
 
-            <h3 className="text-center">PROMPT: REMINISCE OF TRANSCENDENCE</h3>
-            <hr />
-
-            <PromptViewer />
-          </section>
-        </div>
 
         <div className="page-container">
           <section id="february2025" className="">

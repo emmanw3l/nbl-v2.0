@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="col-lg-5 col-5 col-sm-8 lottie mx-auto">
+        <div className="col-lg-5 col-5 col-sm-8 lottie mx-auto mt-5">
           <DotLottieReact
             src="https://lottie.host/6db403da-3cf5-45a4-8cec-3fe99fddd0c9/sq1o2jMyKu.lottie"
             backgroundColor="transparent"

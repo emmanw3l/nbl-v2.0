@@ -394,7 +394,7 @@ export default function Search() {
                         query={query}
                         onClick={() =>
                           go(
-                            `/mainPromptPage/${p.year}/${MONTH_NAMES[p.month - 1]?.toLowerCase()}`,
+                            `/mainPromptPage/${p.year}/${MONTH_NAMES[p.month - 1]?.toLowerCase()}#prompt-${p.id}`,
                           )
                         }
                       />

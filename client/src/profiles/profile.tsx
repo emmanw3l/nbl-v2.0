@@ -1,210 +1,305 @@
-import { prompts } from "../assets/prompts/2025/januaryPrompts";
-import { febPrompts } from "../assets/prompts/2025/februaryPrompts";
-import { aprilPrompts } from "../assets/prompts/2025/aprilPrompt";
-import { mJPrompts } from "../assets/prompts/2025/mayJune";
-import { julyPrompts } from "../assets/prompts/2025/july";
-import { septemberPrompts } from "../assets/prompts/2025/septemberPrompt";
-import { octPrompts2024 } from "../assets/prompts/2024/october";
-import { januaryPrompts2024 } from "../assets/prompts/2024/january";
-import { februaryPrompts2024 } from "../assets/prompts/2024/february";
-import { marchPrompts2024 } from "../assets/prompts/2024/march";
-import { aprilPrompts2024 } from "../assets/prompts/2024/april";
-import { motion } from "framer-motion";
-// import { NavLink } from "react-router-dom";
-import "./profile.css";
-// import Layout from "../Nav/Nav";
-import PagedText from "../components/paging";
-// import { li } from "framer-motion/client";
+// src/profiles/profile.tsx
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
+import { motion, Variants } from "framer-motion";
+import Layout from "../Nav/Nav";
 import Footer from "../components/footer/footer";
-import { awardCategories } from "../awards/awardCategories";
-import { awardCategories2023 } from "../awards/awardCategories2023";
-import Search from "../components/search/search";
-import { awardCategories2025 } from "../awards/awardCategories2025";
-import { junePrompts2024 } from "../assets/prompts/2024/june";
-import { januaryPrompts2026 } from "../assets/prompts/2026/january";
-import { februaryPrompts2026 } from "../assets/prompts/2026/february";
+import "./profile.css";
 
-// Merge all prompts into one array
-const allPrompts = [
-  // 2024
-  ...januaryPrompts2024,
-  ...februaryPrompts2024,
-  ...marchPrompts2024,
-  ...aprilPrompts2024,
-  ...junePrompts2024,
-  // ...julyPrompts2024,
-    // ...augustPrompts2024,
-  ...octPrompts2024,
+const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
-  // 2025
-
-  ...prompts,
-  ...febPrompts,
-  ...aprilPrompts,
-  ...mJPrompts,
-  ...julyPrompts,
-  ...septemberPrompts,
-
-  // 2026
-    ...januaryPrompts2026,
-    ...februaryPrompts2026,
+const MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
-// sluuuugssss
-const slugify = (text: string) =>
-  text
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "");
+// ── Types ──────────────────────────────────────────────────────────────────
+interface PromptMeta {
+  id: number;
+  title: string;
+  month: number;
+  year: number;
+  slug: string;
+}
 
-// Group prompts by author name
-const authorsMap: { [author: string]: typeof allPrompts } = {};
+interface Nomination {
+  id: number;
+  isWinner: boolean;
+  award: {
+    id: number;
 
-allPrompts.forEach((poem) => {
-  if (!authorsMap[poem.author]) {
-    authorsMap[poem.author] = [];
-  }
-  authorsMap[poem.author].push(poem);
-});
+    category: string;
+  };
+}
 
-// Convert to entries and sort alphabetically by author name
-const sortedAuthors = Object.entries(authorsMap).sort(([a], [b]) =>
-  a.localeCompare(b),
-);
+interface Author {
+  id: number;
+  name: string;
+  slug: string;
+  prompts: PromptMeta[];
+  nominations: Nomination[];
+  _count: { prompts: number; nominations: number };
+}
 
-// Get all authors from works
-const workAuthors = new Set(sortedAuthors.map(([author]) => author));
+type SortKey = "name" | "prompts" | "nominations" | "awards";
 
-// Get all authors from award categories (nominees + winners)
-const awardAuthors = new Set<string>();
-[...awardCategories, ...awardCategories2023, ...awardCategories2025].forEach(
-  (award) => {
-    award.nominees.forEach((nominee) => {
-      if (Array.isArray(nominee)) {
-        nominee.forEach((n) => awardAuthors.add(n));
-      } else {
-        awardAuthors.add(nominee);
-      }
-    });
+// ── Helpers ────────────────────────────────────────────────────────────────
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
 
-    if (award.winner) {
-      if (Array.isArray(award.winner)) {
-        award.winner.forEach((w) => awardAuthors.add(w));
-      } else {
-        awardAuthors.add(award.winner);
-      }
-    }
-  },
-);
+const AVATAR_COLORS: [string, string][] = [
+  ["#6c63ff", "#3d3799"],
+  ["#3ecf8e", "#1a9e63"],
+  ["#f59e0b", "#b97a00"],
+  ["#38bdf8", "#0284c7"],
+  ["#f472b6", "#c2185b"],
+  ["#a78bfa", "#6d28d9"],
+  ["#fb923c", "#c2410c"],
+  ["#34d399", "#059669"],
+];
 
-// Merge both sets
-const allAuthors = Array.from(new Set([...workAuthors, ...awardAuthors]));
+function getColor(name: string): [string, string] {
+  const index =
+    name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) %
+    AVATAR_COLORS.length;
+  return AVATAR_COLORS[index];
+}
 
-let authorsWithWorks = allAuthors.map((author) => {
-  const works = sortedAuthors.find(([a]) => a === author)?.[1] || [];
-  return [author, works] as [string, typeof works];
-});
-authorsWithWorks = authorsWithWorks.sort(([a], [b]) =>
-  a.localeCompare(b, "en", { sensitivity: "base" }),
-);
+function winCount(author: Author): number {
+  return author.nominations?.filter((n) => n.isWinner).length ?? 0;
+}
+function nominationCount(author: Author): number {
+  return author.nominations?.length ?? 0;
+}
 
+function sortAuthors(authors: Author[], key: SortKey): Author[] {
+  return [...authors].sort((a, b) => {
+    if (key === "name") return a.name.localeCompare(b.name);
+    if (key === "prompts") return b._count.prompts - a._count.prompts;
+    if (key === "nominations") return nominationCount(b) - nominationCount(a);
+    if (key === "awards") return winCount(b) - winCount(a);
+    return 0;
+  });
+}
+
+// ── Animations ─────────────────────────────────────────────────────────────
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -20 },
 };
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.07 } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
+  },
+};
+
+// ── Author Card ────────────────────────────────────────────────────────────
+function AuthorCard({ author, index }: { author: Author; index: number }) {
+  const [light, dark] = getColor(author.name);
+  const wins = winCount(author);
+  const nominations = nominationCount(author);
+  const isNominee = author.nominations?.length > 0 && wins === 0;
+
+  const awards = author.nominations?.filter((n) => n.isWinner) ?? [];
+
+  const [showPrompts, setShowPrompts] = useState(false);
+  const [showAwards, setShowAwards] = useState(false);
+  return (
+    <motion.div
+      className="col-12  col-sm-6 col-lg-4 col-xl-3"
+      variants={cardVariants}
+    >
+      <div
+        className={`card h-100 rounded-4 p-4 position-relative author-card ${
+          index % 2 === 0 ? "ac" : "ac-even"
+        }`}
+      >
+        {/* Award badge */}
+        {wins > 0 && (
+          <span
+            className="position-absolute top-0 end-0 mt-2 me-2 badge"
+            style={{
+              background: "rgba(245,158,11,0.15)",
+              color: "#8a5d0f",
+              fontSize: 11,
+            }}
+          >
+            🏆 {wins > 1 ? `${wins}x Winner` : "Winner"}
+          </span>
+        )}
+        {isNominee && (
+          <span
+            className="position-absolute top-0 end-0 mt-2 me-2 badge"
+            style={{
+              background: "rgba(108,99,255,0.1)",
+              color: "#6c63ff",
+              fontSize: 11,
+            }}
+          >
+            ✦ Nominee
+          </span>
+        )}
+
+        {/* Avatar + name */}
+        <div className="text-center mb-3">
+          <div
+            className="rounded-circle d-inline-flex align-items-center justify-content-center mb-2 fw-bold text-white"
+            style={{
+              width: 64,
+              height: 64,
+              fontSize: "1.2rem",
+              background: `linear-gradient(135deg, ${light}, ${dark})`,
+            }}
+          >
+            {getInitials(author.name)}
+          </div>
+          <h5 className="fw-bold mb-0">{author.name}</h5>
+          <p className="text-muted small mb-0">
+            {author._count.prompts} prompt{author._count.prompts !== 1 && "s"}
+            {" · "}
+            {nominations} nomination{nominations !== 1 && "s"}
+            {wins > 0 && (
+              <>
+                {" · "}
+                {wins} award{wins !== 1 && "s"} won
+              </>
+            )}
+          </p>
+        </div>
+
+        {/* Prompt titles */}
+        <button
+          className="btn btn-link p-0 text-decoration-none text-muted small text-start mb-2"
+          onClick={() => setShowPrompts((p) => !p)}
+        >
+          <i className={`bi bi-chevron-${showPrompts ? "up" : "down"} me-1`} />
+          {showPrompts ? "Hide" : "Show"} prompts ({author.prompts.length})
+        </button>
+
+        {showPrompts && (
+          <motion.ul
+            className="list-unstyled mb-3"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            style={{ maxHeight: 140, overflowY: "auto" }}
+          >
+            {author.prompts.map((p) => {
+              const monthName = MONTH_NAMES[p.month - 1]?.toLowerCase() ?? "";
+
+              return (
+                <li key={p.id} className="mb-2">
+                  <Link
+                    to={`/mainPromptPage/${p.year}/${monthName}#prompt-${p.id}`}
+                    className="text-decoration-none d-flex gap-2 text-white"
+                  >
+                    <span className="text-muted">⁍</span>
+                    <span className="">{p.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+        <hr className="my-3 opacity-25" />
+        <button
+          className="btn btn-link p-0 text-decoration-none text-muted small text-start mb-2"
+          onClick={() => setShowAwards((p) => !p)}
+        >
+          <i className={`bi bi-chevron-${showAwards ? "up" : "down"} me-1`} />
+          {showAwards ? "Hide" : "Show"} awards ({awards.length})
+        </button>
+
+        {showAwards && (
+          <motion.ul
+            className="list-unstyled mb-0"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            {awards.length === 0 ? (
+              <li className="text-muted small">No awards yet.</li>
+            ) : (
+              awards.map((n) => (
+                <li key={n.id} className="d-flex gap-2 mb-2">
+                  <span>🏆</span>
+
+                  <span className="fw-semibold">
+                    {n.award?.category ?? "Unknown Award"}
+                  </span>
+                </li>
+              ))
+            )}
+          </motion.ul>
+        )}
+
+
+
+        {/* View profile */}
+        <div className="mt-auto pt-2">
+          <Link
+            to={`/profile/${author.slug}`}
+            className="btn btn-outline-dark btn-sm rounded-3 w-100"
+          >
+            View Full Profile →
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ── Page ───────────────────────────────────────────────────────────────────
 export default function Profiles() {
-  const location = useLocation();
+  const [authors, setAuthors] = useState<Author[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [sortBy, setSortBy] = useState<SortKey>("name");
 
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace("#", "");
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  }, [location]);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [openNominations, setOpenNominations] = useState<string | null>(null);
-
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const toggleVisibility = () => {
-      setVisible(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    fetch(`${API}/authors`)
+      .then((r) => r.json())
+      .then((d: { authors: Author[] }) => setAuthors(d.authors ?? []))
+      .catch(() => setError("Failed to load authors."))
+      .finally(() => setLoading(false));
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-  const [sortOption, setSortOption] = useState<
-    "name" | "nominations" | "awards" | "works"
-  >("name");
+  const sorted = sortAuthors(authors, sortBy);
 
-  const sortedProfiles = [...authorsWithWorks].sort(
-    ([aName, aWorks], [bName, bWorks]) => {
-      const aNoms = [
-        ...awardCategories2023,
-        ...awardCategories,
-        ...awardCategories2025,
-      ].filter((award) =>
-        award.nominees.some((nominee) =>
-          Array.isArray(nominee) ? nominee.includes(aName) : nominee === aName,
-        ),
-      ).length;
-
-      const bNoms = [
-        ...awardCategories2023,
-        ...awardCategories,
-        ...awardCategories2025,
-      ].filter((award) =>
-        award.nominees.some((nominee) =>
-          Array.isArray(nominee) ? nominee.includes(bName) : nominee === bName,
-        ),
-      ).length;
-
-      const aWins = [
-        ...awardCategories2023,
-        ...awardCategories,
-        ...awardCategories2025,
-      ].filter((award) =>
-        Array.isArray(award.winner)
-          ? award.winner.includes(aName)
-          : award.winner === aName,
-      ).length;
-
-      const bWins = [
-        ...awardCategories2023,
-        ...awardCategories,
-        ...awardCategories2025,
-      ].filter((award) =>
-        Array.isArray(award.winner)
-          ? award.winner.includes(bName)
-          : award.winner === bName,
-      ).length;
-
-      if (sortOption === "works") return bWorks.length - aWorks.length;
-      if (sortOption === "nominations") return bNoms - aNoms;
-      if (sortOption === "awards") return bWins - aWins;
-      return aName.localeCompare(bName, "en", { sensitivity: "base" }); // default A–Z
-    },
-  );
-
-  // const [showNominations, setShowNominations] = useState(
-  //   window.innerWidth >= 768
-  // );
-  const [showAwards, setShowAwards] = useState(window.innerWidth >= 768);
-  const isSmallScreen = window.innerWidth < 768;
+  const SORT_OPTIONS: { key: SortKey; label: string; icon: string }[] = [
+    { key: "name", label: "A – Z", icon: "bi-sort-alpha-down" },
+    { key: "prompts", label: "Most Prompts", icon: "bi-pencil-square" },
+    { key: "nominations", label: "Most Nominations", icon: "bi-bookmark-star" },
+    { key: "awards", label: "Most Awards", icon: "bi-trophy" },
+  ];
 
   return (
     <motion.div
@@ -213,387 +308,70 @@ export default function Profiles() {
       animate="animate"
       exit="exit"
       transition={{ duration: 0.5 }}
+      className="container-fluid body"
     >
-      {/* <Layout /> */}
+      <Layout />
 
-      <motion.div
-        className=""
-        variants={pageVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        transition={{ duration: 0.5 }}
-      >
-        <nav className="navbar navbar-dark fixed-top 100vw text-white ">
-          <Link to="/" className="navbar-brand ">
-            <i className="bi bi-house fs-3 text-white"></i>
-          </Link>
-
-          <h2 className="text-white">
-            <a href="#" className="text-decoration-none text-white">
-              Profiles
-            </a>
-          </h2>
-
-          <button
-            className="btn btn-outline-light"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            ☰
-          </button>
-        </nav>
-
-        {/* Sidebar */}
-        <div
-          className={` offcanvas sidebars offcanvas-end ${
-            isOpen ? "show" : ""
-          }`}
-          style={{ visibility: isOpen ? "visible" : "hidden" }}
-          tabIndex={-1}
-        >
-          <div className="offcanvas-header ">
-            <nav className="mx-auto">
-              <Link to="/awards" className="nav-link  fw-semibold dib">
-                Awards
-              </Link>
-              <Link to="/mainPromptPage" className="nav-link  fw-semibold dib">
-                Prompts
-              </Link>
-            </nav>
-            <button
-              className="btn btn-outline-light btn-dark"
-              onClick={() => setIsOpen(false)}
-            >
-              x
-            </button>
-          </div>
-          <div className="offcanvas-body">
-            <div className="mb-5">
-              <h4 className="mb-3 text-center text-dark">
-                List of NBL Authors
-              </h4>
-              <ol className="list-group list-group-numbered text-white ">
-                {authorsWithWorks.map(([author]) => (
-                  <li
-                    key={author}
-                    className="list-group-item rounded-pill my-1 justify-content-between align-items-center"
-                  >
-                    <a
-                      href={`#${slugify(author)}`}
-                      className="text-decoration-none fw-bold text-white"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {author}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
+      <div className="container py-5">
+        {/* Header */}
+        <div className="text-center mb-4">
+          {/* <h1 className="fw-bold display-4 mb-2">Our Writers</h1> */}
+          {/* <p className="lead text-muted mb-1">The voices behind every prompt</p> */}
+          {!loading && (
+            <p className="text-muted small">
+              {authors.length} author{authors.length !== 1 && "s"}
+            </p>
+          )}
         </div>
-      </motion.div>
 
-      <div className="container py-4 mt-5">
-        <Search />
-        <h1 className="mt-4 text-center ">AUTHOR PROFILES</h1>
-
-        <div className="mb-5">
-          <h4 className="mb-3"></h4>
-          <div className="d-flex flex-wrap gap-2">
-            {authorsWithWorks.map(([author]) => (
-              <a
-                key={author}
-                href={`#${slugify(author)}`}
-                className="rounded-pill p-2 px-3 text-decoration-none shadow author-card"
-                style={{ minWidth: "10px" }}
+        {/* Sort controls */}
+        {!loading && authors.length > 0 && (
+          <div className="d-flex justify-content-center gap-2 flex-wrap mb-5">
+            {SORT_OPTIONS.map(({ key, label, icon }) => (
+              <button
+                key={key}
+                className={`btn btn-sm rounded-3 d-inline-flex align-items-center gap-1 ${
+                  sortBy === key ? "btn-dark" : "btn-outline-secondary"
+                }`}
+                onClick={() => setSortBy(key)}
               >
-                <span className="fw-semibold">{author}</span>
-              </a>
+                <i className={`bi ${icon}`} />
+                {label}
+              </button>
             ))}
           </div>
-        </div>
+        )}
 
-        <div className="d-flex justify-content-end mb-3 ">
-          <select
-            className="form-select w-auto bg"
-            value={sortOption}
-            onChange={(e) =>
-              setSortOption(
-                e.target.value as "name" | "nominations" | "awards" | "works",
-              )
-            }
-          >
-            <option value="name">Sort by Name (A–Z)</option>
-            <option value="nominations">Sort by Nominations</option>
-            <option value="awards">Sort by Awards</option>
-            <option value="works">Sort by Number of Prompts</option>
-          </select>
-        </div>
+        {/* Loading */}
+        {loading && (
+          <div className="text-center py-5">
+            <div className="spinner-border" role="status" />
+          </div>
+        )}
 
-        {sortedProfiles.map(([author, works], authorIndex) => (
+        {/* Error */}
+        {error && <div className="alert alert-danger text-center">{error}</div>}
+
+        {/* Empty */}
+        {!loading && sorted.length === 0 && (
+          <p className="text-center text-muted">No authors yet.</p>
+        )}
+
+        {/* Grid */}
+        {!loading && sorted.length > 0 && (
           <motion.div
-            key={author}
-            id={slugify(author)}
-            className="mb-5 card shadow-lg border-0 rounded-4 p-4 ac"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
+            className="row g-4 align-items-stretch "
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            key={sortBy} // re-animate on sort change
           >
-            {/* Author Header */}
-            <div className="position-relative mb-3">
-              {/* Circle Avatar (top-left) */}
-              <div
-                className="rounded-circle bg text-white fw-bold d-flex align-items-center justify-content-center position-absolute"
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  fontSize: "1.5rem",
-                  top: "-15px",
-                  left: "-15px",
-                }}
-              >
-                {author.charAt(0)}
-              </div>
-
-              {/* Author Name + Works */}
-              <div className="">
-                <h2 className="ms-5 ps-2 mb-1">{author}</h2>
-                <span
-                  className={`badge ms-5  ${
-                    works.length <= 1
-                      ? "bg-secondary"
-                      : works.length <= 2
-                        ? "bg-warn"
-                        : works.length <= 3
-                          ? "bg-4"
-                          : "bg-success"
-                  }`}
-                >
-                  {works.length} {works.length === 1 ? "work" : "works"}
-                </span>
-
-                {/* 🏆 Nominations + Awards */}
-                {(() => {
-                  const allAwards = [
-                    ...awardCategories2023,
-                    ...awardCategories,
-                    ...awardCategories2025,
-                  ];
-                  const authorAwards = allAwards.filter((award) =>
-                    award.nominees.some((nominee) =>
-                      Array.isArray(nominee)
-                        ? nominee.includes(author)
-                        : nominee === author,
-                    ),
-                  );
-
-                  const wins = allAwards.filter((award) =>
-                    Array.isArray(award.winner)
-                      ? award.winner.includes(author)
-                      : award.winner === author,
-                  );
-
-                  return (
-                    <div className="mt-2">
-                      {/* Nominations */}
-                      {/* <h4 className="fw-semibold mb-1 ">
-                        🏆 Nominations: <span>{authorAwards.length}</span>
-                      </h4>
-                     
-                      {authorAwards.length > 0 ? (
-                        <div className="d-flex flex-wrap gap-2 mb-2 " >
-                          {authorAwards.map((award) => (
-                            <Link
-                              key={award.id}
-                              
-                              to={`/awards#award-${award.id}`}
-                              className="text-decoration-none card author-card p-1 nominations"
-                            >
-                              {award.category} {award.year}
-                            </Link>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-muted mb-2 fst-italic">
-                          No nominations yet
-                        </p>
-                      )} */}
-                      <h4
-                        className="fw-semibold mb-3 d-flex align-items-center justify-content-between"
-                        style={{
-                          cursor:
-                            window.innerWidth < 768 ? "pointer" : "default",
-                        }}
-                        onClick={() => {
-                          if (window.innerWidth < 768) {
-                            setOpenNominations(
-                              openNominations === author ? null : author,
-                            );
-                          }
-                        }}
-                      >
-                        🏆 Nominations: {authorAwards.length}
-                        {window.innerWidth < 768 && (
-                          <span className="ms-2">
-                            {openNominations === author ? "▲" : "▼"}
-                          </span>
-                        )}
-                      </h4>
-
-                      {authorAwards.length > 0 ? (
-                        <div
-                          className={
-                            window.innerWidth >= 768 ||
-                            openNominations === author
-                              ? "nominations-open"
-                              : "nominations-closed"
-                          }
-                        >
-                          <div className="d-flex flex-wrap gap-2 mb-2">
-                            {authorAwards.map((award) => (
-                              <Link
-                                key={award.id}
-                                to={`/awards#${award.year}-${award.id}`}
-                                className="text-decoration-none card author-card p-1"
-                              >
-                                {award.category} {award.year}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        <p className="text-muted mb-2 fst-italic">
-                          No nominations yet
-                        </p>
-                      )}
-
-                      {/* Awards Won */}
-
-                      <h4
-                        className="fw-semibold mb-1 d-flex align-items-center justify-content-between"
-                        style={{
-                          cursor: isSmallScreen ? "pointer" : "default",
-                        }}
-                        onClick={() =>
-                          isSmallScreen && setShowAwards((prev) => !prev)
-                        }
-                      >
-                        🥇 Awards Won: {wins.length}
-                        {isSmallScreen && (
-                          <span className="ms-2">{showAwards ? "▲" : "▼"}</span>
-                        )}
-                      </h4>
-                      {/* Collapsible Section */}
-                      <div
-                        className={`collapse ${
-                          showAwards ? "show" : ""
-                        } d-md-block`}
-                      >
-                        {wins.length > 0 ? (
-                          <div className="d-flex flex-wrap gap-2 mb-2">
-                            {wins.map((award, i) => (
-                              <Link
-                                to={`/awards#${award.year}-${award.id}`}
-                                key={award.id}
-                                className="author-card card ps-1 m-1  text-decoration-none"
-                              >
-                                {award.category} {award.year}
-                                {i < wins.length && " ⭐ "}
-                                {/* {i < wins.length - 1 && " , "} */}
-                              </Link>
-                            ))}
-                          </div>
-                        ) : (
-                          <span className="fst-italic text-muted">
-                            No awards won
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })()}
-              </div>
-            </div>
-
-            <h3 className="fw-light italics mb-3">Prompts....</h3>
-
-            {/* Accordion for works */}
-            {works.length > 0 ? (
-              <div className="accordion" id={`accordion-${authorIndex}`}>
-                {works.map((poem, poemIndex) => (
-                  <motion.div
-                    key={poem.id}
-                    className="accordion-item border-0 mb-2 shadow-sm rounded-3 overflow-hidden"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.4, delay: poemIndex * 0.1 }}
-                  >
-                    <h2
-                      className="accordion-header"
-                      id={`heading-${authorIndex}-${poemIndex}`}
-                    >
-                      <button
-                        className="accordion-button collapsed d-block justify-content-between fw-semibold"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target={`#collapse-${authorIndex}-${poemIndex}`}
-                        aria-expanded="false"
-                        aria-controls={`collapse-${authorIndex}-${poemIndex}`}
-                      >
-                        <h4 className="">{poem.title}</h4>{" "}
-                        <span className="italics  me-1 text-muted">
-                          ({poem.month}
-                          {poem.year})
-                        </span>
-                      </button>
-                    </h2>
-
-                    <div
-                      id={`collapse-${authorIndex}-${poemIndex}`}
-                      className="accordion-collapse collapse"
-                      aria-labelledby={`heading-${authorIndex}-${poemIndex}`}
-                      data-bs-parent={`#accordion-${authorIndex}`}
-                    >
-                      <div className="accordion-body">
-                        <PagedText
-                          paragraphs={poem.content}
-                          paragraphsPerPage={6}
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            ) : (
-              <h1 className="fst-italic mx-auto">No Prompts Yet</h1>
-            )}
+            {sorted.map((author, index) => (
+              <AuthorCard key={author.id} author={author} index={index} />
+            ))}
           </motion.div>
-        ))}
+        )}
       </div>
-      <button
-        onClick={scrollToTop}
-        className={`btn  rounded-circle text-white shadow transition-opacity ${
-          visible ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          width: "50px",
-          background: "#5f3205",
-          height: "50px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 1000,
-          transition: "opacity 0.3s ease-in-out",
-        }}
-      >
-        <ArrowUp size={20} />
-      </button>
-
       <Footer />
     </motion.div>
   );

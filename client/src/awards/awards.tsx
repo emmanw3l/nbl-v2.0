@@ -93,7 +93,7 @@ function AwardCard({ award }: { award: Award }) {
               {winner.author.name}
             </Link>
             {winner.work && (
-              <p className="text-muted small mb-0 fst-italic mt-1">{winner.work}</p>
+              <p className="text-muted small mb-0 fst-italic mt-1 ">{winner.work}</p>
             )}
           </div>
         )}
@@ -128,7 +128,8 @@ function AwardCard({ award }: { award: Award }) {
                         {n.author.name}
                       </Link>
                       {n.work && (
-                        <span className="text-muted fst-italic"> — {n.work}</span>
+                        <span className="text-muted fst-italic "> — {n.work}</span>
+                        
                       )}
                     </span>
                   </li>

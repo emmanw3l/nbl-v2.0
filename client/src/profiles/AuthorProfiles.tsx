@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Layout from "../Nav/Nav";
+import Footer from "../components/footer/footer";
+import './authorprofile.css'
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
@@ -38,6 +40,12 @@ interface Author {
   createdAt: string;
 }
 
+interface AuthorSummary {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -49,7 +57,11 @@ const cardVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: i * 0.06, ease: [0.4, 0, 0.2, 1] as const},
+    transition: {
+      duration: 0.4,
+      delay: i * 0.06,
+      ease: [0.4, 0, 0.2, 1] as const,
+    },
   }),
 };
 
@@ -57,6 +69,7 @@ export default function AuthorProfile() {
   const { slug } = useParams<{ slug: string }>();
 
   const [author, setAuthor] = useState<Author | null>(null);
+  const [authors, setAuthors] = useState<AuthorSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -71,6 +84,15 @@ export default function AuthorProfile() {
       .catch(() => setError("Failed to load author profile."))
       .finally(() => setLoading(false));
   }, [slug]);
+
+  useEffect(() => {
+    fetch(`${API}/authors`)
+      .then((r) => r.json())
+      .then((d: { authors: AuthorSummary[] }) => {
+        setAuthors(d.authors);
+      })
+      .catch(console.error);
+  }, []);
 
   // Sort prompts chronologically — oldest first
   const sortedPrompts = author?.prompts
@@ -103,13 +125,49 @@ export default function AuthorProfile() {
 
       <div className="container py-5">
         {/* Breadcrumb */}
-        <nav aria-label="breadcrumb" className="mb-4">
+        {/* <nav aria-label="breadcrumb" className="mb-4">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link to="/profile">Profiles</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {author?.name ?? slug}
+            </li>
+          </ol>
+        </nav> */}
+
+        <nav aria-label="breadcrumb" className="mb-4">
+          <ol className="breadcrumb align-items-center">
+            {/* Back to profiles */}
+            <li className="breadcrumb-item">
+              <Link to="/profile">Profiles</Link>
+            </li>
+
+            {/* Dropdown on current author */}
+            <li className="breadcrumb-item dropdown"
+            >
+              <button
+                className="btn btn-link p-0 text-decoration-none dropdown-toggle fw-semibold"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {author?.name ?? slug}
+              </button>
+
+              <ul className="dropdown-menu"
+                
+              >
+                {authors.map((a) => (
+                  <li key={a.id}>
+                    <Link
+                      className={`small dropdown-item ${a.slug === slug ? "active" : ""}`}
+                      to={`/profile/${a.slug}`}
+                    >
+                      {a.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </li>
           </ol>
         </nav>
@@ -217,7 +275,7 @@ export default function AuthorProfile() {
 
                           <div className="mt-auto pt-3">
                             <Link
-                              to={`/mainPromptPage/${prompt.year}/${MONTH_NAMES[prompt.month - 1]?.toLowerCase()}`}
+                              to={`/mainPromptPage/${prompt.year}/${MONTH_NAMES[prompt.month - 1]?.toLowerCase()}#prompt-${prompt.id}`}
                               className="btn btn-outline-dark btn-sm rounded-3"
                             >
                               View prompt →
@@ -240,6 +298,7 @@ export default function AuthorProfile() {
           </motion.div>
         )}
       </div>
+      <Footer />
     </motion.div>
   );
 }

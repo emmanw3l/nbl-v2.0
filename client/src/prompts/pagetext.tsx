@@ -34,18 +34,17 @@
 import { Link } from "react-router-dom";
 import PagedText from "../components/paging";
 import {
-  promptIndex,
+
   promptIndexFeb,
   promptIndexApril,
   promptIndexMJ,
   promptIndexJuly,
   promptIndexSeptember,
-  promptIndexoctober2024,
+  
 } from "../components/promptIndexing";
 import "./promptpage.css";
 import { motion } from "framer-motion";
 
-const januaryPrompts = promptIndex([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 const februaryPrompts = promptIndexFeb([
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
 ]);
@@ -55,7 +54,6 @@ const julyPrompts = promptIndexJuly([0, 1, 2, 3, 4, 5]);
 const septemberPrompts = promptIndexSeptember([0, 1, 2, 3, 4, 5, 6, 7]);
 
 // 2024
-const octoberPrompts2024 = promptIndexoctober2024([0, 1, 2, 3, 4]);
 
 // ✅ consistent slugify
 function slugify(name: string) {
@@ -65,36 +63,7 @@ function slugify(name: string) {
     .replace(/[^\w-]+/g, "");
 }
 
-export default function PromptViewer() {
-  return (
-    <div className="page-container py-4">
-      <div className="row justify-content-evenly">
-        {januaryPrompts.map((prompts) => (
-          <motion.div
-            key={prompts.id}
-            className="mb-4 card col-md-5 col-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
-            id={`january-${slugify(prompts.id.toString())}`}
-          >
-            <h1 className="bold">{prompts.title}</h1>
-            <h4>{prompts.title1}</h4>
-            <h4 className="text-end blockquote">
-              <cite className="blockquote-footer">
-                <Link to={`/Profile#${slugify(prompts.author)}`}>
-                  {prompts.author}
-                </Link>
-              </cite>
-            </h4>
-            <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  );
-}
+
 
 export function PromptViewerFeb() {
   return (
@@ -245,33 +214,4 @@ export function PromptViewerSeptember() {
 
 // 2024 PROMPTS
 
-export function PromptViewerOctober2024() {
-  return (
-    <div className="page-container py-4">
-      <div className="row justify-content-evenly">
-        {octoberPrompts2024.map((prompts) => (
-          <motion.div
-            key={prompts.id}
-            className="mb-4 card col-md-5 col-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
-            id={`october-${slugify(prompts.id.toString())}`}
-          >
-            <h1 className="bold">{prompts.title}</h1>
-            {/* <h4>{prompts.title1}</h4> */}
-            <h4 className="text-end blockquote">
-              <cite className="blockquote-footer">
-                <Link to={`/Profile#${slugify(prompts.author)}`}>
-                  {prompts.author}
-                </Link>
-              </cite>
-            </h4>
-            <PagedText paragraphs={prompts.content} paragraphsPerPage={6} />
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  );
-}
+

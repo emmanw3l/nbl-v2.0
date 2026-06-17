@@ -14,7 +14,7 @@ function slugify(name: string) {
 
 
 const reviews = [
-  { text: "Amazing community! I'm Learnig so much.", author: "Nwabueze Emmanuel" },
+  { text: "Amazing community! I'm Learnig so much.", author: "Anonymous" },
   {text: "Came for the vibes, stayed for the experiences",author: "Gracious"},
   { text: "The writing prompts revived my creativity!", author: "Aangrron" },
   {
@@ -94,7 +94,7 @@ export default function ReviewMarquee() {
                 <div className="review-avatar">{review.author[0]}</div>
                 <p className="review-text">“{review.text}”</p>
                 <Link
-                  to={`/profile#${slugify(review.author)}`}
+                  to={`/profile/${slugify(review.author)}`}
                   className="review-author-link"
                 >
                   — {review.author}

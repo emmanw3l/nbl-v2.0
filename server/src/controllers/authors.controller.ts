@@ -15,7 +15,30 @@ export async function getAuthors(
   try {
     const authors = await prisma.author.findMany({
       orderBy: { name: "asc" },
-      include: { _count: { select: { prompts: true } } },
+      include: {
+        _count: {
+          select: { prompts: true, nominations: true },
+        },
+        nominations: {
+          select: {
+            id: true,
+            isWinner: true,
+            award: {
+              select: { id: true, category: true },
+            },
+          },
+        },
+        prompts: {
+          select: {
+            id: true,
+            title: true,
+            month: true,
+            year: true,
+            slug: true,
+          },
+          orderBy: [{ year: "asc" }, { month: "asc" }],
+        },
+      },
     });
     res.json({ authors });
   } catch (err) {
@@ -107,11 +130,9 @@ export async function deleteAuthor(
     }
     const count = await prisma.prompt.count({ where: { authorId: id } });
     if (count > 0) {
-      res
-        .status(400)
-        .json({
-          error: `Cannot delete — this author has ${count} prompt(s). Reassign them first.`,
-        });
+      res.status(400).json({
+        error: `Cannot delete — this author has ${count} prompt(s). Reassign them first.`,
+      });
       return;
     }
     await prisma.author.delete({ where: { id } });

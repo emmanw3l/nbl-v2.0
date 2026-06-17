@@ -290,7 +290,7 @@ export default function AdminAwards() {
                       onChange={(e) =>
                         setNomineeField(i, "work", e.target.value)
                       }
-                      placeholder="e.g. January 2025"
+                      placeholder="(the name of the work or nomination"
                     />
                   </div>
 
