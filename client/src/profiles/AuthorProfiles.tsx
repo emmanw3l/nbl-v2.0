@@ -5,11 +5,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import Layout from "../Nav/Nav";
 import Footer from "../components/footer/footer";
 import "./authorprofile.css";
+import WavyText from "../components/wavytext";
 import PagedContent from "../components/PagedContent";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
 const FOUNDER_SLUG = "anonymous";
+const PJ_SLUG = "pj";
 
 const MONTH_NAMES = [
   "January",
@@ -88,6 +90,7 @@ const cardVariants = {
 export default function AuthorProfile() {
   const { slug } = useParams<{ slug: string }>();
   const isFounder = slug === FOUNDER_SLUG;
+  const isPj = slug === PJ_SLUG;
 
   const accent = isFounder
     ? {
@@ -253,6 +256,15 @@ export default function AuthorProfile() {
 
               <h1 className="fw-bold mb-1">
                 {author.name}
+                  {isPj && (
+                    <div>
+                      <WavyText
+  text={"CHOCOLATESSS!!"}
+  className="text-uppercase fw-semibold small mb-2"
+  style={{ letterSpacing: ".08em", color: accent.badgeText }}
+/>
+                    </div>
+                  )}
                 {isFounder && (
                   <div className="marquee marqueee ">
                     <p>personality of the year <span className=" fs-6  italic">-amongst other things</span></p> 
