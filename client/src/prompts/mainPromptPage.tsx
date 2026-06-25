@@ -307,7 +307,7 @@ export default function PromptsPage() {
             margin: 0,
           }}
         >
-          A growing archive of monthly writing prompts from NBL members.
+          A growing archive of monthly written prompts from NBL members.
         </p>
       </motion.header>
 
