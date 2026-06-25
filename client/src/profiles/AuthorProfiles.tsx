@@ -256,18 +256,26 @@ export default function AuthorProfile() {
 
               <h1 className="fw-bold mb-1">
                 {author.name}
-                  {isPj && (
-                    <div>
-                      <WavyText
-  text={"CHOCOLATESSS!!"}
-  className="text-uppercase fw-semibold small mb-2"
-  style={{ letterSpacing: ".08em", color: accent.badgeText }}
-/>
-                    </div>
-                  )}
+                {isPj && (
+                  <div>
+                    <WavyText
+                      text={"CHOCOLATESSS!!"}
+                      className="text-uppercase fw-semibold small mb-2"
+                      style={{
+                        letterSpacing: ".08em",
+                        color: accent.badgeText,
+                      }}
+                    />
+                  </div>
+                )}
                 {isFounder && (
                   <div className="marquee marqueee ">
-                    <p>personality of the year <span className=" fs-6  italic">-amongst other things</span></p> 
+                    <p>
+                      personality of the year{" "}
+                      <span className=" fs-6  italic">
+                        -amongst other things
+                      </span>
+                    </p>
                   </div>
                 )}
               </h1>

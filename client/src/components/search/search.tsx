@@ -29,6 +29,7 @@ interface Prompt {
   month: number;
   year: number;
   slug: string;
+  content: string;
   author: { id: number; name: string; slug: string };
 }
 
@@ -81,6 +82,32 @@ function Highlight({ text, query }: { text: string; query: string }) {
   );
 }
 
+function getContentSnippet(content: string, query: string, radius = 50) {
+  if (!content || !query) return "";
+
+  const lowerContent = content.toLowerCase();
+  const lowerQuery = query.toLowerCase();
+
+  const index = lowerContent.indexOf(lowerQuery);
+
+  if (index === -1) {
+    return content.slice(0, radius * 2) + "...";
+  }
+
+  const start = Math.max(0, index - radius);
+  const end = Math.min(
+    content.length,
+    index + query.length + radius
+  );
+
+  let snippet = content.slice(start, end);
+
+  if (start > 0) snippet = "..." + snippet;
+  if (end < content.length) snippet += "...";
+
+  return snippet;
+}
+
 // ── Filter helpers ─────────────────────────────────────────────────────────
 function filterPrompts(prompts: Prompt[], q: string) {
   const l = q.toLowerCase();
@@ -89,6 +116,7 @@ function filterPrompts(prompts: Prompt[], q: string) {
       p.title.toLowerCase().includes(l) ||
       p.theme?.toLowerCase().includes(l) ||
       p.author?.name.toLowerCase().includes(l) ||
+      p.content?.toLowerCase().includes(l) ||
       MONTH_NAMES[p.month - 1]?.toLowerCase().includes(l),
   );
 }
@@ -124,6 +152,12 @@ function PromptResult({
       <p className="search-result-title">
         <Highlight text={prompt.title} query={query} />
       </p>
+      <p className="search-result-sub">
+  <Highlight
+    text={getContentSnippet(prompt.content, query)}
+    query={query}
+  />
+</p>
       {prompt.theme && (
         <p className="search-result-sub">
           Theme: <Highlight text={prompt.theme} query={query} />
