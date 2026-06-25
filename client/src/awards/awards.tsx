@@ -1,53 +1,110 @@
 // src/awards/awards.tsx
 import { useEffect, useState } from "react";
-import { Link }                from "react-router-dom";
-import { motion, Variants }    from "framer-motion";
-import Layout                  from "../Nav/Nav";
+import { Link } from "react-router-dom";
+import { motion, Variants } from "framer-motion";
+import Layout from "../Nav/Nav";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface AwardNominee {
-  id:       number;
-  author:   { id: number; name: string; slug: string };
-  work:     string;
+  id: number;
+  author: { id: number; name: string; slug: string };
+  work: string;
+  link?: string;
   isWinner: boolean;
+  entryId: string | null;
 }
 
 interface Award {
-  id:          number;
-  category:    string;
+  id: number;
+  category: string;
   description: string;
-  year:        number;
-  nominees:    AwardNominee[];
+  year: number;
+  nominees: AwardNominee[];
+}
+
+interface GroupedEntry {
+  entryId: string;
+  authors: { id: number; name: string; slug: string }[];
+  work: string;
+  link?: string;
+  isWinner: boolean;
+}
+
+function groupByEntry(nominees: AwardNominee[]): GroupedEntry[] {
+  const map = new Map<string, GroupedEntry>();
+  nominees.forEach((n) => {
+    const key = n.entryId ?? `solo-${n.id}`;
+    if (!map.has(key)) {
+      map.set(key, {
+        entryId: key,
+        authors: [],
+        work: n.work,
+        link: n.link,
+        isWinner: n.isWinner,
+      });
+    }
+    map.get(key)!.authors.push(n.author);
+  });
+  return Array.from(map.values());
 }
 
 // ── Animations ─────────────────────────────────────────────────────────────
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  exit:    { opacity: 0, y: -20 },
+  exit: { opacity: 0, y: -20 },
 };
 
 const containerVariants: Variants = {
-  hidden:  { opacity: 0 },
+  hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants: Variants = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+  },
 };
+
+// Renders one or more author names, each linked to their profile,
+// joined with " & " for joint nominations/wins.
+function AuthorLinks({
+  authors,
+}: {
+  authors: { name: string; slug: string }[];
+}) {
+  return (
+    <>
+      {authors.map((a, i) => (
+        <span key={a.slug}>
+          <Link
+            to={`/profile/${a.slug}`}
+            className="fw-semibold text-decoration-none"
+            style={{ color: "inherit" }}
+          >
+            {a.name}
+          </Link>
+          {i < authors.length - 1 && <span className="text-muted"> & </span>}
+        </span>
+      ))}
+    </>
+  );
+}
 
 // ── Award Card ─────────────────────────────────────────────────────────────
 function AwardCard({ award }: { award: Award }) {
   const [showNominees, setShowNominees] = useState(false);
 
-  const winner    = award.nominees?.find((n) => n.isWinner);
-  const otherNoms = award.nominees?.filter((n) => !n.isWinner) ?? [];
+  const entries = groupByEntry(award.nominees ?? []);
+  const winnerEntry = entries.find((e) => e.isWinner);
+  const otherEntries = entries.filter((e) => !e.isWinner);
 
   return (
-    // id anchor so search can link directly to this card
     <motion.div
       id={`award-${award.id}`}
       className="col-12 col-md-6 col-lg-4"
@@ -62,11 +119,11 @@ function AwardCard({ award }: { award: Award }) {
         <span
           className="badge mb-3 text-uppercase fw-semibold"
           style={{
-            background:    "rgba(108,99,255,0.1)",
-            color:         "#6c63ff",
+            background: "rgba(108,99,255,0.1)",
+            color: "#6c63ff",
             letterSpacing: ".5px",
-            fontSize:      11,
-            width:         "fit-content",
+            fontSize: 11,
+            width: "fit-content",
           }}
         >
           {award.category}
@@ -76,37 +133,56 @@ function AwardCard({ award }: { award: Award }) {
         <h5 className="fw-bold mb-3">{award.description}</h5>
 
         {/* Winner */}
-        {winner && (
+        {winnerEntry && (
           <div
             className="rounded-3 p-3 mb-3"
-            style={{ background: "rgba(62,207,142,0.08)", border: "1px solid rgba(62,207,142,0.2)" }}
+            style={{
+              background: "rgba(62,207,142,0.08)",
+              border: "1px solid rgba(62,207,142,0.2)",
+            }}
           >
-            <p className="text-uppercase fw-semibold mb-1"
-              style={{ fontSize: 10, letterSpacing: ".6px", color: "#3ecf8e" }}>
-              🏆 Winner
-            </p>
-            <Link
-              to={`/profile/${winner.author.slug}`}
-              className="fw-semibold text-decoration-none"
-              style={{ color: "inherit" }}
+            <p
+              className="text-uppercase fw-semibold mb-1"
+              style={{ fontSize: 10, letterSpacing: ".6px", color: "#3ecf8e" }}
             >
-              {winner.author.name}
-            </Link>
-            {winner.work && (
-              <p className="text-muted small mb-0 fst-italic mt-1 ">{winner.work}</p>
-            )}
+              🏆 {winnerEntry.authors.length > 1 ? "Joint Winners" : "Winner"}
+            </p>
+
+            <div className="fw-semibold">
+              <AuthorLinks authors={winnerEntry.authors} />
+            </div>
+
+            {winnerEntry.work &&
+              (winnerEntry.link ? (
+                <a
+                  href={winnerEntry.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted small text-decoration-none"
+                >
+                  <p className="text-muted small mb-0 fst-italic mt-1">
+                    {winnerEntry.work}
+                  </p>
+                </a>
+              ) : (
+                <p className="text-muted small mb-0 fst-italic mt-1">
+                  {winnerEntry.work}
+                </p>
+              ))}
           </div>
         )}
 
         {/* Other nominees */}
-        {otherNoms.length > 0 && (
+        {otherEntries.length > 0 && (
           <>
             <button
               className="btn btn-link p-0 text-decoration-none text-muted small text-start mb-2"
               onClick={() => setShowNominees((p) => !p)}
             >
-              <i className={`bi bi-chevron-${showNominees ? "up" : "down"} me-1`} />
-              {showNominees ? "Hide" : "Show"} nominees ({otherNoms.length})
+              <i
+                className={`bi bi-chevron-${showNominees ? "up" : "down"} me-1`}
+              />
+              {showNominees ? "Hide" : "Show"} nominees ({otherEntries.length})
             </button>
 
             {showNominees && (
@@ -116,21 +192,32 @@ function AwardCard({ award }: { award: Award }) {
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ duration: 0.25 }}
               >
-                {otherNoms.map((n) => (
-                  <li key={n.id} className="d-flex align-items-start gap-2 mb-2" style={{ fontSize: 13 }}>
+                {otherEntries.map((entry) => (
+                  <li
+                    key={entry.entryId}
+                    className="d-flex align-items-start gap-2 mb-2"
+                    style={{ fontSize: 13 }}
+                  >
                     <span className="text-muted mt-1">•</span>
                     <span>
-                      <Link
-                        to={`/profile/${n.author.slug}`}
-                        className="fw-semibold text-decoration-none"
-                        style={{ color: "inherit" }}
-                      >
-                        {n.author.name}
-                      </Link>
-                      {n.work && (
-                        <span className="text-muted fst-italic "> — {n.work}</span>
-                        
-                      )}
+                      <AuthorLinks authors={entry.authors} />
+                      {entry.work &&
+                        (entry.link ? (
+                          <a
+                            href={entry.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted fst-italic text-decoration-none"
+                          >
+                            {" "}
+                            — {entry.work}
+                          </a>
+                        ) : (
+                          <span className="text-muted fst-italic">
+                            {" "}
+                            — {entry.work}
+                          </span>
+                        ))}
                     </span>
                   </li>
                 ))}
@@ -145,9 +232,9 @@ function AwardCard({ award }: { award: Award }) {
 
 // ── Page ───────────────────────────────────────────────────────────────────
 export default function Awards() {
-  const [awards,  setAwards]  = useState<Award[]>([]);
+  const [awards, setAwards] = useState<Award[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error,   setError]   = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetch(`${API}/awards`)
@@ -171,7 +258,9 @@ export default function Awards() {
     acc[a.year].push(a);
     return acc;
   }, {});
-  const years = Object.keys(byYear).map(Number).sort((a, b) => a - b);
+  const years = Object.keys(byYear)
+    .map(Number)
+    .sort((a, b) => a - b);
 
   return (
     <motion.div
@@ -204,28 +293,32 @@ export default function Awards() {
           <p className="text-center text-muted py-5">No awards yet.</p>
         )}
 
-        {!loading && years.map((year) => (
-          <section key={year} className="mb-5">
-            <div className="d-flex align-items-center gap-3 mb-4">
-              <h2 className="fw-bold mb-0">{year}</h2>
-              <div className="flex-grow-1" style={{ height: 1, background: "rgba(0,0,0,0.1)" }} />
-              <span className="text-muted small">
-                {byYear[year].length} award{byYear[year].length !== 1 && "s"}
-              </span>
-            </div>
+        {!loading &&
+          years.map((year) => (
+            <section key={year} className="mb-5">
+              <div className="d-flex align-items-center gap-3 mb-4">
+                <h2 className="fw-bold mb-0">{year}</h2>
+                <div
+                  className="flex-grow-1"
+                  style={{ height: 1, background: "rgba(0,0,0,0.1)" }}
+                />
+                <span className="text-muted small">
+                  {byYear[year].length} award{byYear[year].length !== 1 && "s"}
+                </span>
+              </div>
 
-            <motion.div
-              className="row g-4"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {byYear[year].map((award) => (
-                <AwardCard key={award.id} award={award} />
-              ))}
-            </motion.div>
-          </section>
-        ))}
+              <motion.div
+                className="row g-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {byYear[year].map((award) => (
+                  <AwardCard key={award.id} award={award} />
+                ))}
+              </motion.div>
+            </section>
+          ))}
       </div>
     </motion.div>
   );

@@ -1,4 +1,3 @@
-// src/types/admin.ts
 
 export type Role = "SUPER_ADMIN" | "ADMIN" | "EDITOR";
 
@@ -36,11 +35,13 @@ export interface Prompt {
 // ── Award types — now relational ──────────────────────────────────────────
 
 export interface AwardNominee {
+  link?: string;
   id:       number;
   authorId: number;
   author:   { id: number; name: string; slug: string };
   work:     string;
   isWinner: boolean;
+  entryId: string | null;
 }
 
 export interface Award {

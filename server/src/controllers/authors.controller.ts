@@ -7,6 +7,46 @@ interface AuthorBody {
   slug?: string;
 }
 
+export async function s(
+  _req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const authors = await prisma.author.findMany({
+      orderBy: { name: "asc" },
+      include: {
+        _count: {
+          select: { prompts: true, nominations: true },
+        },
+        nominations: {
+          select: {
+            id: true,
+            isWinner: true,
+            award: {
+              select: { id: true, category: true },
+            },
+          },
+        },
+        prompts: {
+          select: {
+            id: true,
+            title: true,
+            month: true,
+            year: true,
+            slug: true,
+            // content: true,
+          },
+          orderBy: [{ year: "asc" }, { month: "asc" }],
+        },
+      },
+    });
+    res.json({ authors });
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function getAuthors(
   _req: Request,
   res: Response,
@@ -35,6 +75,7 @@ export async function getAuthors(
             month: true,
             year: true,
             slug: true,
+            // content: true,
           },
           orderBy: [{ year: "asc" }, { month: "asc" }],
         },
@@ -54,7 +95,20 @@ export async function getAuthorBySlug(
   try {
     const author = await prisma.author.findUnique({
       where: { slug: req.params.slug },
-      include: { prompts: { orderBy: [{ year: "desc" }, { month: "desc" }] } },
+      include: {
+        prompts: { orderBy: [{ year: "desc" }, { month: "desc" }] },
+        nominations: {
+          select: {
+            id: true,
+            work: true,
+            link: true,
+            isWinner: true,
+            award: {
+              select: { id: true, category: true, description: true, year: true },
+            },
+          },
+        },
+      },
     });
     if (!author) {
       res.status(404).json({ error: "Author not found" });

@@ -122,73 +122,7 @@ export const mJPrompts = [
       </p>,
     ],
   },
-  {
-    id: 2,
-    title: "Born to be free",
-    author: "Bema",
-    month: "may",
-    year:"2025",
-    content: [
-      <p>
-        I came across a path in life where I lacked direction on the next step.
-        Sometimes, I hold on to the past and the memories it brings. Other
-        times, I want to leave everything behind and move forward to the next.
-        The past reminds me of how I once lived, a book I can never go back to
-        rewrite, a clock I can’t turn back. But the future is unknown, and that
-        scares me more. The memories it holds are a mystery to my knowledge, and
-        the pressure for it to be better than the present rests heavily on my
-        shoulders.
-      </p>,
-      <p>
-        I drive down memory lane to the past and revisit my childhood days. The
-        days when I look forward to my daily meals and friends to play with,
-        sleeping with so much fatigue when the night falls. It does not have the
-        best days, but it is never worse than the period of independence where
-        the *_pressure is getting worserrr._* Life is so rosy when you are a
-        child. Your only job is to live. Your basic needs are provided for by
-        the ones who birthed you. From here, your well-being, apart from
-        physical and financial aspects, gets forgotten.
-      </p>,
-      <p>
-        My early days were filled with struggles. It was more of being a
-        snail—hiding in my shell away from things I don’t fit into and showing
-        my face as I take it slow to find my balance and identity. Most nights,
-        people discovered their solace but the night birthed questions I had no
-        answers to. Why am I different? Why don’t I fit in? What is wrong with
-        me? When will I be free? Every peer shared a similarity in hobbies or
-        leisure interests while I struggled in the background to find a
-        connection with a single soul.
-      </p>,
-      <p>
-        As I grew, there were moments of love interest, friends finding their
-        intimate connection. At the same time, I strive in solitude, savoring
-        what I perceive as inner peace in my corners, away from what is
-        disguised as iniquities before my eyes. Everything was tough, and life
-        didn’t seem to produce any meaning. My existence was in doubt, and my
-        purpose was without hope. How could I picture things getting better from
-        where I was when the present felt it was without form or void?
-      </p>,
-      <p>
-        My daily worry was freedom. I felt held back from living without
-        constructed restrictions. I needed to be without fear and live without
-        whispers of judgment. I wanted to be wild with zero regrets about every
-        experience. I longed to do the things I chose, whether I had eyes on me
-        or not. I needed to be sure I was doing nothing wrong. After all, I was
-        young.
-      </p>,
-      <p>
-        Maybe this was me moving away from decency or moral standards groomed
-        from the womb, but it was so much more. I needed to find myself and know
-        what I was made for. These were the journeys that made up my childhood.
-        They are not my favorite memories, but they can never be uncovered.
-      </p>,
-      <p>
-        Despite the challenges I encountered, the future I worried about seemed
-        filled with accomplishments and work I thought I couldn’t do. Where I go
-        from here remains a secret I may or may not fear once I discover it.
-      </p>,
-    ],
-  },
+
 
   {
     id: 3,

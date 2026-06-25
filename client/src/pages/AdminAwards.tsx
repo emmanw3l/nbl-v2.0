@@ -4,12 +4,14 @@ import AdminLayout from "../components/AdminLayout";
 import { adminFetch } from "../utils/adminApi";
 import type { Award, AwardNominee, Author } from "../types/admin";
 
-const YEARS = [2024, 2025, 2026];
+const YEARS = [2023, 2024, 2025, 2026];
 
 interface NomineeInput {
   authorId: string;
   work: string;
   isWinner: boolean;
+  link?: string;
+  joint?: string;
 }
 
 interface AwardForm {
@@ -23,6 +25,8 @@ const emptyNominee = (): NomineeInput => ({
   authorId: "",
   work: "",
   isWinner: false,
+  link: "",
+  joint: "",
 });
 
 const EMPTY_FORM: AwardForm = {
@@ -73,16 +77,35 @@ export default function AdminAwards() {
   }
 
   function openEdit(a: Award) {
-    // Convert existing nominees to form shape
+    // Group existing nominees by entryId so joint nominations round-trip
+    // back into the form with their shared label visible. Groups of size 1
+    // are treated as solo regardless of their (random) entryId.
+    const groups = new Map<string, AwardNominee[]>();
+    (a.nominees ?? []).forEach((n) => {
+      const key = n.entryId ?? `solo-${n.id}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key)!.push(n);
+    });
+
+    const nomineeInputs: NomineeInput[] = [];
+    groups.forEach((group, key) => {
+      const isJoint = group.length > 1;
+      group.forEach((n) => {
+        nomineeInputs.push({
+          authorId: String(n.authorId),
+          work: n.work ?? "",
+          link: n.link ?? "",
+          isWinner: n.isWinner,
+          joint: isJoint ? key : "",
+        });
+      });
+    });
+
     setForm({
       description: a.description,
       category: a.category,
       year: a.year,
-      nominees: a.nominees.map((n: AwardNominee) => ({
-        authorId: String(n.authorId),
-        work: n.work ?? "",
-        isWinner: n.isWinner,
-      })),
+      nominees: nomineeInputs,
     });
     setEditing(a);
     setFormError("");
@@ -103,11 +126,20 @@ export default function AdminAwards() {
   }
 
   function markAsWinner(i: number) {
-    // Only one winner at a time
-    setForm((prev) => ({
-      ...prev,
-      nominees: prev.nominees.map((n, idx) => ({ ...n, isWinner: idx === i })),
-    }));
+    // Only one winning entry at a time. If the row is part of a joint
+    // group, mark every row sharing that group as winner too.
+    setForm((prev) => {
+      const group = prev.nominees[i].joint?.trim();
+      return {
+        ...prev,
+        nominees: prev.nominees.map((n, idx) => {
+          if (group) {
+            return { ...n, isWinner: n.joint?.trim() === group };
+          }
+          return { ...n, isWinner: idx === i };
+        }),
+      };
+    });
   }
 
   function addNominee() {
@@ -132,7 +164,11 @@ export default function AdminAwards() {
           .map((n) => ({
             authorId: parseInt(n.authorId, 10),
             work: n.work,
+            link: n.link || undefined,
             isWinner: n.isWinner,
+            // Only send entryId when a joint label was actually typed —
+            // otherwise the backend generates a unique one (solo nominee).
+            ...(n.joint?.trim() ? { entryId: n.joint.trim() } : {}),
           })),
       };
       if (editing === "new") {
@@ -165,7 +201,12 @@ export default function AdminAwards() {
     }
   }
 
-  const winner = (a: Award) => a.nominees?.find((n) => n.isWinner);
+  // Joins all winning nominees' names — handles joint winners too
+  function winnerNames(a: Award): string {
+    const winners = a.nominees?.filter((n) => n.isWinner) ?? [];
+    if (winners.length === 0) return "—";
+    return winners.map((n) => n.author?.name).join(" & ");
+  }
 
   // ── Editor ────────────────────────────────────────────────────────────────
   if (editing !== null)
@@ -250,12 +291,26 @@ export default function AdminAwards() {
                 Nominees
               </p>
               <p className="text-secondary small mb-3" style={{ fontSize: 11 }}>
-                Select an author for each nominee. Toggle the ★ to mark the
-                winner.
+                Select an author for each nominee. Toggle ★ to mark the winner.
+                To create a joint nomination, give two or more nominees the same
+                "Joint Group" label — e.g. "A" — and marking one as winner marks
+                the whole group.
               </p>
 
               {form.nominees.map((n, i) => (
-                <div key={i} className="row g-2 mb-3 align-items-end">
+                <div
+                  key={i}
+                  className="row g-2 mb-3 align-items-end"
+                  style={
+                    n.joint?.trim()
+                      ? {
+                          background: "rgba(108,99,255,.06)",
+                          borderRadius: 8,
+                          padding: "8px 4px",
+                        }
+                      : undefined
+                  }
+                >
                   {/* Author dropdown */}
                   <div className="col-12 col-md-5">
                     <label className="form-label text-secondary small text-uppercase fw-semibold">
@@ -318,6 +373,51 @@ export default function AdminAwards() {
                         <i className="bi bi-x-lg" />
                       </button>
                     )}
+                  </div>
+
+                  {/* Link */}
+                  <div className="col-12 col-md-6 mt-1">
+                    <label className="form-label text-secondary small text-uppercase fw-semibold">
+                      Link{" "}
+                      <span
+                        className="text-secondary fw-normal"
+                        style={{ fontSize: 10 }}
+                      >
+                        (optional)
+                      </span>
+                    </label>
+                    <input
+                      className="form-control"
+                      style={s}
+                      type="url"
+                      value={n.link}
+                      onChange={(e) =>
+                        setNomineeField(i, "link", e.target.value)
+                      }
+                      placeholder="https://..."
+                    />
+                  </div>
+
+                  {/* Joint group label */}
+                  <div className="col-12 col-md-6 mt-1">
+                    <label className="form-label text-secondary small text-uppercase fw-semibold">
+                      Joint Group{" "}
+                      <span
+                        className="text-secondary fw-normal"
+                        style={{ fontSize: 10 }}
+                      >
+                        (optional — same label = joint nomination)
+                      </span>
+                    </label>
+                    <input
+                      className="form-control"
+                      style={s}
+                      value={n.joint}
+                      onChange={(e) =>
+                        setNomineeField(i, "joint", e.target.value)
+                      }
+                      placeholder="e.g. A — leave blank if solo"
+                    />
                   </div>
                 </div>
               ))}
@@ -438,7 +538,7 @@ export default function AdminAwards() {
                     className="d-none d-md-table-cell"
                     style={{ borderColor: "#2a2d3a" }}
                   >
-                    {winner(a)?.author?.name ?? "—"}
+                    {winnerNames(a)}
                   </td>
                   <td style={{ borderColor: "#2a2d3a" }}>
                     <span className="badge bg-secondary">

@@ -1,11 +1,13 @@
-// server/src/controllers/awards.controller.ts
 import type { Request, Response, NextFunction } from "express";
+import { randomUUID } from "crypto";
 import prisma from "../config/db";
 
 interface NomineeInput {
   authorId: number | string;
   work?: string;
+  link?: string;
   isWinner: boolean;
+  entryId?: string; 
 }
 
 interface AwardBody {
@@ -32,6 +34,19 @@ const nomineeInclude = {
     orderBy: { isWinner: "desc" as const },
   },
 };
+
+// Maps incoming nominees to Prisma create objects.
+// Nominees that share an entryId become a joint nomination (same slot).
+// Any nominee with no entryId gets its own unique one (solo nomination).
+function buildNomineeCreates(nominees: NomineeInput[]) {
+  return nominees.map((n) => ({
+    authorId: parseInt(String(n.authorId), 10),
+    work: n.work ?? "",
+    link: n.link ?? null,
+    isWinner: n.isWinner ?? false,
+    entryId: n.entryId ?? randomUUID(),
+  }));
+}
 
 // ── Controllers ────────────────────────────────────────────────────────────
 
@@ -104,11 +119,7 @@ export async function createAward(
         category,
         year: parseInt(String(year), 10),
         nominees: {
-          create: nominees.map((n) => ({
-            authorId: parseInt(String(n.authorId), 10),
-            work: n.work ?? "",
-            isWinner: n.isWinner ?? false,
-          })),
+          create: buildNomineeCreates(nominees),
         },
       },
       include: nomineeInclude,
@@ -142,11 +153,7 @@ export async function updateAward(
         ...(year !== undefined && { year: parseInt(String(year), 10) }),
         ...(nominees !== undefined && {
           nominees: {
-            create: nominees.map((n) => ({
-              authorId: parseInt(String(n.authorId), 10),
-              work: n.work ?? "",
-              isWinner: n.isWinner ?? false,
-            })),
+            create: buildNomineeCreates(nominees),
           },
         }),
       },

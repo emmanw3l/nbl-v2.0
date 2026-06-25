@@ -14,3 +14,7 @@
   transition-delay: 0s;
   transition: 0.4s;
 }
+
+container-fluid{
+  background-color: var(--primary-color) !important;
+}

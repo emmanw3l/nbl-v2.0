@@ -98,6 +98,7 @@ export default function MonthPromptPage() {
   const monthPrompt = prompts[0] ?? null;
 
   return (
+    
     <motion.div
       variants={pageVariants}
       initial="initial"

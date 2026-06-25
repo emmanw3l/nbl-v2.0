@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../Nav/Nav";
 import { motion, Variants } from "framer-motion";
-import { allPrompts } from "../prompts/promptCollection";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+// import { allPrompts } from "../prompts/promptCollection";
+// import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router-dom";
 import January2024 from "../components/img/Prompts/2024/January_2024.jpg";
 import February2024 from "../components/img/Prompts/2024/february_2024.jpg";
@@ -22,51 +22,118 @@ import February2026 from "../components/img/Prompts/2026/February_2026.jpg";
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
 const MONTH_NAMES = [
-  "January","February","March","April","May","June",
-  "July","August","September","October","November","December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface DBPrompt {
-  id:      number;
-  title:   string;
+  id: number;
+  title: string;
   content: string;
-  theme:   string | null;
-  month:   number;
-  year:    number;
-  slug:    string;
-  author:  { id: number; name: string };
+  theme: string | null;
+  month: number;
+  year: number;
+  slug: string;
+  author: { id: number; name: string };
+}
+
+interface PromptMetaProps {
+  total: number;
+  yearRange: string;
+}
+
+function PromptMeta({ total, yearRange }: PromptMetaProps) {
+  const [count, setCount] = useState(0);
+  const [phase, setPhase] = useState<"counting" | "typing" | "done">(
+    "counting",
+  );
+  const [typed, setTyped] = useState("");
+  const rafRef = useRef<number | null>(null);
+
+  const suffix = ` prompts · ${yearRange}`;
+
+  useEffect(() => {
+    if (phase !== "counting") return;
+    const duration = 900;
+    const start = performance.now();
+
+    function tick(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      setCount(Math.round(progress * total));
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        setPhase("typing");
+      }
+    }
+    rafRef.current = requestAnimationFrame(tick);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [phase, total]);
+
+  useEffect(() => {
+    if (phase !== "typing") return;
+    let i = 0;
+    const interval = setInterval(() => {
+      i++;
+      setTyped(suffix.slice(0, i));
+      if (i >= suffix.length) {
+        clearInterval(interval);
+        setPhase("done");
+      }
+    }, 35);
+    return () => clearInterval(interval);
+  }, [phase, suffix]);
+
+  return (
+    <span style={{ fontFamily: "monospace", fontSize: "12px", color: "#999" }}>
+      {count}
+      {typed}
+      {phase !== "done" && <span className="meta-cursor" />}
+    </span>
+  );
 }
 
 // ── Images ─────────────────────────────────────────────────────────────────
 const images = [
-  { month: "january2024",   src: January2024   },
-  { month: "february2024",  src: February2024  },
-  { month: "march2024",     src: March2024     },
-  { month: "june2024",      src: June2024      },
-  { month: "august2024",    src: August2024    },
-  { month: "october2024",   src: October2024   },
-  { month: "january2025",   src: January2025   },
-  { month: "february2025",  src: February2025  },
-  { month: "april2025",     src: April2025     },
-  { month: "may2025",       src: May2025       },
+  { month: "january2024", src: January2024 },
+  { month: "february2024", src: February2024 },
+  { month: "march2024", src: March2024 },
+  { month: "june2024", src: June2024 },
+  { month: "august2024", src: August2024 },
+  { month: "october2024", src: October2024 },
+  { month: "january2025", src: January2025 },
+  { month: "february2025", src: February2025 },
+  { month: "april2025", src: April2025 },
+  { month: "may2025", src: May2025 },
   { month: "september2025", src: September2025 },
-  { month: "july2025",      src: July2025      },
-  { month: "january2026",   src: January2026   },
-  { month: "february2026",  src: February2026  },
+  { month: "july2025", src: July2025 },
+  { month: "january2026", src: January2026 },
+  { month: "february2026", src: February2026 },
 ];
 
 // ── Helpers ────────────────────────────────────────────────────────────────
+const MotionLink = motion(Link);
+
 function monthName(n: number) {
   return MONTH_NAMES[n - 1] ?? "";
 }
 
-function getPromptCount(month: string, year: number) {
-  return allPrompts.filter(
-    (p) =>
-      p.month.toLowerCase().trim() === month.toLowerCase().trim() &&
-      p.year === String(year),
-  ).length;
+function getPromptCount(prompts: DBPrompt[], month: number, year: number) {
+  return prompts.filter((p) => p.month === month && p.year === year).length;
 }
 
 function getUniqueMonths(prompts: DBPrompt[], year: number) {
@@ -83,27 +150,30 @@ function getUniqueMonths(prompts: DBPrompt[], year: number) {
 
 // ── Animations ─────────────────────────────────────────────────────────────
 const containerVariants: Variants = {
-  hidden:  { opacity: 0 },
+  hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
 };
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  exit:    { opacity: 0, y: -20 },
+  exit: { opacity: 0, y: -20 },
 };
 
 const cardVariants: Variants = {
-  hidden:  { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+  },
 };
 
 // ── Card ───────────────────────────────────────────────────────────────────
-function PromptCard({ prompt }: { prompt: DBPrompt }) {
-  const name     = monthName(prompt.month);
+function PromptCard({ prompt, count }: { prompt: DBPrompt; count: number }) {
+  const name = monthName(prompt.month);
   const imageKey = `${name.toLowerCase()}${prompt.year}`;
-  const image    = images.find((img) => img.month === imageKey);
-  const count    = getPromptCount(name, prompt.year);
+  const image = images.find((img) => img.month === imageKey);
 
   return (
     <motion.div
@@ -123,7 +193,9 @@ function PromptCard({ prompt }: { prompt: DBPrompt }) {
         />
       )}
 
-      <h4 className="fw-semibold mb-1">{name} {prompt.year}</h4>
+      <h4 className="fw-semibold mb-1">
+        {name} {prompt.year}
+      </h4>
 
       <small className="text-muted d-block mb-2">
         • {count} prompt{count !== 1 && "s"}
@@ -139,14 +211,14 @@ function PromptCard({ prompt }: { prompt: DBPrompt }) {
         <u>Prompt</u>: {prompt.title}
       </p>
 
-      <motion.a
-        href={`/mainPromptPage/${prompt.year}/${name.toLowerCase()}`}
+      <MotionLink
+        to={`/mainPromptPage/${prompt.year}/${name.toLowerCase()}`}
         className="btn btn-outline-dark btn-sm rounded-3"
         whileHover={{ x: 4 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
         View prompts →
-      </motion.a>
+      </MotionLink>
     </motion.div>
   );
 }
@@ -155,7 +227,7 @@ function PromptCard({ prompt }: { prompt: DBPrompt }) {
 export default function PromptsPage() {
   const [prompts, setPrompts] = useState<DBPrompt[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error,   setError]   = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetch(`${API}/prompts`)
@@ -165,9 +237,9 @@ export default function PromptsPage() {
       .finally(() => setLoading(false));
   }, []);
 
-const prompts2024 = getUniqueMonths(prompts, 2024);
-const prompts2025 = getUniqueMonths(prompts, 2025);
-const prompts2026 = getUniqueMonths(prompts, 2026);
+  const prompts2024 = getUniqueMonths(prompts, 2024);
+  const prompts2025 = getUniqueMonths(prompts, 2025);
+  const prompts2026 = getUniqueMonths(prompts, 2026);
 
   return (
     <motion.div
@@ -176,38 +248,83 @@ const prompts2026 = getUniqueMonths(prompts, 2026);
       animate="animate"
       exit="exit"
       transition={{ duration: 0.5 }}
-      className="container-fluid"
+      className="container-fluid "
+      style={{ backgroundColor: "#e2d7db" }}
     >
       <Layout />
-      <div className="row my-5">
-        <div className="col-lg-6 col-sm-12 col-6">
-          <div className="first-heading animate__animated animate__zoomInDown">
-            <h1 className="first-word">PROMPTS</h1>
-            <p className="h3">
-              Collection of prompts written by <Link to="/">NBL</Link> members over the years
-            </p>
-          </div>
+
+      <motion.header
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          borderBottom: "1px solid #e5e5e5",
+          paddingBottom: "2rem",
+          marginBottom: "3rem",
+          marginTop: "60px",
+        }}
+      >
+        {/* <p style={{ fontFamily: "monospace", fontSize: "16px", letterSpacing: "0.32em",
+    textTransform: "uppercase", color: "#999", margin: "0 0 0.75rem" }}>
+    NBL Writing Community
+  </p> */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: "1.5rem",
+            flexWrap: "wrap",
+            margin: "0 0 0.85rem",
+          }}
+        >
+          <h1
+            style={{
+              fontFamily: "Georgia, serif",
+              fontSize: "clamp(2.4rem,7vw,4rem)",
+              fontWeight: 400,
+              lineHeight: 1,
+              letterSpacing: "-0.03em",
+              margin: 0,
+            }}
+          >
+            Prompts
+          </h1>
+
+          {!loading && (
+            <PromptMeta
+              key={prompts.length}
+              total={prompts.length}
+              yearRange={`2024 – ${new Date().getFullYear()}`}
+            />
+          )}
         </div>
-        <div className="col-lg-5 col-5 col-sm-8 lottie mx-auto">
-          <DotLottieReact
-            src="https://lottie.host/6db403da-3cf5-45a4-8cec-3fe99fddd0c9/sq1o2jMyKu.lottie"
-            backgroundColor="transparent"
-            speed={0.7}
-            autoplay
-          />
-        </div>
-      </div>
+        <p
+          style={{
+            fontSize: "0.95rem",
+            lineHeight: 1.6,
+            color: "#555",
+            maxWidth: "48ch",
+            margin: 0,
+          }}
+        >
+          A growing archive of monthly writing prompts from NBL members.
+        </p>
+      </motion.header>
 
       {error && <p className="text-center text-danger">{error}</p>}
 
       {loading ? (
-        <p className="text-center my-5">Loading prompts…</p>
+        <p className="text-center my-5 vh-100"
+          style={{backgroundColor: "#e2d7db"}}
+        
+        >Loading prompts…</p>
       ) : (
         <motion.div
           className="container py-5"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          style={{backgroundColor: "#e2d7db"}}
         >
           {[
             { label: "2024 Prompts", list: prompts2024 },
@@ -224,12 +341,15 @@ const prompts2026 = getUniqueMonths(prompts, 2026);
                       className="col-md-6 col-lg-4"
                       variants={cardVariants}
                     >
-                      <PromptCard prompt={p} />
+                      <PromptCard
+                        prompt={p}
+                        count={getPromptCount(prompts, p.month, p.year)}
+                      />
                     </motion.div>
                   ))}
                 </div>
               </section>
-            )
+            ),
           )}
         </motion.div>
       )}
