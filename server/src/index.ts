@@ -51,7 +51,8 @@ const app  = express();
 const PORT = process.env.PORT ?? 5000;
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://nbl-v2-0.vercel.app"
+  "https://nbl-v2-0.vercel.app",
+  "https://nbl-v20-2vlhxfzdl-nwabueze-emmanuels-projects.vercel.app/"
 ];
 
 app.use(cors({
