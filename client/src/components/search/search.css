@@ -202,7 +202,7 @@
 
 /* ── Highlight ────────────────────────────────────────────────────────────── */
 .search-highlight {
-  background:    rgba(108,99,255,0.15);
+  background:    rgba(239, 239, 243, 0.15);
   color:         #6c63ff;
   border-radius: 3px;
   padding:       0 2px;
