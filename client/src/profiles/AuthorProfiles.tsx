@@ -318,7 +318,7 @@ export default function AuthorProfile() {
                 <p className="mb-0" style={{ maxWidth: 560, margin: "0 auto" }}>
                   Special interface simply because I can
                 </p>
-                <p>I'm built different</p>
+                <p>I'm built different, I think</p>
                 <div className="d-flex justify-content-center gap-4">
                   <motion.a
                     href="https://emmanw3l.substack.com"
