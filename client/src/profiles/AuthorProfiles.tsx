@@ -448,12 +448,12 @@ export default function AuthorProfile() {
               </section>
             )}
 
+<h1 className="fw-bold text-center ">PROMPTS</h1><hr />
             {years.length === 0 ? (
               <p className="text-center text-muted">No prompts yet.</p>
             ) : (
               years.map((year) => (
-                <section key={year} className="mb-5">
-                  <h1 className="fw-bold mb-5 text-center ">PROMPTS</h1>
+                <section key={year} className="mb-5 mt-5">
                   <h3 className=" mb-4 text-center">{year}</h3>
 
                   <div className="row g-4">
