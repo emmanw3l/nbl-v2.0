@@ -16,13 +16,25 @@ export default function InstallPrompt() {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
-    // Check if NBL is already installed
+    // Check if the current tab is running as the installed app
     const isStandalone =
       window.matchMedia("(display-mode: standalone)").matches ||
       (window.navigator as Navigator & { standalone?: boolean }).standalone ===
         true;
 
+    // Check if we've previously recorded a successful install — this
+    // persists across sessions/tabs, unlike isStandalone, which only
+    // reflects *this* tab's current display mode.
+    const alreadyInstalled = localStorage.getItem("nbl-installed") === "true";
+
     if (isStandalone) {
+      // Mark it so future non-standalone visits (e.g. opening a link in
+      // a regular browser tab) also stay quiet.
+      localStorage.setItem("nbl-installed", "true");
+      return;
+    }
+
+    if (alreadyInstalled) {
       return;
     }
 
@@ -33,30 +45,34 @@ export default function InstallPrompt() {
       return;
     }
 
-    // Capture the browser's install event
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
-
       setInstallEvent(event as BeforeInstallPromptEvent);
     };
 
-    window.addEventListener(
-      "beforeinstallprompt",
-      handleBeforeInstallPrompt
-    );
+    // Fires once the user actually completes installation — whether they
+    // used your button or the browser's own install UI (e.g. address bar
+    // icon on desktop Chrome).
+    const handleAppInstalled = () => {
+      localStorage.setItem("nbl-installed", "true");
+      setShowPrompt(false);
+      setInstallEvent(null);
+    };
 
-    // Show popup after 3 seconds
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    window.addEventListener("appinstalled", handleAppInstalled);
+
     const timer = window.setTimeout(() => {
       setShowPrompt(true);
     }, 3000);
 
     return () => {
       window.clearTimeout(timer);
-
       window.removeEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt
       );
+      window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
 
@@ -64,11 +80,13 @@ export default function InstallPrompt() {
     if (!installEvent) return;
 
     await installEvent.prompt();
-
     const { outcome } = await installEvent.userChoice;
 
     if (outcome === "accepted") {
       setShowPrompt(false);
+      // appinstalled will also fire and set localStorage, but setting it
+      // here too avoids any timing gap
+      localStorage.setItem("nbl-installed", "true");
     }
 
     setInstallEvent(null);
@@ -76,12 +94,12 @@ export default function InstallPrompt() {
 
   const handleDismiss = () => {
     setShowPrompt(false);
-
-    sessionStorage.setItem(
-      "nbl-install-dismissed",
-      "true"
-    );
+    sessionStorage.setItem("nbl-install-dismissed", "true");
   };
+
+  if (!showPrompt) {
+    return null;
+  }
 
   if (!showPrompt) {
     return null;
