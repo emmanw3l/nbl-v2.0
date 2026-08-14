@@ -1,3 +1,4 @@
+import InstallPrompt from "./components/InstallPrompt";
 import "./App.css";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Suspense, lazy } from "react";
@@ -6,7 +7,6 @@ import { AnimatePresence } from "framer-motion";
 import PageNotFound from "./components/pagenotfound/pageNotFound";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/Protected";
-import InstallPrompt from "./components/InstallPrompt";
 
 const Home = lazy(() => import("./Home"));
 const PromptsPage = lazy(() => import("./prompts/mainPromptPage"));
@@ -28,6 +28,7 @@ export default function App() {
   return (
     <AuthProvider>
       <div className="app">
+      <InstallPrompt />
         <AnimatePresence mode="wait">
           <Suspense
             fallback={
@@ -110,7 +111,6 @@ export default function App() {
             </Routes>
           </Suspense>
         </AnimatePresence>
-        <InstallPrompt />
       </div>
     </AuthProvider>
   );
