@@ -9,10 +9,15 @@ import '../bootstrap-5.3.3-dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '@dotlottie/player-component'; 
 import 'animate.css';
-
 // import './index.css'
 
+import { registerSW } from 'virtual:pwa-register';
 
+registerSW({
+  onNeedRefresh() {
+    console.log('New version available');
+  },
+});
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

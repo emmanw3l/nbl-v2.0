@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import PageNotFound from "./components/pagenotfound/pageNotFound";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/Protected";
+import InstallPrompt from "./components/InstallPrompt";
 
 const Home = lazy(() => import("./Home"));
 const PromptsPage = lazy(() => import("./prompts/mainPromptPage"));
@@ -109,6 +110,7 @@ export default function App() {
             </Routes>
           </Suspense>
         </AnimatePresence>
+        <InstallPrompt />
       </div>
     </AuthProvider>
   );
