@@ -6,20 +6,25 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function subscribeToPushEndpoint(req: Request, res: Response) {
-  const { deviceId, subscription } = req.body;
-  await prisma.pushSubscription.upsert({
-    where: { deviceId },
-    update: {
-      endpoint: subscription.endpoint,
-      p256dh: subscription.keys.p256dh,
-      auth: subscription.keys.auth,
-    },
-    create: {
-      deviceId,
-      endpoint: subscription.endpoint,
-      p256dh: subscription.keys.p256dh,
-      auth: subscription.keys.auth,
-    },
-  });
-  res.status(200).json({ ok: true });
+  try {
+    const { deviceId, subscription } = req.body;
+    await prisma.pushSubscription.upsert({
+      where: { deviceId },
+      update: {
+        endpoint: subscription.endpoint,
+        p256dh: subscription.keys.p256dh,
+        auth: subscription.keys.auth,
+      },
+      create: {
+        deviceId,
+        endpoint: subscription.endpoint,
+        p256dh: subscription.keys.p256dh,
+        auth: subscription.keys.auth,
+      },
+    });
+    res.status(200).json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ error: "Invalid subscription payload" });
+  }
 }

@@ -70,7 +70,6 @@ app.use(cors({
 }));
 
 
-app.use("/api/push", pushRouter);
 app.use(helmet());
 // app.use(cors({ origin: process.env.CLIENT_URL ?? "http://localhost:5173", credentials: true }));
 app.use(express.json());
@@ -78,6 +77,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 200 }));
 
+app.use("/api/push", pushRouter);
 app.use("/api/auth",    authRoutes);
 app.use("/api/prompts", promptRoutes);
 app.use("/api/authors", authorRoutes);
