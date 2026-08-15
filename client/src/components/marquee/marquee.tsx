@@ -77,7 +77,7 @@ export default function ReviewMarquee() {
               <div className="review-avatar">{review.author[0]}</div>
               <p className="review-text">“{review.text}”</p>
               <Link
-                to={`/profile#${slugify(review.author)}`}
+                to={`/profile/${slugify(review.author)}`}
                 className="review-author-link"
               >
                 — {review.author}
