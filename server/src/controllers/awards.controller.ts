@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { randomUUID } from "crypto";
 import prisma from "../config/db";
+import { notifyFollowers } from "../lib/notifyFollowers";
 
 interface NomineeInput {
   authorId: number | string;
@@ -124,6 +125,15 @@ export async function createAward(
       },
       include: nomineeInclude,
     });
+
+    for (const nominee of award.nominees) {
+      notifyFollowers(nominee.authorId, {
+        title: `${nominee.author.name} got a nomination!`,
+        body: `${award.category} — ${nominee.isWinner ? "Winner 🏆" : "Nominee"}`,
+        url: `/profile/${nominee.author.slug}`,
+      }).catch((err) => console.error("notifyFollowers failed:", err));
+    }
+
     res.status(201).json({ award });
   } catch (err) {
     next(err);
@@ -159,6 +169,16 @@ export async function updateAward(
       },
       include: nomineeInclude,
     });
+
+
+    for (const nominee of award.nominees) {
+      notifyFollowers(nominee.authorId, {
+        title: `${nominee.author.name} got a nomination!`,
+        body: `${award.category} — ${nominee.isWinner ? "Winner 🏆" : "Nominee"}`,
+        url: `/profile/${nominee.author.slug}`,
+      }).catch((err) => console.error("notifyFollowers failed:", err));
+    }
+
     res.json({ award });
   } catch (err) {
     next(err);

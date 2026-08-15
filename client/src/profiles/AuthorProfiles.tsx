@@ -89,8 +89,6 @@ const cardVariants = {
   }),
 };
 
-
-
 export default function AuthorProfile() {
   const { slug } = useParams<{ slug: string }>();
   const isFounder = slug === FOUNDER_SLUG;
@@ -245,22 +243,35 @@ export default function AuthorProfile() {
             transition={{ duration: 0.5 }}
           >
             <div className="text-center mb-5">
-              <div
-                className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3 fw-bold fs-3 text-white"
-                style={{
-                  width: 90,
-                  height: 90,
-                  background: "linear-gradient(135deg, #6c63ff, #3ecf8e)",
-                  letterSpacing: 1,
-                }}
-              >
-                {author.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")
-                  .toUpperCase()
-                  .slice(0, 2)}
-              </div>
+              {isFounder ? (
+                <img
+                  src="/images/founder.webp"
+                  alt={author.name}
+                  className="rounded-circle mb-3"
+                  style={{
+                    width: 90,
+                    height: 90,
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <div
+                  className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3 fw-bold fs-3 text-white"
+                  style={{
+                    width: 90,
+                    height: 90,
+                    background: "linear-gradient(135deg, #6c63ff, #3ecf8e)",
+                    letterSpacing: 1,
+                  }}
+                >
+                  {author.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .toUpperCase()
+                    .slice(0, 2)}
+                </div>
+              )}
 
               <h1 className="fw-bold mb-1">
                 {author.name}
@@ -305,11 +316,6 @@ export default function AuthorProfile() {
                 )}
               </p>
             </div>
-
-                
-  
-
-
 
             {isFounder && (
               <motion.div

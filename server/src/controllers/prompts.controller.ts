@@ -1,5 +1,6 @@
 // server/src/controllers/prompts.controller.ts
 import type { Request, Response, NextFunction } from "express";
+import { notifyFollowers } from "../lib/notifyFollowers";
 import prisma from "../config/db";
 
 interface PromptBody {
@@ -111,6 +112,13 @@ export async function createPrompt(req: Request, res: Response, next: NextFuncti
       include: { author: true },
     });
 
+
+    notifyFollowers(updatedPrompt.authorId, {
+      title: `New prompt from ${updatedPrompt.author.name}`,
+      body: updatedPrompt.title,
+      url: `/mainPromptPage/${updatedPrompt.year}/${monthName}#prompt-${updatedPrompt.id}`,
+    }).catch((err) => console.error("notifyFollowers failed:", err));
+
     res.status(201).json({ prompt: updatedPrompt });
   } catch (err) {
     next(err);
@@ -154,6 +162,15 @@ export async function updatePrompt(
       data,
       include: { author: true },
     });
+
+
+    notifyFollowers(prompt.authorId, {
+      title: `Update from ${prompt.author.name}`,
+      body: prompt.title,
+      url: `/mainPromptPage/${prompt.year}/${new Date(0, prompt.month - 1).toLocaleString("en-US", { month: "long" }).toLowerCase()}#prompt-${prompt.id}`,
+    }).catch((err) => console.error("notifyFollowers failed:", err));
+
+
     res.json({ prompt });
   } catch (err) {
     next(err);
@@ -179,3 +196,5 @@ export async function deletePrompt(
     next(err);
   }
 }
+
+
