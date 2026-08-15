@@ -39,6 +39,8 @@ import morgan  from "morgan";
 import cookieParser from "cookie-parser";
 import rateLimit    from "express-rate-limit";
 
+import pushRouter from "./routes/push.routes";
+
 import { errorHandler } from "./middleware/error.middleware";
 import authRoutes    from "./routes/auth.routes";
 import promptRoutes  from "./routes/prompts.routes";
@@ -67,6 +69,8 @@ app.use(cors({
   credentials: true
 }));
 
+
+app.use("/api/push", pushRouter);
 app.use(helmet());
 // app.use(cors({ origin: process.env.CLIENT_URL ?? "http://localhost:5173", credentials: true }));
 app.use(express.json());

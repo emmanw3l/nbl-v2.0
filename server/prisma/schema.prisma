@@ -29,7 +29,7 @@ model Author {
   updatedAt   DateTime       @updatedAt
   nominations AwardNominee[]
   prompts     Prompt[]
-
+  followers   Follow[]
   @@map("authors")
 }
 
@@ -78,6 +78,29 @@ model AwardNominee {
   entryId  String?
 
   @@map("award_nominees")
+}
+
+model Follow {
+  id        Int      @id @default(autoincrement())
+  authorId  Int
+  deviceId  String
+  createdAt DateTime @default(now())
+
+  author    Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@unique([authorId, deviceId])
+  @@map("follows")
+}
+
+model PushSubscription {
+  id        Int      @id @default(autoincrement())
+  deviceId  String   @unique
+  endpoint  String   @db.Text
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+
+  @@map("push_subscriptions")
 }
 
 enum Role {

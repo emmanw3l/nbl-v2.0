@@ -8,6 +8,8 @@ import "./authorprofile.css";
 import WavyText from "../components/wavytext";
 import PagedContent from "../components/PagedContent";
 
+import FollowButton from "../components/FollowButton";
+
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
 const FOUNDER_SLUG = "anonymous";
@@ -86,6 +88,8 @@ const cardVariants = {
     },
   }),
 };
+
+
 
 export default function AuthorProfile() {
   const { slug } = useParams<{ slug: string }>();
@@ -206,6 +210,10 @@ export default function AuthorProfile() {
           </ol>
         </nav>
 
+        <div className="mb-2 align-items-end justify-content-end ">
+          {author ? <FollowButton authorId={author.id} /> : null}
+        </div>
+
         {loading && (
           <div className="text-center py-5">
             <div className="spinner-border" role="status" />
@@ -297,6 +305,11 @@ export default function AuthorProfile() {
                 )}
               </p>
             </div>
+
+                
+  
+
+
 
             {isFounder && (
               <motion.div
@@ -448,7 +461,8 @@ export default function AuthorProfile() {
               </section>
             )}
 
-<h1 className="fw-bold text-center ">PROMPTS</h1><hr />
+            <h1 className="fw-bold text-center ">PROMPTS</h1>
+            <hr />
             {years.length === 0 ? (
               <p className="text-center text-muted">No prompts yet.</p>
             ) : (

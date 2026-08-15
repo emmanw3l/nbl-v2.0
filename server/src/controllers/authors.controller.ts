@@ -195,3 +195,42 @@ export async function deleteAuthor(
     next(err);
   }
 }
+export async function followAuthor(req: Request<{ authorId: string }>, res: Response) {
+  const { deviceId } = req.body;
+  const authorId = Number(req.params.authorId);
+  try {
+    await prisma.follow.create({ data: { authorId, deviceId } });
+  } catch (err: any) {
+    if (err.code !== "P2002") throw err;
+  }
+  res.status(201).json({ following: true });
+}
+
+export async function checkFollowing(
+  req: Request<{ authorId: string }>,
+  res: Response,
+): Promise<void> {
+  const { deviceId } = req.query;
+  const follow = await prisma.follow.findUnique({
+    where: {
+      authorId_deviceId: {
+        authorId: Number(req.params.authorId),
+        deviceId: String(deviceId),
+      },
+    },
+  });
+  res.json({ following: !!follow });
+}
+export async function unfollowAuthor(
+  req: Request<{ authorId: string }>,
+  res: Response,
+): Promise<void> {
+  const { deviceId } = req.body;
+  await prisma.follow.deleteMany({
+    where: {
+      authorId: Number(req.params.authorId),
+      deviceId,
+    },
+  });
+  res.status(200).json({ following: false });
+}
