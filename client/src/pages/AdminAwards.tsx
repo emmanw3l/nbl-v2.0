@@ -45,6 +45,7 @@ export default function AdminAwards() {
   const [form, setForm] = useState<AwardForm>(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
+  const [search, setSearch] = useState("");
 
   const fetchAwards = useCallback(async () => {
     setLoading(true);
@@ -58,6 +59,17 @@ export default function AdminAwards() {
       setLoading(false);
     }
   }, [year]);
+
+  const filteredAwards = awards.filter((a) => {
+    if (search.trim() === "") return true;
+    const q = search.toLowerCase();
+    const matchesCategory = a.category.toLowerCase().includes(q);
+    const matchesDescription = a.description.toLowerCase().includes(q);
+    const matchesNominee = a.nominees?.some((n) =>
+      n.author?.name?.toLowerCase().includes(q),
+    );
+    return matchesCategory || matchesDescription || matchesNominee;
+  });
 
   useEffect(() => {
     fetchAwards();
@@ -207,10 +219,7 @@ export default function AdminAwards() {
     return winners.map((n) => n.author?.name).join(" & ");
   }
 
-
-
   // ── Editor ────────────────────────────────────────────────────────────────
-
 
   if (editing !== null)
     return (
@@ -422,7 +431,6 @@ export default function AdminAwards() {
                       placeholder="e.g. A — leave blank if solo"
                     />
                   </div>
-                  
                 </div>
               ))}
 
@@ -466,10 +474,7 @@ export default function AdminAwards() {
       </AdminLayout>
     );
 
-
-
-    // ── List ──────────────────────────────────────────────────────────────────
-
+  // ── List ──────────────────────────────────────────────────────────────────
 
   return (
     <AdminLayout title="Awards">
@@ -484,6 +489,16 @@ export default function AdminAwards() {
             <option key={y}>{y}</option>
           ))}
         </select>
+
+        <input
+          type="text"
+          className="form-control"
+          style={{ ...s, width: "auto", minWidth: 220 }}
+          placeholder="Search category, description, or nominee…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
         <button className="btn btn-primary" onClick={openNew}>
           <i className="bi bi-plus-lg me-1" />
           New Award
@@ -496,7 +511,7 @@ export default function AdminAwards() {
         <div className="text-center py-5">
           <div className="spinner-border text-primary" role="status" />
         </div>
-      ) : awards.length === 0 ? (
+      ) : filteredAwards.length === 0 ? (
         <p className="text-secondary">No awards for {year}.</p>
       ) : (
         <div
@@ -504,7 +519,7 @@ export default function AdminAwards() {
           style={{ border: "1px solid #2a2d3a" }}
         >
           <table
-            className="table table-hover mb-0"
+            className="table table-hover table-dark mb-0"
             style={{ color: "#e2e4ed" }}
           >
             <thead>
@@ -536,7 +551,7 @@ export default function AdminAwards() {
               </tr>
             </thead>
             <tbody>
-              {awards.map((a) => (
+              {filteredAwards.map((a) => (
                 <tr
                   key={a.id}
                   style={{ background: "#0f1117", borderColor: "#2a2d3a" }}

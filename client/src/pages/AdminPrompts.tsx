@@ -48,6 +48,12 @@ export default function AdminPrompts() {
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
 
+
+  const [search, setSearch] = useState("");
+const [monthFilter, setMonthFilter] = useState<number | "all">("all");
+
+
+
   const fetchPrompts = useCallback(async () => {
     setLoading(true);
     setError("");
@@ -61,6 +67,15 @@ export default function AdminPrompts() {
       setLoading(false);
     }
   }, [year]);
+
+  const filteredPrompts = prompts.filter((p) => {
+  const matchesSearch =
+    search.trim() === "" ||
+    p.title.toLowerCase().includes(search.toLowerCase()) ||
+    p.author?.name.toLowerCase().includes(search.toLowerCase());
+  const matchesMonth = monthFilter === "all" || p.month === monthFilter;
+  return matchesSearch && matchesMonth;
+});
 
   useEffect(() => {
     fetchPrompts();
@@ -331,12 +346,51 @@ export default function AdminPrompts() {
             <option key={y}>{y}</option>
           ))}
         </select>
+        
+
+
+
+          
+
+
+  <select
+    className="form-select"
+    style={{ ...inputStyle, width: "auto" }}
+    value={monthFilter}
+    onChange={(e) => setMonthFilter(e.target.value === "all" ? "all" : +e.target.value)}
+  >
+    <option value="all">All Months</option>
+    {MONTHS.map((m, i) => (
+      <option key={m} value={i + 1}>{m}</option>
+    ))}
+  </select>
+
+  <input
+    type="text"
+    className="form-control"
+    style={{ ...inputStyle, width: "auto", minWidth: 200 }}
+    placeholder="Search title or author…"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+
+  
+
+
+
+
+
+
+
+
+
         {can("createPrompt") && (
           <button className="btn btn-primary" onClick={openNew}>
             <i className="bi bi-plus-lg me-1" /> New Prompt
           </button>
         )}
       </div>
+      
 
       {error && <div className="alert alert-danger">{error}</div>}
 
@@ -344,7 +398,7 @@ export default function AdminPrompts() {
         <div className="text-center py-5">
           <div className="spinner-border text-primary" role="status" />
         </div>
-      ) : prompts.length === 0 ? (
+      ) : filteredPrompts.length === 0 ? (
         <p className="text-secondary">No prompts found.</p>
       ) : (
         <div className="table-responsive  bg-dark rounded-4">
@@ -384,7 +438,7 @@ export default function AdminPrompts() {
               </tr>
             </thead>
             <tbody>
-              {prompts.map((p) => (
+              {filteredPrompts.map((p) => (
                 <tr
                   key={p.id}
                   style={{ borderColor: "#2a2d3a", background: "#0f1117" }}

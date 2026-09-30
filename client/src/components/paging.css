@@ -18,3 +18,19 @@
 container-fluid{
   background-color: var(--primary-color) !important;
 }
+
+
+.spotify-embed-wrapper iframe {
+  height: 152px;
+}
+
+@media (max-width: 480px) {
+  .spotify-embed-wrapper iframe {
+    height: 80px; /* Spotify's condensed mobile-friendly height */
+  }
+  .spotify-embed-wrapper {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    width: calc(100% + 1rem);
+  }
+}
