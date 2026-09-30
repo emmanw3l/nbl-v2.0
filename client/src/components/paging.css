@@ -64,3 +64,77 @@ container-fluid {
     height: 80px;
   }
 }
+
+
+
+/* glowy texty thingy */
+
+
+
+
+.glow-text {
+  color: #f4d374;
+  display: inline-block;
+  animation: glow-bounce 1.8s ease-in-out infinite;
+  text-shadow: 0 0 6px rgba(244, 211, 116, 0.35);
+}
+
+@keyframes glow-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px rgba(244, 211, 116, 0.6),
+      0 0 10px rgba(244, 211, 116, 0.4);
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgba(244, 211, 116, 0.9),
+      0 0 22px rgba(244, 211, 116, 0.6),
+      0 0 32px rgba(244, 211, 116, 0.3);
+  }
+}
+
+/* Glow + moving shimmer sweep */
+.glow-text-shimmer {
+  background: linear-gradient(
+    100deg,
+   #ffd470 30%,
+    #ffedaa 45%,
+    #f4d374 50%,
+    #f8cc64 65%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    glow-shimmer-sweep 3.2s linear infinite,
+    glow-pulse-shadow 2.2s ease-in-out infinite;
+    
+}
+
+@keyframes glow-shimmer-sweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+@keyframes glow-pulse-shadow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(244, 211, 116, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(244, 211, 116, 0.3));
+  }
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
 import Layout from "../Nav/Nav";
+import BackToTop from "../components/top";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
@@ -272,6 +273,7 @@ export default function Awards() {
       className="container-fluid"
     >
       <Layout />
+      <BackToTop/>
 
       <div className="container py-5">
         <div className="text-center mb-5">

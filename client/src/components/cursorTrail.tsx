@@ -2,8 +2,8 @@
 import { useEffect, useRef } from "react";
 
 interface CursorTrailProps {
-  emoji?: string;       // if set, renders this emoji per particle
-  color?: string;       // used only when emoji isn't set (plain dot trail)
+  emoji?: string;       
+  color?: string;       
   size?: number;
   particleLifetime?: number; // ms
   spawnInterval?: number;    // ms between particles while moving

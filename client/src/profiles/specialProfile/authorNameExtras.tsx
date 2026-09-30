@@ -1,4 +1,4 @@
-import WavyText from "../../components/wavytext";
+import WavyText, { GlowText } from "../../components/wavytext";
 import type { ProfileAccent } from "./specialProfiles";
 import { useState, useEffect } from "react";
 
@@ -11,10 +11,10 @@ interface AuthorNameExtrasProps {
 
 interface TypewriterProps {
   texts: string[];
-  typingSpeed?: number;   // ms per character while typing
-  deletingSpeed?: number; // ms per character while deleting
-  pauseDuration?: number; // ms to hold at full text before deleting
-  loop?: boolean;         // if false, stops after typing the last text once
+  typingSpeed?: number;   
+  deletingSpeed?: number; 
+  pauseDuration?: number; 
+  loop?: boolean;         
   className?: string;
   style?: React.CSSProperties;
 }
@@ -92,8 +92,8 @@ export default function AuthorNameExtras({ isFounder, isPj, isBema, accent }: Au
   if (isBema) {
     return (
       <div className="mt-2">
-        <p className=" " style={{ color: accent.badgeText, textTransform: "uppercase", fontSize:"2rem" }}>
-          <Typewriter texts={["favourite admin"]}/>
+        <p className=" " style={{  textTransform: "uppercase", fontSize:"2.5rem", fontWeight: "bolder" }}>
+          <GlowText>Favourite admin </GlowText>
         </p>
       </div>
     )

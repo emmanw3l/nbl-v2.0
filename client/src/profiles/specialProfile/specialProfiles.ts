@@ -22,10 +22,23 @@ export function getAccent(slug?: string): ProfileAccent {
       textColor: "#f0f0f0",
     };
   }
+  
+
+  if (slug === BEMA_SLUG) {
+    return{
+      pageBg: "#f3f3f3",
+      from: "#6c63ff",
+    to: "#3ecf8e",
+    badgeBg: "rgba(108,99,255,0.12)",
+    badgeText: "#6c63ff",
+      
+    };
+  }
   return {
     from: "#6c63ff",
     to: "#3ecf8e",
     badgeBg: "rgba(108,99,255,0.12)",
     badgeText: "#6c63ff",
   };
+
 }

@@ -18,6 +18,7 @@ import September2025 from "../components/img/Prompts/2025/September_2025.jpg";
 import July2025 from "../components/img/Prompts/2025/July_2025.jpg";
 import January2026 from "../components/img/Prompts/2026/January_2026.jpg";
 import February2026 from "../components/img/Prompts/2026/February_2026.jpg";
+import BackToTop from "../components/top";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
@@ -252,6 +253,7 @@ export default function PromptsPage() {
       style={{ backgroundColor: "#e2d7db" }}
     >
       <Layout />
+      <BackToTop/>
 
       <motion.header
         initial={{ opacity: 0, y: 10 }}

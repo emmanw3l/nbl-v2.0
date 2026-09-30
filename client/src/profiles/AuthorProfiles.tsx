@@ -12,7 +12,7 @@ import SpotifyEmbed from "../components/SpotifyEmbed";
 import { FOUNDER_SLUG, PJ_SLUG, BEMA_SLUG, getAccent } from "./specialProfile/specialProfiles";
 import AuthorNameExtras from "./specialProfile/authorNameExtras";
 import FounderBio from "./specialProfile/founderBio";
-import ChocolateRain from "../components/chocolateRain";
+import ChocolateRain, { StarRain } from "../components/chocolateRain";
 import CursorTrail from "../components/cursorTrail";
 
 
@@ -169,7 +169,9 @@ export default function AuthorProfile() {
       <Layout />
       <BackToTop/>
       {isPj && <ChocolateRain />}
+      {isBema && <StarRain/>}
       {isPj && <CursorTrail emoji="🍫" size={18} />}
+      {isBema && <CursorTrail emoji="🌟" size={16}/>}
       {isFounder && <CursorTrail emoji="✨" size={16} color="#cfa544" />}
 
       <div className="container py-5">

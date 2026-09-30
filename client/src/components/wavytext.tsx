@@ -31,3 +31,21 @@ export default function WavyText({ text, className, style }: Props) {
     </p>
   );
 }
+interface GlowTextProps {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  shimmer?: boolean; 
+}
+
+export function GlowText({ children, className, style, shimmer = true }: GlowTextProps) {
+  return (
+    <span
+      className={`${className ?? ""} ${shimmer ? "glow-text-shimmer" : "glow-text"}`}
+      style={style}
+    >
+      {children}
+    </span>
+  );
+}
+
