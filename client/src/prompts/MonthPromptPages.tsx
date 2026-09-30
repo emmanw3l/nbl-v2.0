@@ -9,7 +9,7 @@ import "../components/paging.css";
 
 import Footer from "../components/footer/footer";
 import DropdownBreadcrumb from "../components/dropdownBreadcrumb";
-import SpotifyEmbed from "../components/spotifyEmbed";
+import SpotifyEmbed from "../components/SpotifyEmbed";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
