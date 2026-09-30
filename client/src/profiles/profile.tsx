@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import Layout from "../Nav/Nav";
 import Footer from "../components/footer/footer";
 import "./profile.css";
+import BackToTop from "../components/top";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
@@ -135,6 +136,7 @@ function AuthorCard({ author, index }: { author: Author; index: number }) {
       className="col-12  col-sm-6 col-lg-4 col-xl-3"
       variants={cardVariants}
     >
+
       <div
         className={`card h-100 rounded-4 p-4 position-relative author-card ${
           index % 2 === 0 ? "ac" : "ac-even"
@@ -311,6 +313,7 @@ export default function Profiles() {
       className="container-fluid body"
     >
       <Layout />
+      <BackToTop/>
 
       <div className="container py-5">
         {/* Header */}

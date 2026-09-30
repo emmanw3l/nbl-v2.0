@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 // import { Link } from "react-router-dom";
 // import { useEffect, useState } from "react";
 import RandomPrompt from "./components/RandomPrompt";
+import BackToTop from "./components/top";
 // import Search from "./components/search/search";
 
 // Define the interface for your prompts
@@ -33,6 +34,7 @@ export default function Home() {
       className="container-fluid "
     >
       <Layout />
+      <BackToTop/>
       
       {/* <Search /> */}
 

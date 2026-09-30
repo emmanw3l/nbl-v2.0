@@ -1,19 +1,24 @@
-// src/profiles/AuthorProfile.tsx
+
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Layout from "../Nav/Nav";
 import Footer from "../components/footer/footer";
 import "./authorprofile.css";
-import WavyText from "../components/wavytext";
 import PagedContent from "../components/PagedContent";
-
+import BackToTop from "../components/top";
 import FollowButton from "../components/FollowButton";
+import SpotifyEmbed from "../components/SpotifyEmbed";
+import { FOUNDER_SLUG, PJ_SLUG, BEMA_SLUG, getAccent } from "./specialProfile/specialProfiles";
+import AuthorNameExtras from "./specialProfile/authorNameExtras";
+import FounderBio from "./specialProfile/founderBio";
+import ChocolateRain from "../components/chocolateRain";
+import CursorTrail from "../components/cursorTrail";
+
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
-const FOUNDER_SLUG = "anonymous";
-const PJ_SLUG = "pj";
+
 
 const MONTH_NAMES = [
   "January",
@@ -38,6 +43,7 @@ interface Prompt {
   content: string;
   year: number;
   slug: string;
+  musicUrl: string;
 }
 
 interface NominationAward {
@@ -93,24 +99,10 @@ export default function AuthorProfile() {
   const { slug } = useParams<{ slug: string }>();
   const isFounder = slug === FOUNDER_SLUG;
   const isPj = slug === PJ_SLUG;
+  const isBema = slug ===BEMA_SLUG;
 
-  const accent = isFounder
-    ? {
-        from: "#cfa544",
-        to: "#1f1f1f",
-        badgeBg: "rgba(207,165,68,0.15)",
-        badgeText: "#b8862e",
-        pageBg: "#072830",
-        textColor: "#f0f0f0",
-      }
-    : {
-        from: "#6c63ff",
-        to: "#3ecf8e",
-        badgeBg: "rgba(108,99,255,0.12)",
-        badgeText: "#6c63ff",
-        pageBg: undefined,
-        textColor: undefined,
-      };
+  const accent = getAccent(slug);
+
   const [author, setAuthor] = useState<Author | null>(null);
   const [authors, setAuthors] = useState<AuthorSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -175,6 +167,10 @@ export default function AuthorProfile() {
       }}
     >
       <Layout />
+      <BackToTop/>
+      {isPj && <ChocolateRain />}
+      {isPj && <CursorTrail emoji="🍫" size={18} />}
+      {isFounder && <CursorTrail emoji="✨" size={16} color="#cfa544" />}
 
       <div className="container py-5">
         <nav aria-label="breadcrumb" className="mb-4">
@@ -275,28 +271,7 @@ export default function AuthorProfile() {
 
               <h1 className="fw-bold mb-1">
                 {author.name}
-                {isPj && (
-                  <div>
-                    <WavyText
-                      text={"CHOCOLATESSS!!"}
-                      className="text-uppercase fw-semibold small mb-2"
-                      style={{
-                        letterSpacing: ".08em",
-                        color: accent.badgeText,
-                      }}
-                    />
-                  </div>
-                )}
-                {isFounder && (
-                  <div className="marquee marqueee ">
-                    <p>
-                      personality of the year{" "}
-                      <span className=" fs-6  italic">
-                        -amongst other things
-                      </span>
-                    </p>
-                  </div>
-                )}
+                <AuthorNameExtras isFounder={isFounder} isPj={isPj} isBema={isBema} accent={accent} />    
               </h1>
               <p className=" small mb-0" style={{ color: accent.badgeText }}>
                 {sortedPrompts.length} prompt{sortedPrompts.length !== 1 && "s"}{" "}
@@ -317,71 +292,7 @@ export default function AuthorProfile() {
               </p>
             </div>
 
-            {isFounder && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="rounded-4 p-4 mb-5 text-center"
-                style={{
-                  background: accent.badgeBg,
-                  border: `1px solid ${accent.badgeBg}`,
-                }}
-              >
-                <p
-                  className="text-uppercase fw-semibold small mb-2"
-                  style={{ letterSpacing: ".08em", color: accent.badgeText }}
-                >
-                  Mastermind behind the nbl site
-                </p>
-                <p className="mb-0" style={{ maxWidth: 560, margin: "0 auto" }}>
-                  Special interface simply because I can
-                </p>
-                <p>I'm built different</p>
-                <div className="d-flex justify-content-center gap-4">
-                  <motion.a
-                    href="https://emmanw3l.substack.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: accent.badgeText }}
-                    whileHover={{ y: -3, scale: 0.9 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <i className="bi bi-substack fs-2" />
-                  </motion.a>
-                  <motion.a
-                    href="https://instagram.com/emmanw3l_"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: accent.badgeText }}
-                    whileHover={{ y: -3, scale: 0.9 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <i className="bi bi-instagram fs-2" />
-                  </motion.a>
-                  <motion.a
-                    href="https://github.com/emmanw3l"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: accent.badgeText }}
-                    whileHover={{ y: -3, scale: 1.15 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <i className="bi bi-github fs-2" />
-                  </motion.a>
-                  <motion.a
-                    href="https://wa.me/2349023990244"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: accent.badgeText }}
-                    whileHover={{ y: -3, scale: 1.15 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <i className="bi bi-whatsapp fs-2" />
-                  </motion.a>
-                </div>
-              </motion.div>
-            )}
+            {isFounder && <FounderBio accent={accent} />}
 
             {nominations.length > 0 && (
               <section className="mb-5">
@@ -476,7 +387,7 @@ export default function AuthorProfile() {
                 <section key={year} className="mb-5 mt-5">
                   <h3 className=" mb-4 text-center">{year}</h3>
 
-                  <div className="row g-4">
+                  <div className="row g-4 align-items-start">
                     {byYear[year].map((prompt, i) => {
                       const isOpen = expandedId === prompt.id;
 
@@ -512,8 +423,10 @@ export default function AuthorProfile() {
                             >
                               {MONTH_NAMES[prompt.month - 1]} {prompt.year}
                             </span>
-
+                              
                             <h5 className="fw-semibold mb-2">{prompt.title}</h5>
+                                    
+                              
 
                             {prompt.theme && (
                               <p className="text-muted fst-italic small mb-3">
@@ -534,6 +447,7 @@ export default function AuthorProfile() {
                                   style={{ overflow: "hidden" }}
                                 >
                                   <div className="pt-1 pb-3">
+                                    {prompt.musicUrl && <SpotifyEmbed url={prompt.musicUrl} />}
                                     <PagedContent content={prompt.content} />
                                   </div>
                                 </motion.div>
