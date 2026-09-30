@@ -10,6 +10,7 @@ interface PromptBody {
   year?: number | string;
   slug?: string;
   authorId?: number | string;
+  musicUrl?: string | null;
   
 }
 
@@ -78,7 +79,7 @@ export async function getPromptBySlug(
 // POST /api/prompts
 export async function createPrompt(req: Request, res: Response, next: NextFunction) {
   try {
-    const { title, content, month, year, authorId } = req.body;
+    const { title, content, month, year, authorId, musicUrl } = req.body;
 
     if (!req.user) {
       res.status(401).json({ error: "Not authenticated" });
@@ -96,6 +97,7 @@ export async function createPrompt(req: Request, res: Response, next: NextFuncti
         authorId: Number(authorId),
         userId: req.user.id,
         slug: "temp-slug",
+        musicUrl: musicUrl || null,
         wordCount,
       },
     });
@@ -133,7 +135,7 @@ export async function updatePrompt(
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { title, content, month, year, slug, authorId } =
+    const { title, content, month, year, slug, authorId, musicUrl } =
       req.body as PromptBody;
     const promptId = parseInt(req.params.id, 10);
     if (Number.isNaN(promptId)) {
@@ -149,6 +151,7 @@ export async function updatePrompt(
       year: number;
       slug: string;
       authorId: number;
+      musicUrl: string | null;
     }> = {};
     if (title) data.title = title;
     if (content) data.content = content;
@@ -156,6 +159,7 @@ export async function updatePrompt(
     if (year) data.year = parseInt(String(year), 10);
     if (slug) data.slug = slug;
     if (authorId) data.authorId = parseInt(String(authorId), 10);
+    if (musicUrl !== undefined) data.musicUrl = musicUrl || null;
 
     const prompt = await prisma.prompt.update({
       where: { id: promptId },

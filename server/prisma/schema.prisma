@@ -45,6 +45,7 @@ model Prompt {
   updatedAt DateTime @updatedAt
   userId    Int?
   theme     String?
+  musicUrl    String?
   wordCount Int      @default(0)
   author    Author   @relation(fields: [authorId], references: [id])
   user      User?    @relation(fields: [userId], references: [id])

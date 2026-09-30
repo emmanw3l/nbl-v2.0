@@ -1,4 +1,3 @@
-// src/pages/AdminAwards.tsx
 import { useState, useEffect, useCallback } from "react";
 import AdminLayout from "../components/AdminLayout";
 import { adminFetch } from "../utils/adminApi";
@@ -208,7 +207,11 @@ export default function AdminAwards() {
     return winners.map((n) => n.author?.name).join(" & ");
   }
 
+
+
   // ── Editor ────────────────────────────────────────────────────────────────
+
+
   if (editing !== null)
     return (
       <AdminLayout title={editing === "new" ? "New Award" : "Edit Award"}>
@@ -419,6 +422,7 @@ export default function AdminAwards() {
                       placeholder="e.g. A — leave blank if solo"
                     />
                   </div>
+                  
                 </div>
               ))}
 
@@ -462,7 +466,11 @@ export default function AdminAwards() {
       </AdminLayout>
     );
 
-  // ── List ──────────────────────────────────────────────────────────────────
+
+
+    // ── List ──────────────────────────────────────────────────────────────────
+
+
   return (
     <AdminLayout title="Awards">
       <div className="d-flex flex-wrap gap-2 align-items-center mb-4">

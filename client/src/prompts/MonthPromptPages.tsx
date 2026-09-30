@@ -9,6 +9,7 @@ import "../components/paging.css";
 
 import Footer from "../components/footer/footer";
 import DropdownBreadcrumb from "../components/dropdownBreadcrumb";
+import SpotifyEmbed from "../components/spotifyEmbed";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
 
@@ -35,6 +36,7 @@ interface Prompt {
   month: number;
   year: number;
   slug: string;
+  musicUrl: string | null;
   author: {
     slug: any;
     id: number;
@@ -50,7 +52,11 @@ const pageVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } as const },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" } as const,
+  },
 };
 
 const containerVariants = {
@@ -87,18 +93,20 @@ export default function MonthPromptPage() {
       .finally(() => setLoading(false));
   }, [year, monthNum]);
 
-
   useEffect(() => {
-  if (!loading && window.location.hash) {
-    const el = document.querySelector(window.location.hash);
-    if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
-  }
-}, [loading]);
+    if (!loading && window.location.hash) {
+      const el = document.querySelector(window.location.hash);
+      if (el)
+        setTimeout(
+          () => el.scrollIntoView({ behavior: "smooth", block: "center" }),
+          100,
+        );
+    }
+  }, [loading]);
 
   const monthPrompt = prompts[0] ?? null;
 
   return (
-    
     <motion.div
       variants={pageVariants}
       initial="initial"
@@ -124,7 +132,10 @@ export default function MonthPromptPage() {
             </li>
           </ol>
         </nav> */}
-        <DropdownBreadcrumb currentYear={year ?? ""} currentMonth={month ?? ""} />
+        <DropdownBreadcrumb
+          currentYear={year ?? ""}
+          currentMonth={month ?? ""}
+        />
 
         {loading && (
           <div className="text-center py-5">
@@ -163,7 +174,9 @@ export default function MonthPromptPage() {
                 {/* {monthLabel} {year} */}
               </p>
               {/* <h1> Prompt: {monthPrompt?.title}</h1> */}
-              <h1 className="fw-bold display-5 mb-2">THEME: {monthPrompt?.title}</h1>
+              <h1 className="fw-bold display-5 mb-2">
+                THEME: {monthPrompt?.title}
+              </h1>
               {monthPrompt?.theme && (
                 <p className="lead fst-italic text-muted">
                   {/* Theme: {monthPrompt.theme} */}
@@ -187,7 +200,10 @@ export default function MonthPromptPage() {
                   className="col-10 cardss col-md-5 "
                   variants={cardVariants}
                 >
-                  <div className=" shadow-sm rounded-4 h-100 p-4" id={`prompt-${prompt.id}`}>
+                  <div
+                    className=" shadow-sm rounded-4 h-100 p-4"
+                    id={`prompt-${prompt.id}`}
+                  >
                     {/* Author header */}
                     <div
                       className="mb-3 pb-3"
@@ -199,6 +215,11 @@ export default function MonthPromptPage() {
                           {prompt.author.name}
                         </Link>
                       </p>
+                      {prompt.musicUrl && (
+                        <div className="mt-3">
+                          <SpotifyEmbed url={prompt.musicUrl} />
+                        </div>
+                      )}
                     </div>
 
                     <PagedContent
@@ -222,7 +243,7 @@ export default function MonthPromptPage() {
           </motion.div>
         )}
       </div>
-      <Footer/>
+      <Footer />
     </motion.div>
   );
 }
